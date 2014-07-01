@@ -9,6 +9,6 @@ describe 'View Clients' do
 
     expect(page).to have_content 'Clients List'
     expect(page).to have_content '5 client(s)'
-    expect(page).to have_content 'John Cena'
+    expect(page).to have_content 'John Paul'
   end
 end

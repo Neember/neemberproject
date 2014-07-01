@@ -5,13 +5,21 @@
 
 %table
   %tr
-    %th Name
+    %th Title
+    %th First Name
+    %th Last Name
+    %th Designation
     %th Email
     %th Phone
     %th Address
+    %th Company Name
   - @clients.each do |client|
     %tr
-      %td= client.name
+      %td= client.title
+      %td= client.first_name
+      %td= client.last_name
+      %td= client.designation
       %td= client.email
       %td= client.phone
       %td= client.address
+      %td= client.company_name
