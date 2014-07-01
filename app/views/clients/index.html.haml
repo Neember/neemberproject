@@ -1,0 +1,17 @@
+%h1 Clients List
+
+%div
+  = "#{@clients.size} client(s)"
+
+%table
+  %tr
+    %th Name
+    %th Email
+    %th Phone
+    %th Address
+  - @clients.each do |client|
+    %tr
+      %td= client.name
+      %td= client.email
+      %td= client.phone
+      %td= client.address

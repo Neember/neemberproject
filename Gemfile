@@ -31,6 +31,7 @@ group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
+  gem 'capybara'
 end
 
 # Use ActiveModel has_secure_password
