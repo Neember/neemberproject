@@ -27,6 +27,11 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 gem 'haml'
+gem 'bootstrap_form', '~> 2.1.1'
+gem 'enumerize'
+gem 'awesome_print'
+gem 'rails_utils'
+
 group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
