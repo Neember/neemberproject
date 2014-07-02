@@ -14,7 +14,7 @@ class ClientsController < ApplicationController
     if @client.save
       redirect_to clients_path, notice: t('message.create_success')
     else
-      flash[:alert] = 'Failed to create client'
+      flash[:alert] = t('message.create_failed')
       render :new
     end
   end
@@ -27,9 +27,9 @@ class ClientsController < ApplicationController
     @client = Client.find(client_id)
 
     if @client.update(client_param)
-      redirect_to clients_path, notice: 'Update client successfully'
+      redirect_to clients_path, notice: t('message.update_success')
     else
-      flash[:alert] = 'Failed to update client'
+      flash[:alert] = t('message.update_failed')
       render :edit
     end
   end
@@ -37,9 +37,9 @@ class ClientsController < ApplicationController
   def destroy
     @client = Client.find(client_id)
     if @client.destroy
-      redirect_to clients_path, notice: 'Delete client successfully'
+      redirect_to clients_path, notice: t('message.delete_success')
     else
-      redirect_to clients_path, alert: 'Failed to delete client'
+      redirect_to clients_path, alert: t('message.delete_failed')
     end
   end
 

@@ -11,6 +11,6 @@ describe 'Destroy client' do
     get_element("delete-#{client.id}").click
 
     expect(page).to have_content 'Clients List'
-    expect(page).to have_content 'Delete client successfully'
+    expect(page).to have_content I18n.t('message.delete_success')
   end
 end

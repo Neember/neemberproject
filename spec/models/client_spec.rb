@@ -8,7 +8,7 @@ describe Client do
     it { should validate_presence_of :address }
     it { should validate_presence_of :company_name }
     it { should validate_presence_of :designation }
-    it { should enumerize(:title).in(:mr, :mrs, :ms) }
+    it { should enumerize(:title).in(:mr, :mrs, :ms, :dr, :mdm) }
 
 
     let(:client) { build(:client) }

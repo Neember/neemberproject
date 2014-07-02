@@ -18,6 +18,6 @@ describe 'Edit client' do
     click_on 'Submit'
 
     expect(page).to have_content 'Clients List'
-    expect(page).to have_content 'Update client successfully'
+    expect(page).to have_content I18n.t('message.update_success')
   end
 end
