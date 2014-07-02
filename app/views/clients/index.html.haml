@@ -24,7 +24,10 @@
       %td= client.phone
       %td= client.address
       %td= client.company_name
-      %td= link_to "Edit ##{client.id}", edit_client_path(client.id)
+      %td
+        = link_to "Edit ##{client.id}", edit_client_path(client.id)
+        = '|'
+        = link_to "Delete ##{client.id}", client_path(client.id), method: :delete
 
 %div
   = link_to 'New Client', new_client_path

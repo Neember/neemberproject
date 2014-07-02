@@ -98,4 +98,19 @@ describe ClientsController do
       end
     end
   end
+
+  describe 'delete #destroy' do
+    context 'success' do
+      let(:client){ create(:client)}
+      def do_request
+        get :destroy, id: client.id
+      end
+      it 'delete client, redirect to clients list and sets the flash' do
+        do_request
+
+        expect(response).to redirect_to clients_path
+        expect(flash[:notice]).to_not be_nil
+      end
+    end
+  end
 end

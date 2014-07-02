@@ -34,6 +34,14 @@ class ClientsController < ApplicationController
     end
   end
 
+  def destroy
+    @client = Client.find(client_id)
+    if @client.destroy
+      redirect_to clients_path, notice: 'Delete client successfully'
+    else
+      redirect_to clients_path, alert: 'Failed to delete client'
+    end
+  end
 
 
   protected
