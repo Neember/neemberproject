@@ -1,33 +1,33 @@
-%h1 Clients List
+.col-md-12
+  %h1 Clients List
 
-%div
-  = "#{@clients.size} client(s)"
-
-%table
-  %tr
-    %th Title
-    %th First Name
-    %th Last Name
-    %th Designation
-    %th Email
-    %th Phone
-    %th Address
-    %th Company Name
-    %th Action
-  - @clients.each do |client|
+  %div
+    = "#{@clients.size} client(s)"
+  %div
+    = link_to 'New Client', new_client_path, class: 'btn btn-default'
+  %table.table
     %tr
-      %td= client.title
-      %td= client.first_name
-      %td= client.last_name
-      %td= client.designation
-      %td= client.email
-      %td= client.phone
-      %td= client.address
-      %td= client.company_name
-      %td
-        = link_to "Edit ##{client.id}", edit_client_path(client.id)
-        = '|'
-        = button_to "Delete ##{client.id}", client_path(client.id), method: :delete
+      %th Title
+      %th First Name
+      %th Last Name
+      %th Designation
+      %th Email
+      %th Phone
+      %th Address
+      %th Company Name
+      %th Action
+    - @clients.each do |client|
+      %tr
+        %td= client.title.text
+        %td= client.first_name
+        %td= client.last_name
+        %td= client.designation
+        %td= client.email
+        %td= client.phone
+        %td= client.address
+        %td= client.company_name
+        %td
+          = link_to 'Edit', edit_client_path(client.id), class: 'btn btn-link', data: {test: "edit-#{client.id}"}
+          = button_to 'Delete', client_path(client.id), method: :delete, class: 'btn btn-link', data: {test: "delete-#{client.id}"}
 
-%div
-  = link_to 'New Client', new_client_path
+

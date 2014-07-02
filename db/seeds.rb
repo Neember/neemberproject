@@ -5,3 +5,18 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Client.destroy_all
+
+10.times do
+  Client.create({
+    :title => :mr,
+    :first_name => "Jack",
+    :last_name => "Huang",
+    :email => "client1@example.com",
+    :phone => "1234-5869",
+    :designation => "Owner",
+    :company_name => "ABC Company",
+    :address => "123 ABC Street"
+  })
+end

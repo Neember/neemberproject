@@ -31,6 +31,9 @@ gem 'bootstrap_form', '~> 2.1.1'
 gem 'enumerize'
 gem 'awesome_print'
 gem 'rails_utils'
+gem 'better_errors', group: :development
+
+gem 'erb2haml', group: :development
 
 group :test do
   gem 'rspec-rails'

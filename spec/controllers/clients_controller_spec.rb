@@ -60,6 +60,7 @@ describe ClientsController do
     def do_request
       get :edit, id: client.id
     end
+
     it 'display edit form' do
       do_request
       expect(response).to render_template :edit
@@ -101,12 +102,14 @@ describe ClientsController do
 
   describe 'delete #destroy' do
     context 'success' do
-      let(:client){ create(:client)}
+      let!(:client){ create(:client)}
+
       def do_request
         get :destroy, id: client.id
       end
+
       it 'delete client, redirect to clients list and sets the flash' do
-        do_request
+        expect { do_request }.to change(Client, :count).by(-1)
 
         expect(response).to redirect_to clients_path
         expect(flash[:notice]).to_not be_nil

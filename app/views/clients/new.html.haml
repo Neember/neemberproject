@@ -1,12 +1,13 @@
 %h1 Add New Client
-
-= bootstrap_form_for @client do |f|
-  = f.select :title, Client.title.options
-  = f.text_field :first_name
-  = f.text_field :last_name
-  = f.email_field :email
-  = f.text_field :phone
-  = f.text_area :address
-  = f.text_field :company_name
-  = f.text_field :designation
-  = f.submit 'Submit'
+.col-md-6
+  = bootstrap_form_for @client do |f|
+    = f.select :title, Client.title.options
+    = f.text_field :first_name
+    = f.text_field :last_name
+    = f.email_field :email
+    = f.text_field :phone
+    = f.text_area :address
+    = f.text_field :company_name
+    = f.text_field :designation
+    = f.submit 'Submit'
+    = link_to 'Back', :back, class: 'btn btn-default'

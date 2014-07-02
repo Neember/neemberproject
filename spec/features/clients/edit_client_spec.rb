@@ -5,9 +5,9 @@ describe 'Edit client' do
   let(:client) { clients.first }
 
   it 'updates client' do
-    visit clients_url
+    visit clients_path
 
-    click_on "Edit ##{client.id}"
+    get_element("edit-#{client.id}").click
 
     expect(page).to have_content 'Edit client'
     fill_in 'First name', with: 'Martin'
