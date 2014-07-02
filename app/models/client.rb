@@ -10,4 +10,6 @@ class Client < ActiveRecord::Base
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
   enumerize :title, in: [:mr, :mrs, :ms, :dr, :mdm], default: :mr
+
+  self.per_page = 5
 end

@@ -30,4 +30,7 @@
           = link_to 'Edit', edit_client_path(client.id), class: 'btn btn-link', data: {test: "edit-#{client.id}"}
           = button_to 'Delete', client_path(client.id), method: :delete, class: 'btn btn-link', data: {test: "delete-#{client.id}"}
 
+  %div
+    = will_paginate(@clients, renderer: BootstrapPagination::Rails)
+
 

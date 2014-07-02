@@ -8,12 +8,12 @@
 
 Client.destroy_all
 
-10.times do
+10.times do |n|
   Client.create({
     :title => :mr,
-    :first_name => "Jack",
-    :last_name => "Huang",
-    :email => "client1@example.com",
+    :first_name => "Example #{n}",
+    :last_name => 'Client',
+    :email => "client.#{n}@example.com",
     :phone => "1234-5869",
     :designation => "Owner",
     :company_name => "ABC Company",
