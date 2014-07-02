@@ -31,6 +31,8 @@ gem 'enumerize' # Enum in Rails
 gem 'rails_utils' # Generate flash message (Bootstrap)
 gem 'will_paginate', '~> 3.0' # Rails pagination
 gem 'will_paginate-bootstrap' # Bootstrap renderer for will_paginate
+gem 'simple-navigation'
+gem 'simple-navigation-bootstrap'
 
 group :development do
   gem 'spring'
@@ -41,7 +43,6 @@ end
 group :production do
   gem 'rails_12factor'
 end
-
 
 group :test do
   gem 'awesome_print'

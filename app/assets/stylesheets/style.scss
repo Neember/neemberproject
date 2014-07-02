@@ -736,6 +736,9 @@
   }
 }
 
+.dropdown > a > b.caret {
+  display: none;
+}
 .dropdown > a:after {
     top: 9px;
     right: 15px;
