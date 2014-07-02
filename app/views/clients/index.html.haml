@@ -13,6 +13,7 @@
     %th Phone
     %th Address
     %th Company Name
+    %th Action
   - @clients.each do |client|
     %tr
       %td= client.title
@@ -23,6 +24,7 @@
       %td= client.phone
       %td= client.address
       %td= client.company_name
+      %td= link_to "Edit ##{client.id}", edit_client_path(client.id)
 
 %div
   = link_to 'New Client', new_client_path

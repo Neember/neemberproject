@@ -22,4 +22,5 @@ describe 'Create Client' do
     expect(page).to have_content 'New client added successfully'
 
   end
+
 end

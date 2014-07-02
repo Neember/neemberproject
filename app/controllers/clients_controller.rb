@@ -19,7 +19,28 @@ class ClientsController < ApplicationController
     end
   end
 
+  def edit
+    @client = Client.find(client_id)
+  end
+
+  def update
+    @client = Client.find(client_id)
+
+    if @client.update(client_param)
+      redirect_to clients_path, notice: 'Update client successfully'
+    else
+      flash[:alert] = 'Failed to update client'
+      render :edit
+    end
+  end
+
+
+
   protected
+  def client_id
+    params.require(:id)
+  end
+
   def client_param
     params.require(:client).permit(:title, :first_name, :last_name, :email, :phone, :address, :company_name, :designation)
   end
