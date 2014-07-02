@@ -39,7 +39,7 @@ describe ClientsController do
       it 'creates a new client' do
         do_request
         expect(response).to redirect_to clients_path
-        expect(flash[:notice]).to be == 'New client added successfully'
+        expect(flash[:notice]).to_not be_nil
       end
     end
 
@@ -49,7 +49,7 @@ describe ClientsController do
       it 'displays error and renders new template' do
         do_request
         expect(response).to render_template :new
-        expect(flash[:alert]).to be == 'Failed to create client'
+        expect(flash[:alert]).to_not be_nil
       end
     end
   end

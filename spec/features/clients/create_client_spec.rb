@@ -19,7 +19,7 @@ describe 'Create Client' do
 
     click_on 'Submit'
 
-    expect(page).to have_content 'New client added successfully'
+    expect(page).to have_content I18n.t('message.create_success')
 
   end
 

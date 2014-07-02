@@ -12,7 +12,7 @@ class ClientsController < ApplicationController
     @client = Client.new(client_param)
 
     if @client.save
-      redirect_to clients_path, notice: 'New client added successfully'
+      redirect_to clients_path, notice: t('message.create_success')
     else
       flash[:alert] = 'Failed to create client'
       render :new

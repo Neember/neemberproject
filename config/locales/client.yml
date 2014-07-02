@@ -5,3 +5,6 @@ en:
         mr: 'Mr.'
         mrs: 'Mrs.'
         ms: 'Ms.'
+  message:
+    create_success: 'Client created successfully'
+
