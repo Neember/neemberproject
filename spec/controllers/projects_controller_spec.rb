@@ -31,7 +31,7 @@ describe ProjectsController do
 
   describe 'POST #create' do
     context 'success' do
-      let(:project_param){ attributes_for(:project)}
+      let(:project_param) { attributes_for(:project)}
       def do_request
         post :create, project: project_param
       end
@@ -56,4 +56,37 @@ describe ProjectsController do
       end
     end
   end
+
+  describe 'GET #edit' do
+    context 'render edit form' do
+      let(:project) { create(:project) }
+      def do_request
+        get :edit, id: project.id
+      end
+      it 'edit project form' do
+        do_request
+
+        expect(response).to render_template :edit
+        expect(assigns(:project)).to_not be_nil
+      end
+    end
+  end
+
+  describe 'PATCH #update' do
+    context 'success' do
+      let(:project_param) { attributes_for(:project, name: 'Neember') }
+      let(:project) { create(:project) }
+      def do_request
+        patch :update, id: project.id, project: project_param
+      end
+      it 'update project' do
+        do_request
+
+        expect(project.reload.name).to eq 'Neember'
+        expect(response).to redirect_to projects_path
+        expect(flash[:notice]).to_not be_nil
+      end
+    end
+  end
+
 end

@@ -17,6 +17,20 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def edit
+    @project = Project.find(params.require(:id))
+  end
+
+  def update
+    @project = Project.find(params.require(:id))
+    if @project.update(project_param)
+      redirect_to projects_path, :notice => t('project.message.update_project_success')
+    else
+      flash[:alert] = t('project.message.update_project_failed')
+      render :new
+    end
+  end
+
   protected
   def page
     params[:page]
