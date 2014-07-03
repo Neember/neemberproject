@@ -20,4 +20,8 @@ describe Client do
       expect(client.valid?).to be false
     end
   end
+
+  context 'associations' do
+    it { should have_many :projects }
+  end
 end

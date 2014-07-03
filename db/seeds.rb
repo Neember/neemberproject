@@ -29,3 +29,8 @@ Project.destroy_all
     :quotation_no => "Lorem ipsum",
   })
 end
+
+client = Client.first
+project = Project.first
+
+client.projects << project
