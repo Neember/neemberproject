@@ -15,4 +15,12 @@ class Client < ActiveRecord::Base
 
   self.per_page = 5
   default_scope -> { order(id: :desc) }
+
+  def name
+    "#{self.first_name} #{self.last_name}"
+  end
+
+  def self.options
+    Client.all.collect {|client| [ client.name, client.id ] }
+  end
 end

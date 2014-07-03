@@ -31,13 +31,17 @@ describe ProjectsController do
 
   describe 'POST #create' do
     context 'success' do
-      let(:project_param) { attributes_for(:project)}
+      let(:client) { create(:client) }
+      let(:project_param) { attributes_for(:project, client_id: client.id)}
+
       def do_request
         post :create, project: project_param
       end
+
       it 'Create new project' do
         do_request
 
+        expect(Project.first.client).to eq client
         expect(response).to redirect_to projects_path
         expect(flash[:notice]).to_not be_nil
       end
@@ -107,6 +111,7 @@ describe ProjectsController do
   describe 'delete #destroy' do
     context 'success' do
       let!(:project) { create(:project) }
+
       def do_request
         delete :destroy, id: project.id
       end

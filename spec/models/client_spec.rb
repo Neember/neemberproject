@@ -24,4 +24,12 @@ describe Client do
   context 'associations' do
     it { should have_many :projects }
   end
+
+  describe '#name' do
+    let(:client) { create(:client, first_name: 'John', last_name: 'Cena') }
+
+    it 'returns client full name' do
+      expect(client.name).to eq 'John Cena'
+    end
+  end
 end
