@@ -4,7 +4,7 @@ describe 'Create Client' do
   it 'creates a new client' do
     visit clients_path
 
-    click_on 'Add new'
+    click_on 'Add New Client'
 
     expect(page).to have_content 'Add New Client'
 

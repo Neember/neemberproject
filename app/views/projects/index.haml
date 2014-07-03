@@ -1,0 +1,19 @@
+= display_page_title('Projects List')
+
+%div.container.content
+  %table.table
+    %tr
+      %th Name
+      %th Domain
+      %th Date Started
+      %th Number of Sprints
+      %th Price perSprint
+      %th Quotation
+    - @projects.each do |project|
+      %td= project.name
+      %td= project.domain
+      %td= project.date_started
+      %td= project.no_of_sprints
+      %td= project.price_per_sprint
+      %td= project.quotation_no
+
