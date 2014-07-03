@@ -1,4 +1,10 @@
 @import 'bootstrap';
 @import "themes/default";
-@import "style";
 @import "font-awesome";
+@import "style";
+
+@import 'app';
+@import 'plugins';
+
+@import 'animate';
+@import 'box-shadows';

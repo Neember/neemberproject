@@ -1,4 +1,5 @@
-%h1 Clients List
+= display_page_title('Clients List')
+
 %div.container.content
   %table.table
     %tr
@@ -26,6 +27,6 @@
           = button_to 'Delete', client_path(client.id), method: :delete, class: 'btn btn-link', data: {test: "delete-#{client.id}"}
 
   %div
-    = will_paginate(@clients, renderer: BootstrapPagination::Rails)
+    = will_paginate(@clients, { renderer: BootstrapPagination::Rails, next_label: '&raquo;', previous_label: '&laquo;'})
 
 

@@ -6,14 +6,6 @@
  * Website: http://htmlstream.com
 */
 
-/*Import Global Compulsory CSS Files*/
-@import url(app.scss);
-@import url(plugins.scss);
-
-/*Import CSS Plugins*/
-@import url(animate.css);
-@import url(box-shadows.css);
-
 /*Boxed Layout
 ------------------------------------*/
 .wrapper {
@@ -1078,7 +1070,7 @@
 	overflow: hidden;
 	padding: 10px 0 6px;
 	border-bottom: solid 1px #eee;
-	background: url(../images/breadcrumbs.png) repeat;
+	background: url(image_path('breadcrumbs.png')) repeat;
 }
 .breadcrumbs h1 {
 	color: #666;

@@ -1,3 +1,4 @@
-%h1 Add New Client
-.col-md-6
-  = render partial: 'clients/form', locals: { client: @client }
+= display_page_title('Add New Client')
+%div.container.content
+  .col-md-6
+    = render partial: 'clients/form', locals: { client: @client }
