@@ -7,6 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Client.destroy_all
+Project.destroy_all
 
 10.times do |n|
   Client.create({
@@ -25,6 +26,6 @@ Client.destroy_all
     :date_started => "22/8/2013",
     :no_of_sprints => 9.8,
     :price_per_sprint => 5000,
-    :quotation => "Lorem ipsum",
+    :quotation_no => "Lorem ipsum",
   })
 end

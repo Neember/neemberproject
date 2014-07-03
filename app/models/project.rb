@@ -8,4 +8,6 @@ class Project < ActiveRecord::Base
 
   self.per_page = 5
 
+  default_scope -> { order( :id => :desc ) }
+
 end
