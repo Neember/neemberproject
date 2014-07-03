@@ -1,0 +1,12 @@
+= display_page_title('Add New Project')
+%div.container.content
+  .col-md-6
+    = bootstrap_form_for @project do |f|
+      = f.text_field :name
+      = f.text_field :domain
+      = f.text_field :date_started
+      = f.text_field :no_of_sprints, label: 'Number of Sprints'
+      = f.text_field :price_per_sprint, label: 'Price perSprint'
+      = f.text_field :quotation_no, label: 'Quotation No.'
+      = f.submit 'Submit'
+      = link_to 'Back', projects_path, class: 'btn btn-default'

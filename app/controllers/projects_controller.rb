@@ -1,5 +1,29 @@
 class ProjectsController < ApplicationController
   def index
-    @projects = Project.all.paginate(page: params[:page])
+    @projects = Project.all.paginate(page: page)
   end
+
+  def new
+    @project = Project.new
+  end
+
+  def create
+    @project = Project.new(project_param)
+    if @project.save
+      redirect_to projects_path, notice: t('project.message.create_project_success')
+    else
+      flash[:alert] = t('project.message.create_project_failed')
+      render :new
+    end
+  end
+
+  protected
+  def page
+    params[:page]
+  end
+
+  def project_param
+    params.require(:project).permit(:name, :domain, :date_started, :no_of_sprints, :price_per_sprint, :quotation_no)
+  end
+
 end

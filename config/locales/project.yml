@@ -1,0 +1,9 @@
+en:
+  project:
+    message:
+      create_project_success: 'Project is created'
+      create_project_failed: 'Failed to create project'
+      update_project_success: 'Project is updated'
+      update_project_failed: 'Failed to update project'
+      delete_project_success: 'Project is deleted'
+      delete_project_failed: 'Failed to delete project'

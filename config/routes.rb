@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   #   resources :products
 
   resources :clients, only: [:index, :new, :create, :edit, :update, :destroy]
-  resources :projects, only: [:index]
+  resources :projects, only: [:index, :new, :create]
 
   # Example resource route with options:
   #   resources :products do

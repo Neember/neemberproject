@@ -40,6 +40,9 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :clients, 'Clients', clients_path do |submenu|
       submenu.item :new, 'Add New Client', new_client_path
     end
+    primary.item :projects, 'Projects', projects_path do |submenu|
+      submenu.item :new, 'Add New Project', new_project_path
+    end
 
     # You can also specify a condition-proc that needs to be fullfilled to display an item.
     # Conditions are part of the options. They are evaluated in the context of the views,

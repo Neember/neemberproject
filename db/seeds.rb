@@ -19,4 +19,12 @@ Client.destroy_all
     :company_name => "ABC Company",
     :address => "123 ABC Street"
   })
+  Project.create({
+    :name => "DaDaDee",
+    :domain => "DaDaDee.com",
+    :date_started => "22/8/2013",
+    :no_of_sprints => 9.8,
+    :price_per_sprint => 5000,
+    :quotation => "Lorem ipsum",
+  })
 end

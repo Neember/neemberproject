@@ -9,6 +9,7 @@
       %th Number of Sprints
       %th Price perSprint
       %th Quotation
+      %th Action
     - @projects.each do |project|
       %td= project.name
       %td= project.domain
@@ -16,6 +17,7 @@
       %td= project.no_of_sprints
       %td= project.price_per_sprint
       %td= project.quotation_no
+      %td
 
   %div
     = will_paginate(@projects, {renderer: BootstrapPagination::Rails, next_label: '&raquo;', previous_label: '&laquo;'} )

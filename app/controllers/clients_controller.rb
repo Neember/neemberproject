@@ -1,7 +1,7 @@
 class ClientsController < ApplicationController
 
   def index
-    @clients = Client.all.paginate(page: params[:page])
+    @clients = Client.all.paginate(page: page)
   end
 
   def new
@@ -47,6 +47,10 @@ class ClientsController < ApplicationController
   protected
   def client_id
     params.require(:id)
+  end
+
+  def page
+    params[:page]
   end
 
   def client_param
