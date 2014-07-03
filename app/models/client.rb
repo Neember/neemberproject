@@ -12,4 +12,5 @@ class Client < ActiveRecord::Base
   enumerize :title, in: [:mr, :mrs, :ms, :dr, :mdm], default: :mr
 
   self.per_page = 5
+  default_scope -> { order(id: :desc) }
 end
