@@ -19,7 +19,8 @@
         %td= project.price_per_sprint
         %td= project.quotation_no
         %td
-          = link_to 'Edit', edit_project_path(project.id), class: 'btn btn-link', data: { test: "project-#{project.id}" }
+          = link_to 'Edit', edit_project_path(project.id), class: 'btn btn-link', data: { test: "edit-project-#{project.id}" }
+          = button_to 'Delete', project_path(project.id), method: :delete, class: 'btn btn-link', data: { test: "delete-project-#{project.id}" }
 
   %div
     = will_paginate(@projects, {renderer: BootstrapPagination::Rails, next_label: '&raquo;', previous_label: '&laquo;'} )

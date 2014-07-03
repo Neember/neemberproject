@@ -5,7 +5,7 @@ describe 'Edit project' do
   it 'Edit project' do
     visit projects_path
 
-    get_element("project-#{project.id}").click
+    get_element("edit-project-#{project.id}").click
 
     expect(page).to have_content 'Edit Project'
     fill_in 'Name',with: 'Neember'

@@ -87,8 +87,36 @@ describe ProjectsController do
         expect(flash[:notice]).to_not be_nil
       end
     end
+
+    context 'failed' do
+      let(:project_param) { attributes_for(:project, name: '') }
+      let(:project) { create(:project) }
+      def do_request
+        patch :update, id: project.id, project: project_param
+      end
+
+      it 'failed update project' do
+        do_request
+
+        expect(response).to render_template :new
+        expect(flash[:alert]).to_not be_nil
+      end
+    end
   end
 
+  describe 'delete #destroy' do
+    context 'success' do
+      let!(:project) { create(:project) }
+      def do_request
+        delete :destroy, id: project.id
+      end
+      it 'delete project' do
+        do_request
 
+        expect(response).to redirect_to projects_path
+        expect(flash[:notice]).to_not be_nil
+      end
+    end
+  end
 
 end

@@ -31,6 +31,16 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def destroy
+    @project = Project.find(params.require(:id))
+    if @project.destroy
+      redirect_to projects_path, :notice => t('project.message.delete_project_success')
+    else
+      flash[:alert] = t('project.message.delete_project_failed')
+      render :index
+    end
+  end
+
   protected
   def page
     params[:page]
