@@ -17,3 +17,5 @@
       %td= project.price_per_sprint
       %td= project.quotation_no
 
+  %div
+    = will_paginate(@projects, {renderer: BootstrapPagination::Rails, next_label: '&raquo;', previous_label: '&laquo;'} )
