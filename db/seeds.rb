@@ -27,14 +27,8 @@ User.destroy_all
     :date_started => "22/8/2013",
     :no_of_sprints => 9.8,
     :price_per_sprint => 5000,
-    :quotation_no => "Lorem ipsum",
+    :quotation_no => "Lorem ipsum"
   })
-  User.create({
-    :first_name => "Martin",
-    :last_name => "Vu",
-    :password => "123123123",
-    :email => "user.#{n}@futureworkz.com"
-    })
 end
 
 client = Client.first
