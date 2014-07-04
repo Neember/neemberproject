@@ -57,6 +57,45 @@ describe UsersController do
   end
 
   describe 'GET #edit' do
+    let(:user) { create(:user) }
+    def do_request
+      get :edit, id: user.id
+    end
+
+    it 'display edit form' do
+      do_request
+
+      expect(response).to render_template :edit
+    end
+  end
+
+  describe 'PATCH #update' do
+    context 'success' do
+      let(:user){ create(:user) }
+      def do_request
+        patch :update, id: user.id, user: attributes_for(:user, email: 'martin1234@example.com')
+      end
+      it 'user is created' do
+        do_request
+
+        expect(response).to redirect_to users_path
+        expect(flash[:notice]).to_not be_nil
+        expect(user.reload.email).to eq 'martin1234@example.com'
+      end
+    end
+
+    context 'failed' do
+      let(:user){ create(:user) }
+      def do_request
+        patch :update, id: user.id, user: attributes_for(:user, email: '')
+      end
+      it 'failed to create user' do
+        do_request
+
+        expect(response).to render_template :edit
+        expect(flash[:alert]).to_not be_nil
+      end
+    end
 
   end
 end

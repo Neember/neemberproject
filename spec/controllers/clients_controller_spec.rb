@@ -69,9 +69,6 @@ describe ClientsController do
 
   describe 'PATCH #update' do
     let(:client) { create(:client, first_name: 'John') }
-
-
-
     context 'success' do
       def do_request
         patch :update, id: client.id, client: attributes_for(:client, first_name: 'Martin')

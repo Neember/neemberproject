@@ -12,6 +12,7 @@
           %td= user.last_name
           %td= user.email
           %td
+            = link_to 'Edit', edit_user_path(user.id) ,class: 'btn btn-link', data: {test: "edit-user-#{user.id}"}
 
   .pagination
     = will_paginate(@users, {renderer: BootstrapPagination::Rails, next_label: '&raquo;', previous_label: '&laquo;'})

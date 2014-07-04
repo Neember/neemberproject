@@ -17,9 +17,27 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(user_id)
+  end
+
+  def update
+    @user = User.find(user_id)
+    if @user.update(user_param)
+      redirect_to users_path, notice: t('user.message.update_success')
+    else
+      flash[:alert] = t('user.message.update_failed')
+      render :edit
+    end
+  end
+
   protected
   def page
     params[:page]
+  end
+
+  def user_id
+    params.require(:id)
   end
 
   def user_param
