@@ -20,3 +20,9 @@ en:
         address: 'Address'
         company_name: 'Company name'
         action: 'Action'
+  activerecord:
+    errors:
+      models:
+        client:
+          blank: "Please fill in %{attribute}"
+          invalid: 'Please fill in the correct format of %{attribute}'

@@ -7,6 +7,7 @@ describe Project do
     it { should validate_numericality_of(:no_of_sprints).is_greater_than 0 }
     it { should validate_numericality_of(:price_per_sprint).is_greater_than 0 }
     it { should validate_presence_of :quotation_no }
+    it { should validate_presence_of :client_id }
 
     let(:project) { build(:project) }
 

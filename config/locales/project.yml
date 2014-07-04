@@ -22,3 +22,12 @@ en:
         notes: 'Notes'
         client_name: 'Client Name'
         action: 'Action'
+  activerecord:
+    errors:
+      models:
+        project:
+          blank: "Please fill in %{attribute}"
+          invalid: 'Please fill in correct format %{attribute}'
+          attributes:
+            domain:
+              invalid: 'Please fill in correct domain'
