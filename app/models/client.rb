@@ -13,11 +13,12 @@ class Client < ActiveRecord::Base
 
   enumerize :title, in: [:mr, :mrs, :ms, :dr, :mdm], default: :mr
 
-  self.per_page = 5
   default_scope -> { order(id: :desc) }
 
+  self.per_page = 5
+
   def name
-    "#{self.first_name} #{self.last_name}"
+    "#{first_name} #{last_name}"
   end
 
   def self.options

@@ -1,6 +1,6 @@
 = display_page_title('Projects List')
 
-%div.container.content
+.container.content
   %table.table
     %tr
       %th Name
@@ -24,5 +24,5 @@
           = link_to 'Edit', edit_project_path(project.id), class: 'btn btn-link', data: { test: "edit-project-#{project.id}" }
           = button_to 'Delete', project_path(project.id), method: :delete, class: 'btn btn-link', data: { test: "delete-project-#{project.id}" }
 
-  %div
+  .pagination
     = will_paginate(@projects, {renderer: BootstrapPagination::Rails, next_label: '&raquo;', previous_label: '&laquo;'} )

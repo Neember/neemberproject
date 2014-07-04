@@ -8,8 +8,7 @@ class Project < ActiveRecord::Base
 
   belongs_to :client
 
+  default_scope -> { order(id: :desc) }
+
   self.per_page = 5
-
-  default_scope -> { order( :id => :desc ) }
-
 end
