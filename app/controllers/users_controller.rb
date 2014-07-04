@@ -1,0 +1,28 @@
+class UsersController < ApplicationController
+  def index
+    @users = User.all.paginate(page: page)
+  end
+
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(user_param)
+    if @user.save
+      redirect_to users_path, notice: t('user.message.create_success')
+    else
+      flash[:alert] = t('user.message.create_failed')
+      render :new
+    end
+  end
+
+  protected
+  def page
+    params[:page]
+  end
+
+  def user_param
+    params.require(:user).permit(:first_name, :last_name, :email, :password)
+  end
+end

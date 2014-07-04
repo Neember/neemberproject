@@ -8,6 +8,7 @@
 
 Client.destroy_all
 Project.destroy_all
+User.destroy_all
 
 10.times do |n|
   Client.create({
@@ -28,6 +29,12 @@ Project.destroy_all
     :price_per_sprint => 5000,
     :quotation_no => "Lorem ipsum",
   })
+  User.create({
+    :first_name => "Martin",
+    :last_name => "Vu",
+    :password => "123123123",
+    :email => "user.#{n}@futureworkz.com"
+    })
 end
 
 client = Client.first

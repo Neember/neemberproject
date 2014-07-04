@@ -33,6 +33,7 @@ gem 'will_paginate', '~> 3.0' # Rails pagination
 gem 'will_paginate-bootstrap' # Bootstrap renderer for will_paginate
 gem 'simple-navigation'
 gem 'simple-navigation-bootstrap'
+gem 'devise'
 
 group :development do
   gem 'spring'

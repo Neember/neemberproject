@@ -8,6 +8,6 @@ describe 'View Clients' do
     visit clients_path
 
     expect(page).to have_content 'Clients List'
-    expect(page).to have_content 'John Paul'
+    expect(page).to have_content 'Paul'
   end
 end

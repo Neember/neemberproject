@@ -3,8 +3,12 @@ FactoryGirl.define do
     "client#{n}@example.com"
   end
 
+  sequence :first_name do |n|
+    "John #{n}"
+  end
+
   factory :client do
-    first_name 'John'
+    first_name
     last_name 'Paul'
     email
     phone '1234-5869'
