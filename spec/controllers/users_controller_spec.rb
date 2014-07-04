@@ -27,13 +27,11 @@ describe UsersController do
   end
 
   describe 'POST #create' do
-    let!(:user_param) { attributes_for(:user, email: 'martin@futureworkz.com') }
-
-    def do_request
-      post :create, user: user_param
-    end
-
     context 'success' do
+      let!(:user_param) { attributes_for(:user, email: 'martin@futureworkz.com') }
+      def do_request
+        post :create, user: user_param
+      end
       it 'created a new user' do
         do_request
 
@@ -42,5 +40,23 @@ describe UsersController do
         expect(User.first.email).to eq 'martin@futureworkz.com'
       end
     end
+
+    context 'Failed' do
+      let!(:user_param) { attributes_for(:user, email: '') }
+      def do_request
+        post :create, user: user_param
+      end
+      it 'Failed a new user' do
+        do_request
+
+        expect(response).to render_template :new
+        expect(flash[:alert]).to_not be_nil
+      end
+    end
+
+  end
+
+  describe 'GET #edit' do
+
   end
 end

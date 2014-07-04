@@ -11,7 +11,7 @@ Project.destroy_all
 User.destroy_all
 
 10.times do |n|
-  Client.create({
+  client = Client.create({
     :title => :mr,
     :first_name => "Example #{n}",
     :last_name => 'Client',
@@ -21,14 +21,24 @@ User.destroy_all
     :company_name => "ABC Company",
     :address => "123 ABC Street"
   })
+  puts 'Completed create client'
   Project.create({
     :name => "DaDaDee",
     :domain => "DaDaDee.com",
     :date_started => "22/8/2013",
     :no_of_sprints => 9.8,
     :price_per_sprint => 5000,
-    :quotation_no => "Lorem ipsum"
+    :quotation_no => "Lorem ipsum",
+    :client => client
   })
+  puts 'Completed create project'
+  User.create({
+    :first_name => "Martin",
+    :last_name => "Vu",
+    :password => "123123123",
+    :email => "user.#{n}@futureworkz.com"
+    })
+  puts 'Completed create user'
 end
 
 client = Client.first
