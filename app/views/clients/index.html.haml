@@ -23,8 +23,9 @@
         %td= client.address
         %td= client.company_name
         %td
-          = link_to 'Edit', edit_client_path(client.id), class: 'btn btn-link', data: {test: "edit-#{client.id}"}
-          = button_to 'Delete', client_path(client.id), method: :delete, class: 'btn btn-link', data: {test: "delete-#{client.id}"}
+          = link_to t('button.edit'), edit_client_path(client.id), class: 'btn btn-link', data: {test: "edit-#{client.id}"}
+          = button_to t('button.delete'), client_path(client.id), method: :delete, class: 'btn btn-link', data: {confirm: t('client.message.delete_confirmation'), test: "delete-#{client.id}"}
+
 
   .pagination
     = will_paginate(@clients, { renderer: BootstrapPagination::Rails, next_label: '&raquo;', previous_label: '&laquo;'})

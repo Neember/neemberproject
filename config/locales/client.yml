@@ -7,3 +7,4 @@ en:
       update_failed: 'Failed to update client'
       delete_success: 'Client is deleted'
       delete_failed: 'Failed to delete client'
+      delete_confirmation: 'Confirm delete this client?'
