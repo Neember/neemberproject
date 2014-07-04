@@ -1,14 +1,9 @@
 en:
-  enumerize:
-    client:
-      title:
-        mr: 'Mr.'
-        mrs: 'Mrs.'
-        ms: 'Ms.'
-  message:
-    create_success: 'Client is created'
-    create_failed: 'Failed to create client'
-    update_success: 'Client is updated'
-    update_failed: 'Failed to update client'
-    delete_success: 'Client is deleted'
-    delete_failed: 'Failed to delete client'
+  client:
+    message:
+      create_success: 'Client is created'
+      create_failed: 'Failed to create client'
+      update_success: 'Client is updated'
+      update_failed: 'Failed to update client'
+      delete_success: 'Client is deleted'
+      delete_failed: 'Failed to delete client'

@@ -1,0 +1,7 @@
+en:
+  enumerize:
+    client:
+      title:
+        mr: 'Mr.'
+        mrs: 'Mrs.'
+        ms: 'Ms.'

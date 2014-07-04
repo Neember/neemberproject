@@ -20,11 +20,3 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  enumerize:
-    defaults:
-      title:
-        mr: 'Mr.'
-        mrs: 'Mrs.'
-        ms: 'Ms.'
-        dr: 'Dr.'
-        mdm: 'Mdm.'
