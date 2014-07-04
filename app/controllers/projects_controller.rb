@@ -18,11 +18,11 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = Project.find(params.require(:id))
+    @project = Project.find(project_id)
   end
 
   def update
-    @project = Project.find(params.require(:id))
+    @project = Project.find(project_id)
     if @project.update(project_param)
       redirect_to projects_path, :notice => t('project.message.update_project_success')
     else
@@ -32,7 +32,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project = Project.find(params.require(:id))
+    @project = Project.find(project_id)
     if @project.destroy
       redirect_to projects_path, :notice => t('project.message.delete_project_success')
     else
@@ -44,6 +44,10 @@ class ProjectsController < ApplicationController
   protected
   def page
     params[:page]
+  end
+
+  def project_id
+    params.require(:id)
   end
 
   def project_param
