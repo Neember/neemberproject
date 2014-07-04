@@ -3,15 +3,15 @@
 .container.content
   %table.table
     %tr
-      %th Title
-      %th First Name
-      %th Last Name
-      %th Designation
-      %th Email
-      %th Phone
-      %th Address
-      %th Company Name
-      %th Action
+      %th= label_name('client.title')
+      %th= label_name('client.first_name')
+      %th= label_name('client.last_name')
+      %th= label_name('client.designation')
+      %th= label_name('client.email')
+      %th= label_name('client.phone')
+      %th= label_name('client.address')
+      %th= label_name('client.address')
+      %th= label_name('client.company_name')
     - @clients.each do |client|
       %tr
         %td= client.title.text

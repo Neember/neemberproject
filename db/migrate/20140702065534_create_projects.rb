@@ -7,6 +7,7 @@ class CreateProjects < ActiveRecord::Migration
       t.integer :price_per_sprint
       t.string :quotation_no
       t.date :date_started
+      t.text :notes
 
       t.timestamps
     end

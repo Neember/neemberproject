@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20140703094433) do
     t.integer  "price_per_sprint"
     t.string   "quotation_no"
     t.date     "date_started"
+    t.text     "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "client_id"

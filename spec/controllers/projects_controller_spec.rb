@@ -32,7 +32,8 @@ describe ProjectsController do
   describe 'POST #create' do
     context 'success' do
       let(:client) { create(:client) }
-      let(:project_param) { attributes_for(:project, client_id: client.id)}
+      let(:project_param) { attributes_for(:project, client_id: client.id, notes: 'Lorem Lorem')}
+      let(:project) { Project.first }
 
       def do_request
         post :create, project: project_param
@@ -41,9 +42,10 @@ describe ProjectsController do
       it 'Create new project' do
         do_request
 
-        expect(Project.first.client).to eq client
+        expect(project.client).to eq client
         expect(response).to redirect_to projects_path
         expect(flash[:notice]).to_not be_nil
+        expect(project.notes).to eq 'Lorem Lorem'
       end
     end
 

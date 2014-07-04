@@ -7,3 +7,18 @@ en:
       update_project_failed: 'Failed to update project'
       delete_project_success: 'Project is deleted'
       delete_project_failed: 'Failed to delete project'
+      select_client: 'Please select client'
+      confirm_delete: 'Confirm delete this project?'
+
+  helpers:
+    label:
+      project:
+        name: 'Name'
+        domain: 'Domain'
+        date_started: 'Date started'
+        no_of_sprints: 'Number of Sprints'
+        price_per_sprint: 'Price per Sprint'
+        quotation_no: 'Quotation No.'
+        notes: 'Notes'
+        client_name: 'Client Name'
+        action: 'Action'

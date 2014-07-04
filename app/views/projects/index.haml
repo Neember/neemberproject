@@ -3,14 +3,15 @@
 .container.content
   %table.table
     %tr
-      %th Name
-      %th Domain
-      %th Date Started
-      %th Number of Sprints
-      %th Price perSprint
-      %th Quotation
-      %th Client Name
-      %th Action
+      %th= label_name('project.name')
+      %th= label_name('project.domain')
+      %th= label_name('project.date_started')
+      %th= label_name('project.no_of_sprints')
+      %th= label_name('project.price_per_sprint')
+      %th= label_name('project.quotation_no')
+      %th= label_name('project.notes')
+      %th= label_name('project.client_name')
+      %th= label_name('project.action')
     - @projects.each do |project|
       %tr
         %td= project.name
@@ -19,10 +20,11 @@
         %td= project.no_of_sprints
         %td= project.price_per_sprint
         %td= project.quotation_no
+        %td= project.notes
         %td= link_to project.client.name, edit_client_path(project.client.id) if project.client.present?
         %td
           = link_to t('button.edit'), edit_project_path(project.id), class: 'btn btn-link', data: { test: "edit-project-#{project.id}" }
-          = button_to t('button.delete'), project_path(project.id), method: :delete, class: 'btn btn-link', data: { test: "delete-project-#{project.id}" }
+          = button_to t('button.delete'), project_path(project.id), method: :delete, class: 'btn btn-link', data: { confirm: t('project.message.confirm_delete'),test: "delete-project-#{project.id}" }
 
   .pagination
     = will_paginate(@projects, {renderer: BootstrapPagination::Rails, next_label: '&raquo;', previous_label: '&laquo;'} )

@@ -8,3 +8,15 @@ en:
       delete_success: 'Client is deleted'
       delete_failed: 'Failed to delete client'
       delete_confirmation: 'Confirm delete this client?'
+  helpers:
+    label:
+      client:
+        title: 'Title'
+        first_name: 'First name'
+        last_name: 'Last name'
+        designation: 'Designation'
+        email: 'Email'
+        phone: 'Phone'
+        address: 'Address'
+        company_name: 'Company name'
+        action: 'Action'

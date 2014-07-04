@@ -7,9 +7,36 @@ describe Project do
     it { should validate_numericality_of(:no_of_sprints).is_greater_than 0 }
     it { should validate_numericality_of(:price_per_sprint).is_greater_than 0 }
     it { should validate_presence_of :quotation_no }
+
+    let(:project) { build(:project) }
+
+    it 'validation domain name' do
+      project.domain = 'aslkdjask'
+      expect(project.valid?).to be_falsey
+      project.domain = 'google.com'
+      expect(project.valid?).to be_truthy
+    end
   end
 
   context 'association' do
     it { should belong_to :client }
+  end
+
+  describe '#assigns_default_values' do
+    context 'Project does not have date started' do
+      let(:project) { Project.new }
+
+      it 'assigns default values to project' do
+        expect(project.date_started).to eq Date.today
+      end
+    end
+
+    context 'Project has date started' do
+      let(:project) { Project.new(date_started: Date.tomorrow) }
+
+      it 'does not assign default values to project' do
+        expect(project.date_started).to eq Date.tomorrow
+      end
+    end
   end
 end
