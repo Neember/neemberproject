@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
 
   self.per_page = 5
 
+  default_scope -> {order(first_name: :asc, last_name: :asc, id: :desc)}
+
   def name
     "#{first_name} #{last_name}"
   end
