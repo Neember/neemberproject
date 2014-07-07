@@ -22,6 +22,6 @@ class Client < ActiveRecord::Base
   end
 
   def self.options
-    Client.all.collect {|client| [ client.name, client.id ] }
+    Client.all.collect {|client| [ client.company_name, client.id ] }
   end
 end

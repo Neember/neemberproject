@@ -15,7 +15,7 @@ describe 'Create new project' do
     fill_in 'Price per Sprint', with: '5000'
     fill_in 'Quotation No.', with: 'Lorem'
     fill_in 'Notes', with: 'Lorem ipsum Lorem ipsum'
-    select client.name, from: 'Client'
+    select client.company_name, from: 'Client'
     click_on 'Submit'
 
     expect(page).to have_content 'Projects List'

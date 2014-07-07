@@ -20,7 +20,7 @@ en:
         price_per_sprint: 'Price per Sprint'
         quotation_no: 'Quotation No.'
         notes: 'Notes'
-        client_name: 'Client Name'
+        client: 'Client'
         coder_ids: 'Coders Name'
         action: 'Action'
   activerecord:
