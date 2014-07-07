@@ -6,6 +6,7 @@
   = f.number_field :price_per_sprint
   = f.text_field :quotation_no
   = f.select :client_id, Client.options, {include_blank: t('project.message.select_client')}
+  = f.select :user_id, User.options, {include_blank: t('user.message.select_user')}
   = f.text_area :notes
   = f.submit 'Submit', class: 'btn-u'
   = link_to 'Back', projects_path, class: 'btn-u btn-u-default'

@@ -8,6 +8,7 @@ describe Project do
     it { should validate_numericality_of(:price_per_sprint).is_greater_than 0 }
     it { should validate_presence_of :quotation_no }
     it { should validate_presence_of :client_id }
+    it { should validate_presence_of :user_id }
 
     let(:project) { build(:project) }
 
@@ -21,6 +22,10 @@ describe Project do
 
   context 'association' do
     it { should belong_to :client }
+  end
+
+  context 'association' do
+    it { should belong_to :user }
   end
 
   describe '#assigns_default_values' do

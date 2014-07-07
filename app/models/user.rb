@@ -10,11 +10,17 @@ class User < ActiveRecord::Base
   validates_presence_of :encrypted_password, on: :create
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
+  has_many :projects
+
   self.per_page = 5
 
   default_scope -> {order(first_name: :asc, last_name: :asc, id: :desc)}
 
   def name
     "#{first_name} #{last_name}"
+  end
+
+  def self.options
+    User.all.collect{|user| [ user.name, user.id ] }
   end
 end

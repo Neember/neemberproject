@@ -7,6 +7,7 @@ en:
       update_failed: 'Failed to update user'
       delete_success: 'User is deleted'
       delete_failed: 'Failed to delete user'
+      select_user: 'Please select user'
       delete_confirmation: 'Confirm delete this user?'
   helpers:
     label:

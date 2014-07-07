@@ -1,11 +1,13 @@
 require 'rails_helper'
 
-describe "View Projects List" do
+describe 'View Projects List' do
   let!(:projects) { create_list(:project, 5) }
   let(:client) { create :client }
+  let(:user) { create :user }
   let(:project) { projects.first }
 
   before { client.projects << project }
+  before { user.projects << project }
 
   it 'display projects list' do
     visit projects_path
@@ -14,5 +16,6 @@ describe "View Projects List" do
     expect(page).to have_content 'DaDaDee'
 
     expect(page).to have_content client.first_name
+    expect(page).to have_content user.first_name
   end
 end

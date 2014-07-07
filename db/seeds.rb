@@ -22,6 +22,13 @@ User.destroy_all
     :address => "123 ABC Street"
   })
   puts 'Completed create client'
+  user = User.create({
+                :first_name => "Martin",
+                :last_name => "Vu",
+                :password => "123123123",
+                :email => "user.#{n}@futureworkz.com"
+              })
+  puts 'Completed create user'
   Project.create({
     :name => "DaDaDee",
     :domain => "DaDaDee.com",
@@ -29,16 +36,10 @@ User.destroy_all
     :no_of_sprints => 9.8,
     :price_per_sprint => 5000,
     :quotation_no => "Lorem ipsum",
-    :client => client
+    :client => client,
+    :user => user,
   })
   puts 'Completed create project'
-  User.create({
-    :first_name => "Martin",
-    :last_name => "Vu",
-    :password => "123123123",
-    :email => "user.#{n}@futureworkz.com"
-    })
-  puts 'Completed create user'
 end
 
 client = Client.first

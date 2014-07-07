@@ -32,7 +32,8 @@ describe ProjectsController do
   describe 'POST #create' do
     context 'success' do
       let(:client) { create(:client) }
-      let(:project_param) { attributes_for(:project, client_id: client.id, notes: 'Lorem Lorem')}
+      let(:user) { create(:user) }
+      let(:project_param) { attributes_for(:project, user_id: user.id, client_id: client.id, notes: 'Lorem Lorem')}
       let(:project) { Project.first }
 
       def do_request

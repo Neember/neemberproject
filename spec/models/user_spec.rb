@@ -24,4 +24,8 @@ describe User do
       expect(user.name).to eq 'Martin Lorem'
     end
   end
+
+  describe 'associations' do
+    it { should have_many :projects }
+  end
 end
