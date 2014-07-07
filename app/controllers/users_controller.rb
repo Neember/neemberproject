@@ -31,6 +31,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user = User.find(user_id)
+    if @user.destroy
+      redirect_to users_path, notice: t('user.message.delete_success')
+    else
+      flash[:alert] = t('user.message.delete_failed')
+      render :index
+    end
+  end
+
   protected
   def page
     params[:page]

@@ -97,4 +97,20 @@ describe UsersController do
       end
     end
   end
+
+  describe 'DELETE #destroy' do
+    context 'success' do
+      let(:user) {create(:user)}
+      def do_request
+        delete :destroy, id: user.id
+      end
+      it 'success delete user' do
+        do_request
+
+        expect(response).to redirect_to users_path
+        expect(flash[:notice]).to_not be_nil
+      end
+    end
+  end
+
 end
