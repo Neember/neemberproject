@@ -31,8 +31,9 @@ describe ProjectsController do
 
   describe 'POST #create' do
     context 'success' do
+      let(:coders) { create_list(:user, 2) }
       let(:client) { create(:client) }
-      let(:project_param) { attributes_for(:project, client_id: client.id, notes: 'Lorem Lorem')}
+      let(:project_param) { attributes_for(:project, client_id: client.id, notes: 'Lorem Lorem', coder_ids: [coders.first.id])}
       let(:project) { Project.first }
 
       def do_request
@@ -43,6 +44,7 @@ describe ProjectsController do
         do_request
 
         expect(project.client).to eq client
+        expect(project.coders.size).to be > 0
         expect(response).to redirect_to projects_path
         expect(flash[:notice]).to_not be_nil
         expect(project.notes).to eq 'Lorem Lorem'
@@ -50,7 +52,7 @@ describe ProjectsController do
     end
 
     context 'failed' do
-      let(:project_param) { {:name => ''} }
+      let(:project_param) { {name: ''} }
 
       def do_request
         post :create, project: project_param
@@ -83,7 +85,8 @@ describe ProjectsController do
 
   describe 'PATCH #update' do
     context 'success' do
-      let(:project_param) { attributes_for(:project, name: 'Neember') }
+      let(:coders) { create_list(:user, 2) }
+      let(:project_param) { attributes_for(:project, name: 'Neember', coder_ids: [coders.first.id]) }
       let(:project) { create(:project) }
 
       def do_request
@@ -94,6 +97,7 @@ describe ProjectsController do
         do_request
 
         expect(project.reload.name).to eq 'Neember'
+        expect(project.reload.coders.size).to be > 0
         expect(response).to redirect_to projects_path
         expect(flash[:notice]).to_not be_nil
       end

@@ -7,5 +7,9 @@ FactoryGirl.define do
     quotation_no 'Lorem ipsum'
     date_started '22/8/2013'
     client
+
+    after(:create) do |project|
+      project.coders << create(:user)
+    end
   end
 end

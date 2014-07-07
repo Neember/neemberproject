@@ -21,7 +21,7 @@ en:
         quotation_no: 'Quotation No.'
         notes: 'Notes'
         client_name: 'Client Name'
-        coder_namecoder_name: 'Coder Name'
+        coder_ids: 'Coders Name'
         action: 'Action'
   activerecord:
     errors:

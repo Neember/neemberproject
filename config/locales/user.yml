@@ -17,6 +17,7 @@ en:
         action: 'Action'
         TrueClass: 'Yes'
         FalseClass: 'No'
+        encrypted_password: 'Password'
   activerecord:
     errors:
       models:

@@ -51,7 +51,7 @@ class ProjectsController < ApplicationController
   end
 
   def project_param
-    params.require(:project).permit(:name, :domain, :date_started, :no_of_sprints, :price_per_sprint, :quotation_no, :notes, :client_id)
+    params.require(:project).permit(:name, :domain, :date_started, :no_of_sprints, :price_per_sprint, :quotation_no, :notes, :client_id, coder_ids: [])
   end
 
 end
