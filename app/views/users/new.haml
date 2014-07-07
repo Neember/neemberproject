@@ -2,10 +2,4 @@
 
 .container
   .col-md-6
-    = bootstrap_form_for @user do |f|
-      = f.text_field :first_name
-      = f.text_field :last_name
-      = f.email_field :email
-      = f.password_field :encrypted_password, label: 'Password'
-      = f.submit 'Submit', class: 'btn-u'
-      = link_to 'Back', users_path, class: 'btn-u btn-u-default'
+    = render partial: 'users/form', locals: { user: @user }
