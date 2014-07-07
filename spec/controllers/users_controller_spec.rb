@@ -8,7 +8,7 @@ describe UsersController do
 
     before { create_list(:user, 3) }
 
-    it 'fetches all users and render index view' do
+    it 'fetches all users and renders index view' do
       do_request
 
       expect(assigns(:users).size).to eq 3
@@ -35,12 +35,12 @@ describe UsersController do
         post :create, user: user_param
       end
 
-      it 'created a new user' do
+      it 'creates a new user, redirects to list and sets notice flash' do
         do_request
 
+        expect(User.first.email).to eq 'martin@futureworkz.com'
         expect(response).to redirect_to users_path
         expect(flash[:notice]).to_not be_nil
-        expect(User.first.email).to eq 'martin@futureworkz.com'
       end
     end
 
@@ -51,7 +51,7 @@ describe UsersController do
         post :create, user: user_param
       end
 
-      it 'Failed a new user' do
+      it 'renders template new and sets alert flash' do
         do_request
 
         expect(response).to render_template :new
@@ -68,7 +68,7 @@ describe UsersController do
       get :edit, id: user.id
     end
 
-    it 'display edit form' do
+    it 'renders edit form' do
       do_request
 
       expect(response).to render_template :edit
@@ -83,7 +83,7 @@ describe UsersController do
         patch :update, id: user.id, user: attributes_for(:user, email: 'martin1234@example.com')
       end
 
-      it 'user is created' do
+      it 'updates user, redirects to list and sets notice flash' do
         do_request
 
         expect(response).to redirect_to users_path
@@ -99,7 +99,7 @@ describe UsersController do
         patch :update, id: user.id, user: attributes_for(:user, email: '')
       end
 
-      it 'failed to create user' do
+      it 'renders template edit and sets alert flash' do
         do_request
 
         expect(response).to render_template :edit
@@ -110,14 +110,14 @@ describe UsersController do
 
   describe 'DELETE #destroy' do
     context 'success' do
-      let(:user) { create(:user) }
+      let!(:user) { create(:user) }
 
       def do_request
         delete :destroy, id: user.id
       end
 
-      it 'success delete user' do
-        do_request
+      it 'redirects to list and sets notice flash' do
+        expect { do_request }.to change(User, :count).by(-1)
 
         expect(response).to redirect_to users_path
         expect(flash[:notice]).to_not be_nil

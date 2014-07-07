@@ -27,7 +27,7 @@ class ProjectsController < ApplicationController
       redirect_to projects_path, :notice => t('project.message.update_project_success')
     else
       flash[:alert] = t('project.message.update_project_failed')
-      render :new
+      render :edit
     end
   end
 

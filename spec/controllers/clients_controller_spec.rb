@@ -36,8 +36,9 @@ describe ClientsController do
     end
 
     context 'success' do
-      it 'creates a new client' do
-        do_request
+      it 'creates a new client, redirect to clients list and set the flash' do
+        expect { do_request }.to change(Client, :count).by(1)
+
         expect(response).to redirect_to clients_path
         expect(flash[:notice]).to_not be_nil
       end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Edit client' do
+describe 'Edit client Workflow' do
   let!(:clients) { create_list(:client, 5) }
   let(:client) { clients.first }
 

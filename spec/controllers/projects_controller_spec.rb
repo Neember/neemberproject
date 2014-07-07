@@ -8,7 +8,7 @@ describe ProjectsController do
       get :index
     end
 
-    it 'View Projects List' do
+    it 'fetches projects and renders template index' do
       do_request
 
       expect(response).to render_template :index
@@ -21,7 +21,7 @@ describe ProjectsController do
       get :new
     end
 
-    it 'Create project' do
+    it 'renders template new and assigns new project' do
       do_request
 
       expect(response).to render_template :new
@@ -40,14 +40,14 @@ describe ProjectsController do
         post :create, project: project_param
       end
 
-      it 'Create new project' do
+      it 'creates project(notes, client and coders), redirects to list, sets notice flash' do
         do_request
 
+        expect(project.notes).to eq 'Lorem Lorem'
         expect(project.client).to eq client
         expect(project.coders.size).to be > 0
         expect(response).to redirect_to projects_path
         expect(flash[:notice]).to_not be_nil
-        expect(project.notes).to eq 'Lorem Lorem'
       end
     end
 
@@ -57,7 +57,8 @@ describe ProjectsController do
       def do_request
         post :create, project: project_param
       end
-      it 'Failed' do
+
+      it 'renders template new and sets the alert flash' do
         do_request
 
         expect(response).to render_template :new
@@ -67,19 +68,17 @@ describe ProjectsController do
   end
 
   describe 'GET #edit' do
-    context 'render edit form' do
-      let(:project) { create(:project) }
+    let(:project) { create(:project) }
 
-      def do_request
-        get :edit, id: project.id
-      end
+    def do_request
+      get :edit, id: project.id
+    end
 
-      it 'edit project form' do
-        do_request
+    it 'renders template edit and finds project' do
+      do_request
 
-        expect(response).to render_template :edit
-        expect(assigns(:project)).to_not be_nil
-      end
+      expect(response).to render_template :edit
+      expect(assigns(:project)).to_not be_nil
     end
   end
 
@@ -93,7 +92,7 @@ describe ProjectsController do
         patch :update, id: project.id, project: project_param
       end
 
-      it 'update project' do
+      it 'updates project, redirects to list and sets notice flash' do
         do_request
 
         expect(project.reload.name).to eq 'Neember'
@@ -111,10 +110,10 @@ describe ProjectsController do
         patch :update, id: project.id, project: project_param
       end
 
-      it 'failed update project' do
+      it 'renders template edit and sets alert flash' do
         do_request
 
-        expect(response).to render_template :new
+        expect(response).to render_template :edit
         expect(flash[:alert]).to_not be_nil
       end
     end
@@ -127,8 +126,9 @@ describe ProjectsController do
       def do_request
         delete :destroy, id: project.id
       end
-      it 'delete project' do
-        do_request
+
+      it 'deletes project, redirects to list and sets notice flash' do
+        expect { do_request }.to change(Project, :count).by(-1)
 
         expect(response).to redirect_to projects_path
         expect(flash[:notice]).to_not be_nil
