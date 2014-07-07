@@ -15,8 +15,6 @@ class Client < ActiveRecord::Base
 
   default_scope -> { order(first_name: :asc, last_name: :asc, id: :desc) }
 
-  self.per_page = 5
-
   def name
     "#{first_name} #{last_name}"
   end

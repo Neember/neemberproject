@@ -12,8 +12,6 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :projects, join_table: 'coders_projects', foreign_key: 'coder_id'
 
-  self.per_page = 5
-
   default_scope -> {order(first_name: :asc, last_name: :asc, id: :desc)}
 
   def name

@@ -16,8 +16,6 @@ class Project < ActiveRecord::Base
 
   default_scope -> { order(id: :desc) }
 
-  self.per_page = 5
-
   def assigns_default_values
     self.date_started ||= Date.today
   end
