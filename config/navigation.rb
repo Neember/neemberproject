@@ -38,12 +38,15 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
     primary.dom_class = 'nav navbar-nav'
     primary.item :clients, 'Clients', clients_path do |submenu|
+      submenu.item :index, 'Clients List', clients_path
       submenu.item :new, 'Add New Client', new_client_path
     end
     primary.item :projects, 'Projects', projects_path do |submenu|
+      submenu.item :index, 'Projects List', projects_path
       submenu.item :new, 'Add New Project', new_project_path
     end
     primary.item :users, 'Users', users_path do |submenu|
+      submenu.item :index, 'Users List', users_path
       submenu.item :new, 'Add New User', new_user_path
     end
 
