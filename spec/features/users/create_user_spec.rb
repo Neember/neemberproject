@@ -14,6 +14,5 @@ describe 'New user' do
 
     expect(page).to have_content 'Users List'
     expect(page).to have_content 'martin@futureworkz.com'
-
   end
 end

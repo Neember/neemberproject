@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe 'Delete Project' do
   let!(:project) { create(:project) }
+
   it 'delete project' do
     visit projects_path
 

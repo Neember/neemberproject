@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe 'Create Client' do
+
   it 'creates a new client' do
     visit clients_path
 
@@ -20,7 +21,5 @@ describe 'Create Client' do
     click_on 'Submit'
 
     expect(page).to have_content I18n.t('client.message.create_success')
-
   end
-
 end

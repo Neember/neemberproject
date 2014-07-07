@@ -50,7 +50,8 @@ describe ProjectsController do
     end
 
     context 'failed' do
-      let(:project_param){ { :name => '' } }
+      let(:project_param) { {:name => ''} }
+
       def do_request
         post :create, project: project_param
       end
@@ -66,9 +67,11 @@ describe ProjectsController do
   describe 'GET #edit' do
     context 'render edit form' do
       let(:project) { create(:project) }
+
       def do_request
         get :edit, id: project.id
       end
+
       it 'edit project form' do
         do_request
 
@@ -82,9 +85,11 @@ describe ProjectsController do
     context 'success' do
       let(:project_param) { attributes_for(:project, name: 'Neember') }
       let(:project) { create(:project) }
+
       def do_request
         patch :update, id: project.id, project: project_param
       end
+
       it 'update project' do
         do_request
 
@@ -97,6 +102,7 @@ describe ProjectsController do
     context 'failed' do
       let(:project_param) { attributes_for(:project, name: '') }
       let(:project) { create(:project) }
+
       def do_request
         patch :update, id: project.id, project: project_param
       end
@@ -125,5 +131,4 @@ describe ProjectsController do
       end
     end
   end
-
 end

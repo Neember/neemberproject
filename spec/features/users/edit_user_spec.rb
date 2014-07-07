@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'Display Edit form' do
   let!(:users) { create_list(:user, 5) }
   let(:user) { User.first }
+
   it 'Display edit form' do
     visit users_path
 

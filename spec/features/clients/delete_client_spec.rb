@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe 'Destroy client' do
 
-  let!(:clients) { create_list(:client, 5)}
-  let(:client) { clients.first  }
+  let!(:clients) { create_list(:client, 5) }
+  let(:client) { clients.first }
 
   it 'Destroy client' do
     visit clients_path

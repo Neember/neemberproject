@@ -2,11 +2,11 @@ require 'rails_helper'
 
 describe ClientsController do
   describe 'GET #index' do
-    before { create_list(:client, 3) }
-
     def do_request
       get :index
     end
+
+    before { create_list(:client, 3) }
 
     it 'fetches all clients and render index view' do
       do_request
@@ -69,6 +69,7 @@ describe ClientsController do
 
   describe 'PATCH #update' do
     let(:client) { create(:client, first_name: 'John') }
+
     context 'success' do
       def do_request
         patch :update, id: client.id, client: attributes_for(:client, first_name: 'Martin')

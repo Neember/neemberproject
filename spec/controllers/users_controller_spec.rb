@@ -2,10 +2,11 @@ require 'rails_helper'
 
 describe UsersController do
   describe 'get #index' do
-    before { create_list(:user, 3) }
     def do_request
       get :index
     end
+
+    before { create_list(:user, 3) }
 
     it 'fetches all users and render index view' do
       do_request
@@ -29,9 +30,11 @@ describe UsersController do
   describe 'POST #create' do
     context 'success' do
       let!(:user_param) { attributes_for(:user, email: 'martin@futureworkz.com') }
+
       def do_request
         post :create, user: user_param
       end
+
       it 'created a new user' do
         do_request
 
@@ -43,9 +46,11 @@ describe UsersController do
 
     context 'Failed' do
       let!(:user_param) { attributes_for(:user, email: '') }
+
       def do_request
         post :create, user: user_param
       end
+
       it 'Failed a new user' do
         do_request
 
@@ -58,6 +63,7 @@ describe UsersController do
 
   describe 'GET #edit' do
     let(:user) { create(:user) }
+
     def do_request
       get :edit, id: user.id
     end
@@ -71,10 +77,12 @@ describe UsersController do
 
   describe 'PATCH #update' do
     context 'success' do
-      let(:user){ create(:user) }
+      let(:user) { create(:user) }
+
       def do_request
         patch :update, id: user.id, user: attributes_for(:user, email: 'martin1234@example.com')
       end
+
       it 'user is created' do
         do_request
 
@@ -85,10 +93,12 @@ describe UsersController do
     end
 
     context 'failed' do
-      let(:user){ create(:user) }
+      let(:user) { create(:user) }
+
       def do_request
         patch :update, id: user.id, user: attributes_for(:user, email: '')
       end
+
       it 'failed to create user' do
         do_request
 
@@ -100,10 +110,12 @@ describe UsersController do
 
   describe 'DELETE #destroy' do
     context 'success' do
-      let(:user) {create(:user)}
+      let(:user) { create(:user) }
+
       def do_request
         delete :destroy, id: user.id
       end
+
       it 'success delete user' do
         do_request
 
@@ -112,5 +124,4 @@ describe UsersController do
       end
     end
   end
-
 end

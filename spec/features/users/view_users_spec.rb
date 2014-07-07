@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 describe 'View Users' do
-  before { create_list(:user, 5)}
+  before { create_list(:user, 5) }
+
   it 'display users list' do
     visit users_path
 
