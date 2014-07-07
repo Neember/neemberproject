@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   validates_presence_of :encrypted_password, on: :create
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
-  has_many :projects
+  has_and_belongs_to_many :projects, join_table: 'coders_projects', foreign_key: 'coder_id'
 
   self.per_page = 5
 

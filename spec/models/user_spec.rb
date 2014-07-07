@@ -26,6 +26,6 @@ describe User do
   end
 
   describe 'associations' do
-    it { should have_many :projects }
+    it { should have_and_belong_to_many(:projects).with_foreign_key('coder_id') }
   end
 end

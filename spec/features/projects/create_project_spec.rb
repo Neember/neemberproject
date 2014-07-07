@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe 'Create new project' do
   let!(:client) { create(:client) }
-  let!(:user) { create(:user) }
 
   it 'Create new project' do
     visit projects_path
@@ -17,7 +16,6 @@ describe 'Create new project' do
     fill_in 'Quotation No.', with: 'Lorem'
     fill_in 'Notes', with: 'Lorem ipsum Lorem ipsum'
     select client.name, from: 'Client'
-    select user.name, from: 'User'
     click_on 'Submit'
 
     expect(page).to have_content 'Projects List'

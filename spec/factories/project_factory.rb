@@ -7,6 +7,5 @@ FactoryGirl.define do
     quotation_no 'Lorem ipsum'
     date_started '22/8/2013'
     client
-    user
   end
 end

@@ -6,9 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Client.destroy_all
-Project.destroy_all
-User.destroy_all
+Client.delete_all
+Project.delete_all
+User.delete_all
 
 10.times do |n|
   client = Client.create({
@@ -22,27 +22,34 @@ User.destroy_all
     :address => "123 ABC Street"
   })
   puts 'Completed create client'
-  user = User.create({
-                :first_name => "Martin",
-                :last_name => "Vu",
-                :password => "123123123",
-                :email => "user.#{n}@futureworkz.com"
-              })
+  User.create({
+    :first_name => "Martin",
+    :last_name => "Vu",
+    :encrypted_password => "123123123",
+    :email => "user.#{n}@futureworkz.com"
+  })
   puts 'Completed create user'
-  Project.create({
+  Project.create!({
     :name => "DaDaDee",
     :domain => "DaDaDee.com",
     :date_started => "22/8/2013",
     :no_of_sprints => 9.8,
     :price_per_sprint => 5000,
     :quotation_no => "Lorem ipsum",
-    :client => client,
-    :user => user,
+    :client => client
   })
   puts 'Completed create project'
 end
 
 client = Client.first
 project = Project.first
+user = User.first
 
+puts 'Assign client to project'
 client.projects << project
+
+puts 'Assign user to project'
+user.projects << project
+
+
+

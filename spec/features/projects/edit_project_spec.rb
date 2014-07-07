@@ -3,7 +3,6 @@ require 'rails_helper'
 describe 'Edit project' do
   let!(:project) { create(:project) }
   let!(:client) { create(:client, first_name: 'Martin', last_name: 'Vu') }
-  let!(:user) { create(:user) }
 
   it 'Edit project success' do
     visit projects_path
@@ -14,7 +13,6 @@ describe 'Edit project' do
     fill_in 'Name',with: 'Neember'
     fill_in 'Quotation No.', with: 'Lorem Ipsum 2'
     select client.name, from: 'Client'
-    select user.name, from: 'User'
     click_on 'Submit'
 
     expect(page).to have_content 'Projects List'
