@@ -8,7 +8,7 @@ en:
       delete_project_success: 'Project is deleted'
       delete_project_failed: 'Failed to delete project'
       select_client: 'Please select client'
-      confirm_delete: 'Confirm delete this project?'
+      delete_confirmation: 'Confirm delete this project?'
 
   helpers:
     label:

@@ -1,7 +1,7 @@
 = display_page_title('Clients List')
 
 .container.content
-  %table.table.table-striped.table-hover
+  %table.list-table
     %thead
       %tr
         %th= label_name('client.title')
@@ -24,8 +24,8 @@
         %td= client.address
         %td= client.company_name
         %td
-          = link_to t('button.edit'), edit_client_path(client.id), class: 'btn btn-warning btn-xs',data: {test: "edit-#{client.id}"}
-          = link_to t('button.delete'), client_path(client.id), method: :delete, class: 'btn btn-danger btn-xs', data: {confirm: t('client.message.delete_confirmation'), test: "delete-#{client.id}"}
+          = list_edit_button(client)
+          = list_delete_button(client)
 
 
   .pagination

@@ -1,6 +1,6 @@
 = display_page_title('Users List')
 .container.content
-  %table.table.table-striped.table-hover
+  %table.list-table
     %thead
       %tr
         %th= label_name('user.first_name')
@@ -15,8 +15,8 @@
         %td= user.email
         %td= label_name("user.#{user.is_admin.class}")
         %td
-          = link_to 'Edit', edit_user_path(user.id), class: 'btn btn-warning btn-xs', data: {test: "edit-user-#{user.id}"}
-          = link_to 'Delete', user_path(user.id), method: :delete, class: 'btn btn-danger btn-xs', data:{confirm: t('user.message.delete_confirmation'), test: "delete-user-#{user.id}"}
+          = list_edit_button(user)
+          = list_delete_button(user)
 
   .pagination
     = will_paginate(@users, {renderer: BootstrapPagination::Rails, next_label: '&raquo;', previous_label: '&laquo;'})

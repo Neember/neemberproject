@@ -7,7 +7,7 @@ describe 'Edit client' do
   it 'updates client' do
     visit clients_path
 
-    get_element("edit-#{client.id}").click
+    get_element("edit-client-#{client.id}").click
 
     expect(page).to have_content 'Edit client'
     fill_in 'First name', with: 'Martin'

@@ -8,7 +8,7 @@ describe 'Destroy client' do
   it 'Destroy client' do
     visit clients_path
 
-    get_element("delete-#{client.id}").click
+    get_element("delete-client-#{client.id}").click
 
     expect(page).to have_content 'Clients List'
     expect(page).to have_content I18n.t('client.message.delete_success')
