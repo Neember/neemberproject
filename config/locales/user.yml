@@ -18,6 +18,8 @@ en:
         TrueClass: 'Yes'
         FalseClass: 'No'
         encrypted_password: 'Password'
+        admin: 'Administrator'
+        is_admin: 'Make User An Administrator'
   activerecord:
     errors:
       models:

@@ -10,7 +10,7 @@ describe 'New user' do
     fill_in 'Last name', with: 'Vu'
     fill_in 'Email', with: 'martin@futureworkz.com'
     fill_in 'Password', with: '123123123'
-    check('Is admin')
+    check('Make User An Administrator')
     click_on 'Submit'
 
     expect(page).to have_content 'Users List'

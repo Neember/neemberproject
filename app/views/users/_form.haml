@@ -3,6 +3,6 @@
   = f.text_field :last_name
   = f.email_field :email
   = f.password_field :encrypted_password
-  = f.check_box :is_admin
+  = f.check_box :is_admin, label: t('helpers.label.user.is_admin')
   = f.submit 'Submit', class: 'btn-u'
   = link_to 'Back', users_path, class: 'btn-u btn-u-default'
