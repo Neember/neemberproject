@@ -16,5 +16,6 @@
             = render_navigation expand_all: true, renderer: :bootstrap
 
       .main-body
-        = flash_messages
+        .container
+          .flash-messages= flash_messages
         = yield

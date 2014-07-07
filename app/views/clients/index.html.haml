@@ -1,17 +1,18 @@
 = display_page_title('Clients List')
 
 .container.content
-  %table.table
-    %tr
-      %th= label_name('client.title')
-      %th= label_name('client.first_name')
-      %th= label_name('client.last_name')
-      %th= label_name('client.designation')
-      %th= label_name('client.email')
-      %th= label_name('client.phone')
-      %th= label_name('client.address')
-      %th= label_name('client.address')
-      %th= label_name('client.company_name')
+  %table.table.table-striped.table-hover
+    %thead
+      %tr
+        %th= label_name('client.title')
+        %th= label_name('client.first_name')
+        %th= label_name('client.last_name')
+        %th= label_name('client.designation')
+        %th= label_name('client.email')
+        %th= label_name('client.phone')
+        %th= label_name('client.address')
+        %th= label_name('client.address')
+        %th= label_name('client.company_name')
     - @clients.each do |client|
       %tr
         %td= client.title.text
@@ -23,8 +24,8 @@
         %td= client.address
         %td= client.company_name
         %td
-          = link_to t('button.edit'), edit_client_path(client.id), class: 'btn btn-link', data: {test: "edit-#{client.id}"}
-          = button_to t('button.delete'), client_path(client.id), method: :delete, class: 'btn btn-link', data: {confirm: t('client.message.delete_confirmation'), test: "delete-#{client.id}"}
+          = link_to t('button.edit'), edit_client_path(client.id), class: 'btn btn-warning btn-xs',data: {test: "edit-#{client.id}"}
+          = link_to t('button.delete'), client_path(client.id), method: :delete, class: 'btn btn-danger btn-xs', data: {confirm: t('client.message.delete_confirmation'), test: "delete-#{client.id}"}
 
 
   .pagination
