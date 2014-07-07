@@ -28,4 +28,4 @@
           = list_delete_button(project)
 
   .pagination
-    = will_paginate(@projects, {renderer: BootstrapPagination::Rails, next_label: '&raquo;', previous_label: '&laquo;'} )
+    = bootstrap_paginate(@projects)

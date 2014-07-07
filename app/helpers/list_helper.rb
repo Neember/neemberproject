@@ -7,6 +7,10 @@ module ListHelper
     link_to 'Delete', list_action_path(resource, :delete), list_delete_button_options(resource)
   end
 
+  def bootstrap_paginate(resources)
+    will_paginate(resources, {renderer: BootstrapPagination::Rails, next_label: '&raquo;', previous_label: '&laquo;'})
+  end
+
   def list_action_path(resource, action)
     if action == :edit
       path = "edit_#{resource_class(resource)}_path".to_sym

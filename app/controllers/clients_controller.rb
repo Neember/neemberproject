@@ -43,7 +43,6 @@ class ClientsController < ApplicationController
     end
   end
 
-
   protected
   def client_id
     params.require(:id)
