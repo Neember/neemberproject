@@ -9,7 +9,7 @@ module FeatureHelper
     click_on 'Login'
     fill_in 'Email', with: user.email
     fill_in 'Password', with: '123123123'
-    click_on 'Submit'
+    click_on 'Sign In'
 
     expect(page).to have_content 'Signed in successfully'
   end

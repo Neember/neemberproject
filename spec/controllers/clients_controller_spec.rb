@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe ClientsController do
+  let(:admin) { create :admin }
   describe 'GET #index' do
     def do_request
       get :index
@@ -8,12 +9,27 @@ describe ClientsController do
 
     before { create_list(:client, 3) }
 
-    it 'fetches all clients and render index view' do
-      do_request
+    context 'Admin logged in' do
+      it 'fetches all clients and render index view' do
+        sign_in admin
+        do_request
 
-      expect(assigns(:clients).size).to be == 3
-      expect(response).to render_template :index
+        expect(assigns(:clients).size).to be == 3
+        expect(response).to render_template :index
+      end
     end
+
+    context 'User logged in' do
+      let(:user) { create :user }
+      it 'redirects to root, sets alert flash' do
+        sign_in user
+        do_request
+
+        expect(response).to redirect_to root_path
+        expect(flash[:alert]).to_not be_nil
+      end
+    end
+
   end
 
   describe 'GET #new' do
@@ -23,7 +39,10 @@ describe ClientsController do
     end
 
     it 'renders new template' do
+      sign_in admin
+
       do_request
+
       expect(response).to render_template :new
     end
   end
@@ -37,6 +56,8 @@ describe ClientsController do
 
     context 'success' do
       it 'creates a new client, redirect to clients list and set the flash' do
+        sign_in admin
+
         expect { do_request }.to change(Client, :count).by(1)
 
         expect(response).to redirect_to clients_path
@@ -48,7 +69,10 @@ describe ClientsController do
       let(:client_param) { attributes_for(:client, first_name: '') }
 
       it 'displays error and renders new template' do
+        sign_in admin
+
         do_request
+
         expect(response).to render_template :new
         expect(flash[:alert]).to_not be_nil
       end
@@ -63,7 +87,9 @@ describe ClientsController do
     end
 
     it 'display edit form' do
+      sign_in admin
       do_request
+
       expect(response).to render_template :edit
     end
   end
@@ -77,6 +103,8 @@ describe ClientsController do
       end
 
       it 'updates client, redirect to clients list and sets the flash' do
+        sign_in admin
+
         do_request
 
         expect(client.reload.first_name).to be == 'Martin'
@@ -91,6 +119,8 @@ describe ClientsController do
       end
 
       it 'should not update client and render edit form' do
+        sign_in admin
+
         do_request
 
         expect(response).to render_template :edit
@@ -108,6 +138,8 @@ describe ClientsController do
       end
 
       it 'delete client, redirect to clients list and sets the flash' do
+        sign_in admin
+
         expect { do_request }.to change(Client, :count).by(-1)
 
         expect(response).to redirect_to clients_path

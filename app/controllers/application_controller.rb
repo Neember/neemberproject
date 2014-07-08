@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
       redirect_to root_path, alert: 'You are not allowed to visit this page'
     end
   end
+
+  def home
+
+  end
 end

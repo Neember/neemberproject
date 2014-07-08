@@ -3,8 +3,11 @@ require 'rails_helper'
 describe 'Edit client Workflow' do
   let!(:clients) { create_list(:client, 5) }
   let(:client) { clients.first }
+  let(:admin) { create :admin }
 
   it 'updates client' do
+    feature_login admin
+
     visit clients_path
 
     get_element("edit-client-#{client.id}").click

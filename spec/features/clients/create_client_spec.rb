@@ -1,8 +1,11 @@
 require 'rails_helper'
 
 describe 'Create Client' do
+  let(:admin) { create :admin }
 
   it 'creates a new client' do
+    feature_login admin
+
     visit clients_path
 
     click_on 'Add New Client'

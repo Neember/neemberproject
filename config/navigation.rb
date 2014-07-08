@@ -37,7 +37,7 @@ SimpleNavigation::Configuration.run do |navigation|
   # Define the primary navigation
   navigation.items do |primary|
     primary.dom_class = 'nav navbar-nav'
-    primary.item :clients, 'Clients', clients_path do |submenu|
+    primary.item :clients, 'Clients', clients_path, if: -> { user_signed_in? && current_user.is_admin? } do |submenu|
       submenu.item :index, 'Clients List', clients_path
       submenu.item :new, 'Add New Client', new_client_path
     end
