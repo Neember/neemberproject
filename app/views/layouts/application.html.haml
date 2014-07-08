@@ -10,6 +10,15 @@
     .wrapper.container-fluid
       .header.row
         .container
+          .topbar
+            .container
+              %ul.loginbar.pull-right
+                - if current_user.present?
+                  %li= "Welcome #{current_user.email}"
+                  %li.topbar-devider
+                  %li= link_to 'Logout', destroy_user_session_path, method: :delete
+                - else
+                  %li= link_to 'Login', new_user_session_path
           .navbar.navbar-default
             .navbar-header
               = link_to(image_tag('neember-logo.png', height: 40), root_path)
