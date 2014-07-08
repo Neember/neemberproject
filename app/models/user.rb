@@ -21,6 +21,6 @@ class User < ActiveRecord::Base
 
   private
   def password_required?
-    !persisted? || !password.nil? || !password_confirmation.nil?
+    new_record? || password.present? || password_confirmation.present?
   end
 end
