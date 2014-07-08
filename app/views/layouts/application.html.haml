@@ -14,7 +14,7 @@
             .container
               %ul.loginbar.pull-right
                 - if current_user.present?
-                  %li= "Welcome #{current_user.email}"
+                  %li= "Welcome #{current_user.first_name}"
                   %li.topbar-devider
                   %li= link_to 'Logout', destroy_user_session_path, method: :delete
                 - else
