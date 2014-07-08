@@ -13,6 +13,7 @@ describe 'Display Edit form' do
     fill_in 'Last name', with: 'Lorem Lorem'
     fill_in 'Email', with: 'martin123@example.com'
     fill_in 'Password', with: '12345678'
+    fill_in 'Password confirmation', with: '12345678'
     click_on 'Submit'
 
     expect(page).to have_content 'Users List'
