@@ -14,7 +14,7 @@ puts '=== Database cleaned ==='
 
 puts '=== Start seeding Dadadee Project ==='
 
-jack = User.create(first_name: 'Jack', last_name: 'Huang', encrypted_password: '123123123', email: 'jack@example.com')
+jack = User.create(first_name: 'Jack', last_name: 'Huang', password: '123123123', email: 'jack@example.com')
 
 
 leon = Client.create({
@@ -44,7 +44,7 @@ puts '=== Dadadee project seeded ==='
 
 puts '=== Start seeding DualRanked Project ==='
 
-james = User.create(first_name: 'James', last_name: 'James', encrypted_password: '123123123', email: 'james@example.com')
+james = User.create(first_name: 'James', last_name: 'James', password: '123123123', email: 'james@example.com')
 
 gabriel = Client.create({
  title: :mr,
@@ -73,7 +73,7 @@ puts '=== DualRanked project seeded ==='
 
 puts '=== Start seeding LunchKaki Project ==='
 
-iker = User.create(first_name: 'Iker', last_name: 'Tran', encrypted_password: '123123123', email: 'iker@example.com')
+iker = User.create(first_name: 'Iker', last_name: 'Tran', password: '123123123', email: 'iker@example.com')
 
 melvin = Client.create({
  title: :mr,
@@ -101,7 +101,7 @@ puts '=== LunchKaki project seeded ==='
 
 puts '=== Start seeding Our Cleaning Department Project ==='
 
-ivan = User.create(first_name: 'Ivan', last_name: 'Nguyen', encrypted_password: '123123123', email: 'ivan@example.com')
+ivan = User.create(first_name: 'Ivan', last_name: 'Nguyen', password: '123123123', email: 'ivan@example.com')
 
 geraldine = Client.create({
  title: :ms,
@@ -153,5 +153,5 @@ ourcleaningdepartment = Project.create!({
 
 puts '=== Kheng seeded ==='
 
-
+User.create({first_name: 'Steven', last_name: 'Yap', password: '123456789', email: 'stevenyap@example.com', is_admin: true})
 
