@@ -3,8 +3,11 @@ require 'rails_helper'
 describe 'Display Edit form' do
   let!(:users) { create_list(:user, 5) }
   let(:user) { User.first }
+  let(:admin) { create :admin }
 
   it 'Display edit form' do
+    feature_login admin
+
     visit users_path
 
     get_element("edit-user-#{user.id}").click

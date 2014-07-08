@@ -47,7 +47,7 @@ SimpleNavigation::Configuration.run do |navigation|
       submenu.item :new, 'Add New Project', new_project_path
     end
 
-    primary.item :users, 'Users', users_path do |submenu|
+    primary.item :users, 'Users', users_path, if: -> { user_signed_in? && current_user.is_admin? } do |submenu|
       submenu.item :index, 'Users List', users_path
       submenu.item :new, 'Add New User', new_user_path
     end

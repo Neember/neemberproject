@@ -1,8 +1,11 @@
 require 'rails_helper'
 
 describe 'New user' do
+  let(:admin) { create :admin }
   context 'Valid data' do
     it 'create a new user' do
+      feature_login admin
+
       visit users_path
 
       click_on 'Add New User'
@@ -22,6 +25,8 @@ describe 'New user' do
 
   context 'Invalid data' do
     it 'show the validation errors' do
+      feature_login admin
+
       visit users_path
 
       click_on 'Add New User'
