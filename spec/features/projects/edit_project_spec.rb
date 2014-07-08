@@ -4,8 +4,11 @@ describe 'Edit project' do
   let!(:project) { create(:project) }
   let!(:client) { create(:client, first_name: 'Martin', last_name: 'Vu') }
   let!(:coders) { create_list(:user, 2) }
+  let(:admin) { create :admin }
 
   it 'Edit project success' do
+    feature_login admin
+
     visit projects_path
 
     get_element("edit-project-#{project.id}").click

@@ -2,8 +2,11 @@ require 'rails_helper'
 
 describe 'Create new project' do
   let!(:client) { create(:client) }
+  let(:admin) { create :admin }
 
   it 'Create new project' do
+    feature_login admin
+
     visit projects_path
 
     click_on 'Add New Project'

@@ -2,8 +2,11 @@ require 'rails_helper'
 
 describe 'Delete Project' do
   let!(:project) { create(:project) }
+  let(:admin) { create :admin }
 
   it 'delete project' do
+    feature_login admin
+
     visit projects_path
 
     get_element("delete-project-#{project.id}").click

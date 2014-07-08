@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe ProjectsController do
+  let(:admin) { create :admin }
+
   describe 'GET #index' do
     let!(:projects) { create_list(:project, 5) }
 
@@ -8,11 +10,26 @@ describe ProjectsController do
       get :index
     end
 
-    it 'fetches projects and renders template index' do
-      do_request
+    context 'Admin logged in' do
+      it 'fetches projects and renders template index' do
+        sign_in admin
+        do_request
 
-      expect(response).to render_template :index
-      expect(assigns(:projects).size).to eq 5
+        expect(response).to render_template :index
+        expect(assigns(:projects).size).to eq 5
+      end
+    end
+
+    context 'User logged in' do
+      let(:user) { create(:user) }
+
+      it 'redirects to home page, sets alert flash' do
+        sign_in user
+        do_request
+
+        expect(response).to redirect_to root_path
+        expect(flash[:alert]).to_not be_nil
+      end
     end
   end
 
@@ -22,6 +39,7 @@ describe ProjectsController do
     end
 
     it 'renders template new and assigns new project' do
+      sign_in admin
       do_request
 
       expect(response).to render_template :new
@@ -41,6 +59,7 @@ describe ProjectsController do
       end
 
       it 'creates project(notes, client and coders), redirects to list, sets notice flash' do
+        sign_in admin
         do_request
 
         expect(project.notes).to eq 'Lorem Lorem'
@@ -59,6 +78,7 @@ describe ProjectsController do
       end
 
       it 'renders template new and sets the alert flash' do
+        sign_in admin
         do_request
 
         expect(response).to render_template :new
@@ -75,6 +95,7 @@ describe ProjectsController do
     end
 
     it 'renders template edit and finds project' do
+      sign_in admin
       do_request
 
       expect(response).to render_template :edit
@@ -93,6 +114,7 @@ describe ProjectsController do
       end
 
       it 'updates project, redirects to list and sets notice flash' do
+        sign_in admin
         do_request
 
         expect(project.reload.name).to eq 'Neember'
@@ -111,6 +133,7 @@ describe ProjectsController do
       end
 
       it 'renders template edit and sets alert flash' do
+        sign_in admin
         do_request
 
         expect(response).to render_template :edit
@@ -128,6 +151,7 @@ describe ProjectsController do
       end
 
       it 'deletes project, redirects to list and sets notice flash' do
+        sign_in admin
         expect { do_request }.to change(Project, :count).by(-1)
 
         expect(response).to redirect_to projects_path

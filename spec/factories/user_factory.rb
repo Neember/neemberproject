@@ -9,5 +9,9 @@ FactoryGirl.define do
     password '123123123'
     first_name 'Martin'
     last_name
+
+    factory :admin do
+      is_admin true
+    end
   end
 end
