@@ -18,4 +18,9 @@ class User < ActiveRecord::Base
   def self.options
     User.all.collect{|user| [ user.name, user.id ] }
   end
+
+  private
+  def password_required?
+    !persisted? || !password.nil? || !password_confirmation.nil?
+  end
 end
