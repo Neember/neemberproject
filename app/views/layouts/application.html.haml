@@ -27,5 +27,5 @@
       .main-body
         .container
           - if flash_messages.present?
-            .flash-messages= flash_messages.present
+            .flash-messages= flash_messages.present?
         = yield
