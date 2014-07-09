@@ -1,20 +1,19 @@
 = display_page_title ('Schedules List')
-.container
-  .content
-    %table.list-table
-      %thead
-        %tr
-          %th= label_name('leave.date')
-          %th= label_name('leave.hours')
-          %th= label_name('leave.reason')
-          %th= label_name('leave.project_id')
-        - @schedules.each do |schedule|
-          %tr
-            %td= schedule.date
-            %td
-              = schedule.hours
-              = 'hour(s)'
-            %td= schedule.reason
-            %td= schedule.project.name
-    .pagination
-      = bootstrap_paginate(@schedules)
+
+.container.content
+  %table.list-table
+    %thead
+      %tr
+        %th= label_name('leave.date')
+        %th= label_name('leave.hours')
+        %th= label_name('leave.reason')
+        %th= label_name('leave.project_id')
+    - @schedules.each do |schedule|
+      %tr
+        %td= schedule.date
+        %td= "#{schedule.hours} hour(s)"
+        %td= schedule.reason
+        %td= schedule.project.name
+
+  .pagination
+    = bootstrap_paginate(@schedules)
