@@ -52,6 +52,10 @@ SimpleNavigation::Configuration.run do |navigation|
       submenu.item :new, 'Add New User', new_user_path
     end
 
+    primary.item :leaves, 'Leaves', leaves_path, it: -> { user_signed_in? } do |submenu|
+
+    end
+
     # You can also specify a condition-proc that needs to be fullfilled to display an item.
     # Conditions are part of the options. They are evaluated in the context of the views,
     # thus you can use all the methods and vars you have available in the views.

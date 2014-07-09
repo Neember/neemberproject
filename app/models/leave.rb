@@ -5,7 +5,5 @@ class Leave < ActiveRecord::Base
 
   belongs_to :coder, class_name: 'User'
 
-  def coder_name
-
-  end
+  default_scope -> { order(id: :desc) }
 end

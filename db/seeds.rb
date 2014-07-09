@@ -157,7 +157,7 @@ User.create({first_name: 'Steven', last_name: 'Yap', password: '123456789', emai
 
 puts '=== Start seeding Ivan leave ==='
 Leave.create({
-  date: '09/07/2014',
+  date: '01/07/2014',
   hours: 8,
   reason: 'Personal reason leave',
   coder: ivan
