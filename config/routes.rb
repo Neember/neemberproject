@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :clients, except: [:show]
   resources :projects, except: [:show]
   resources :users, except: [:show]
-  resources :leaves, only: [:index]
+  resources :leaves, only: [:index, :new, :create]
 
   # Example resource route with options:
   #   resources :products do

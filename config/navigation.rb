@@ -53,7 +53,8 @@ SimpleNavigation::Configuration.run do |navigation|
     end
 
     primary.item :leaves, 'Leaves', leaves_path, it: -> { user_signed_in? } do |submenu|
-
+      submenu.item :index, 'Leaves List', leaves_path
+      submenu.item :new, 'Add New Leave', new_leafe_path
     end
 
     # You can also specify a condition-proc that needs to be fullfilled to display an item.

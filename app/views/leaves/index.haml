@@ -7,8 +7,6 @@
           %th= label_name('leave.date')
           %th= label_name('leave.hours')
           %th= label_name('leave.reason')
-          %th= label_name('leave.coder_id')
-          %th= label_name('leave.action')
         - @leaves.each do |leave|
           %tr
             %td= leave.date
@@ -16,5 +14,5 @@
               = leave.hours
               = 'hour(s)'
             %td= leave.reason
-            %td= leave.coder.name
-            %td
+    .pagination
+      = bootstrap_paginate(@leaves)

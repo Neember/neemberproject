@@ -1,0 +1,10 @@
+= display_page_title('Add Leave')
+.container
+  .content
+    .col-md-5
+      = bootstrap_form_for @leave do |t|
+        = t.date_field :date
+        = t.number_field :hours
+        = t.text_area :reason
+        = t.submit 'Submit', class: 'btn-u'
+        = link_to 'Back', leaves_path, class: 'btn-u btn-u-default'
