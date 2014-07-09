@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   validates_presence_of :last_name
 
   has_and_belongs_to_many :projects, join_table: 'coders_projects', foreign_key: 'coder_id'
+  has_many :leaves, class_name: 'Leave', foreign_key: 'coder_id'
 
   default_scope -> {order(first_name: :asc, last_name: :asc, id: :desc)}
 
@@ -17,6 +18,10 @@ class User < ActiveRecord::Base
 
   def self.options
     User.all.collect{|user| [ user.name, user.id ] }
+  end
+
+  def get_leaves_by_user
+    Leave.where(coder: self)
   end
 
   private

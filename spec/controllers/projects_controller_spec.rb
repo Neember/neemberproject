@@ -13,6 +13,7 @@ describe ProjectsController do
     context 'Admin logged in' do
       it 'fetches projects and renders template index' do
         sign_in admin
+
         do_request
 
         expect(response).to render_template :index

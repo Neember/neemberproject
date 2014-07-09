@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140707041049) do
+ActiveRecord::Schema.define(version: 20140709020436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,17 @@ ActiveRecord::Schema.define(version: 20140707041049) do
     t.integer "project_id"
     t.integer "coder_id"
   end
+
+  create_table "leaves", force: true do |t|
+    t.date     "date"
+    t.integer  "hours"
+    t.text     "reason"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "coder_id"
+  end
+
+  add_index "leaves", ["coder_id"], name: "index_leaves_on_coder_id", using: :btree
 
   create_table "projects", force: true do |t|
     t.string   "name"

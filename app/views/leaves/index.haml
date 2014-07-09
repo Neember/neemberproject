@@ -1,0 +1,20 @@
+= display_page_title ('Leaves List')
+.container
+  .content
+    %table.list-table
+      %thead
+        %tr
+          %th= label_name('leave.date')
+          %th= label_name('leave.hours')
+          %th= label_name('leave.reason')
+          %th= label_name('leave.coder_id')
+          %th= label_name('leave.action')
+        - @leaves.each do |leave|
+          %tr
+            %td = leave.date
+            %td
+              = leave.hours
+              = 'hour(s)'
+            %td= leave.reason
+            %td= leave.coder.name
+            %td
