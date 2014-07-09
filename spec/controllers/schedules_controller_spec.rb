@@ -1,21 +1,22 @@
 require 'rails_helper'
 
-describe LeavesController do
+describe SchedulesController do
   let!(:coder) { create :coder }
+  let(:project) { create :project }
   describe 'GET #index' do
     def do_request
       get :index
     end
 
     context 'Coder logged in' do
-      let!(:leaves) { create_list(:leave, 5, coder: coder) }
+      let!(:schedules) { create_list(:schedule, 5, coder: coder, project: project) }
       it 'fetches all unworked date of current user' do
         sign_in coder
 
         do_request
 
         expect(response).to render_template :index
-        expect(assigns(:leaves).size).to eq 5
+        expect(assigns(:schedules).size).to eq 5
       end
     end
 
@@ -33,39 +34,39 @@ describe LeavesController do
     def do_request
       get :new
     end
-      it 'renders template new and assigns new leave' do
+      it 'renders template new and assigns new schedule' do
         sign_in coder
 
         do_request
 
         expect(response).to render_template :new
-        expect(assigns(:leave)).to_not be_nil
+        expect(assigns(:schedule)).to_not be_nil
       end
   end
 
   describe 'POST #create' do
     context 'Success' do
-      let(:leave_param) { attributes_for(:leave, date: '10/07/2014', hours: 4, reason: 'Lorem', coder_id: coder.id) }
-      let(:leave) { Leave.first }
+      let(:schedule_param) { attributes_for(:schedule, date: '10/07/2014', hours: 4, reason: 'Lorem', coder_id: coder.id, project_id: project.id) }
+      let(:schedule) { Schedule.first }
       def do_request
-        post :create, leave: leave_param
+        post :create, schedule: schedule_param
       end
 
-      it 'creates leave, redirect to list, sets notice flash' do
+      it 'creates schedule, redirect to list, sets notice flash' do
         sign_in coder
 
         do_request
 
-        expect(response).to redirect_to leaves_path
-        expect(leave.reason).to have_content 'Lorem'
+        expect(response).to redirect_to schedules_path
+        expect(schedule.reason).to have_content 'Lorem'
         expect(flash[:notice]).to_not be_nil
       end
     end
     context 'Failed' do
-      let(:leave_param) { attributes_for(:leave, date: '', hours: 4, reason: 'Lorem', coder_id: coder.id) }
-      let(:leave) { Leave.first }
+      let(:schedule_param) { attributes_for(:schedule, date: '', hours: 4, reason: 'Lorem', coder_id: coder.id) }
+      let(:schedule) { Schedule.first }
       def do_request
-        post :create, leave: leave_param
+        post :create, schedule: schedule_param
       end
 
       it 'renders template new and sets the alert flash' do

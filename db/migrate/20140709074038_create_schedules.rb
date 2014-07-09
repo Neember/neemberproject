@@ -1,6 +1,6 @@
-class CreateLeaves < ActiveRecord::Migration
+class CreateSchedules < ActiveRecord::Migration
   def change
-    create_table :leaves do |t|
+    create_table :schedules do |t|
       t.date :date
       t.integer :hours
       t.text :reason

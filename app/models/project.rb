@@ -13,10 +13,15 @@ class Project < ActiveRecord::Base
 
   belongs_to :client
   has_and_belongs_to_many :coders, class_name: 'User', join_table: 'coders_projects', association_foreign_key: 'coder_id'
+  has_many :schedules, class_name: 'Schedule', foreign_key: 'project_id'
 
-  default_scope -> { order(id: :desc) }
+  default_scope -> { order(name: :asc, id: :desc) }
 
   def assigns_default_values
     self.date_started ||= Date.today
+  end
+
+  def self.options
+    Project.all.collect {|project| [ project.name, project.id ] }
   end
 end

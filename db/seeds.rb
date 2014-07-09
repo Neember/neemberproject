@@ -156,28 +156,32 @@ puts '=== Kheng seeded ==='
 User.create({first_name: 'Steven', last_name: 'Yap', password: '123456789', email: 'stevenyap@example.com', is_admin: true})
 
 puts '=== Start seeding Ivan leave ==='
-Leave.create({
+Schedule.create({
   date: '01/07/2014',
   hours: 8,
   reason: 'Personal reason leave',
+  project: ourcleaningdepartment,
   coder: ivan
 })
-Leave.create({
-     date: '02/07/2014',
-     hours: 4,
-     reason: 'Personal reason leave',
-     coder: ivan
+Schedule.create({
+  date: '02/07/2014',
+  hours: 4,
+  reason: 'Personal reason leave',
+  project: lunch_kaki,
+  coder: ivan
 })
-Leave.create({
-   date: '03/07/2014',
-   hours: 4,
-   reason: 'Personal reason leave',
-   coder: ivan
+Schedule.create({
+  date: '03/07/2014',
+  hours: 4,
+  reason: 'Personal reason leave',
+  project: dadadee,
+  coder: ivan
 })
-Leave.create({
-   date: '04/07/2014',
-   hours: 4,
-   reason: 'Personal reason leave',
-   coder: ivan
+Schedule.create({
+  date: '04/07/2014',
+  hours: 4,
+  reason: 'Personal reason leave',
+  project: lunch_kaki,
+  coder: ivan
 })
 puts '=== Seeded Ivan leave ==='
