@@ -2,7 +2,7 @@ class SchedulesController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @schedules = current_user.schedules.paginate(page: page)
+    @schedules = current_user.becomes(Coder).schedules.paginate(page: page)
   end
 
   def new

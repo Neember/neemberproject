@@ -21,9 +21,4 @@ describe User do
       expect(user.name).to eq 'Martin Lorem'
     end
   end
-
-  describe 'associations' do
-    it { should have_and_belong_to_many(:projects).with_foreign_key('coder_id') }
-    it { should have_many(:schedules).class_name('Schedule') }
-  end
 end

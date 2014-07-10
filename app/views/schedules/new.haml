@@ -6,6 +6,6 @@
         = f.date_field :date
         = f.number_field :hours
         = f.text_area :reason
-        = f.select :project_id, project_options(current_user.projects), {include_blank: t('schedule.message.select_project')}
+        = f.select :project_id, project_options(current_user.becomes(Coder).projects), {include_blank: t('schedule.message.select_project')}
         = f.submit 'Submit', class: 'btn-u'
         = link_to 'Back', schedules_path, class: 'btn-u btn-u-default'

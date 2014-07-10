@@ -7,9 +7,6 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name
   validates_presence_of :last_name
 
-  has_and_belongs_to_many :projects, join_table: 'coders_projects', foreign_key: 'coder_id'
-  has_many :schedules, foreign_key: 'coder_id'
-
   default_scope -> {order(first_name: :asc, last_name: :asc, id: :desc)}
 
   def name
