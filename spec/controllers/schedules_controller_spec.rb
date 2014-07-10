@@ -4,6 +4,7 @@ describe SchedulesController do
   let!(:coder) { create :coder }
   let(:project) { create :project, coders: [coder] }
 
+
   describe 'GET #index' do
     def do_request
       get :index
@@ -11,6 +12,8 @@ describe SchedulesController do
 
     context 'Coder logged in' do
       let!(:schedules) { create_list(:schedule, 5, project: project) }
+
+      before { expect(controller).to receive :authenticate_user! }
 
       it 'fetches all unworked date of current user' do
         sign_in coder
