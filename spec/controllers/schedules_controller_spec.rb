@@ -79,4 +79,21 @@ describe SchedulesController do
       end
     end
   end
+
+  describe 'delete #destroy' do
+    let!(:project) { create(:project) }
+    let!(:schedule) { create(:schedule, coder: coder, project: project) }
+    def do_request
+      delete :destroy, id: schedule.id
+    end
+    it 'deletes schedule, redirects to list and sets notice flash' do
+      sign_in coder
+
+      do_request
+
+      expect(response).to redirect_to schedules_path
+      expect(flash[:notice]).to_not be_nil
+    end
+  end
+
 end

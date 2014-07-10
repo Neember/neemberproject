@@ -20,9 +20,23 @@ class SchedulesController < ApplicationController
     end
   end
 
+  def destroy
+    @schedule = Schedule.find(schedule_id)
+    if @schedule.destroy
+      redirect_to schedules_path, notice: t('schedule.message.delete_schedule_success')
+    else
+      flash[:alert] = t('schedule.message.create_schedule_failed')
+      render :index
+    end
+  end
+
   protected
   def page
     params[:page]
+  end
+
+  def schedule_id
+    params.require(:id)
   end
 
   def schedule_param
