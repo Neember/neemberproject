@@ -9,6 +9,8 @@ class Client < ActiveRecord::Base
   validates_presence_of :designation
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
+  scope :options, -> { pluck(:company_name, :id) }
+
   has_many :projects
 
   enumerize :title, in: [:mr, :mrs, :ms, :dr, :mdm], default: :mr
@@ -17,9 +19,5 @@ class Client < ActiveRecord::Base
 
   def name
     "#{first_name} #{last_name}"
-  end
-
-  def self.options
-    Client.all.collect {|client| [ client.company_name, client.id ] }
   end
 end
