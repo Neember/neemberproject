@@ -6,4 +6,8 @@ module ProjectHelper
   def coder_link(coder)
     link_to coder.first_name, user_path(coder.id)
   end
+
+  def project_options(projects)
+    projects.collect { |project| [ project.name, project.id ] }
+  end
 end

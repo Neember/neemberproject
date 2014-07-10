@@ -20,8 +20,4 @@ class Project < ActiveRecord::Base
   def assigns_default_values
     self.date_started ||= Date.today
   end
-
-  def self.options
-    Project.all.collect {|project| [ project.name, project.id ] }
-  end
 end

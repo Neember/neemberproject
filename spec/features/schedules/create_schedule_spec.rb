@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 describe 'Display New Schedule form' do
-  let!(:project) { create(:project) }
-  let(:schedules) { create_list(:schedule, 5) }
   let(:coder) { create(:coder) }
+  let!(:project) { create(:project, coders: [coder]) }
 
   it 'Create new schedule' do
     feature_login(coder)
@@ -15,7 +14,7 @@ describe 'Display New Schedule form' do
     fill_in 'Date', with: '10/07/2014'
     fill_in 'Hours', with: 6
     fill_in 'Reason', with: 'Lorem lorem'
-    select project.name, from: 'Project'
+    select project.name, from: 'Project Name'
     click_on 'Submit'
 
     expect(page).to have_content 'Schedules List'
