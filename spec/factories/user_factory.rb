@@ -14,7 +14,7 @@ FactoryGirl.define do
       is_admin true
     end
     
-    factory :coder do
+    factory :coder, class: Coder do
       is_admin false
     end
   end

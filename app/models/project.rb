@@ -12,8 +12,8 @@ class Project < ActiveRecord::Base
   validates_format_of :domain, multiline: true, :with => DOMAIN_REGEX
 
   belongs_to :client
-  has_and_belongs_to_many :coders, class_name: 'User', join_table: 'coders_projects', association_foreign_key: 'coder_id'
-  has_many :schedules, class_name: 'Schedule', foreign_key: 'project_id'
+  has_and_belongs_to_many :coders, join_table: 'coders_projects'
+  has_many :schedules
 
   default_scope -> { order(name: :asc, id: :desc) }
 

@@ -9,7 +9,7 @@ FactoryGirl.define do
     client
 
     after(:create) do |project|
-      project.coders << create(:user)
+      project.coders << create(:coder)
     end
   end
 end

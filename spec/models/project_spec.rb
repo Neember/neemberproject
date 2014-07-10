@@ -21,7 +21,7 @@ describe Project do
 
   context 'association' do
     it { should belong_to :client }
-    it { should have_and_belong_to_many(:coders).class_name('User').with_foreign_key('coder_id') }
+    it { should have_and_belong_to_many(:coders) }
     it { should have_many :schedules }
   end
 
