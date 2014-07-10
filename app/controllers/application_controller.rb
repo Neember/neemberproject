@@ -12,4 +12,8 @@ class ApplicationController < ActionController::Base
   def home
 
   end
+
+  def after_signin_path_for(resource)
+    root_path
+  end
 end

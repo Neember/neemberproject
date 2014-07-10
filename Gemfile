@@ -34,11 +34,13 @@ gem 'will_paginate-bootstrap' # Bootstrap renderer for will_paginate
 gem 'simple-navigation'
 gem 'simple-navigation-bootstrap'
 gem 'devise'
+gem 'omniauth-google-oauth2'
 
 group :development do
   gem 'spring'
   gem 'better_errors'
   gem 'erb2haml'
+  gem 'pry'
 end
 
 group :production do
@@ -52,6 +54,8 @@ group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
 end
+
+gem 'dotenv-rails', :groups => [:development, :test]
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
