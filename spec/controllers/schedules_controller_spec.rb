@@ -2,14 +2,16 @@ require 'rails_helper'
 
 describe SchedulesController do
   let!(:coder) { create :coder }
-  let(:project) { create :project }
+  let(:project) { create :project, coders: [coder] }
+
   describe 'GET #index' do
     def do_request
       get :index
     end
 
     context 'Coder logged in' do
-      let!(:schedules) { create_list(:schedule, 5, coder: coder, project: project) }
+      let!(:schedules) { create_list(:schedule, 5, project: project) }
+
       it 'fetches all unworked date of current user' do
         sign_in coder
 
@@ -81,11 +83,12 @@ describe SchedulesController do
   end
 
   describe 'delete #destroy' do
-    let!(:project) { create(:project) }
-    let!(:schedule) { create(:schedule, coder: coder, project: project) }
+    let!(:schedule) { create(:schedule, project: project) }
+
     def do_request
       delete :destroy, id: schedule.id
     end
+
     it 'deletes schedule, redirects to list and sets notice flash' do
       sign_in coder
 
@@ -95,5 +98,4 @@ describe SchedulesController do
       expect(flash[:notice]).to_not be_nil
     end
   end
-
 end

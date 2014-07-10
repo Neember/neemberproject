@@ -11,7 +11,6 @@ class SchedulesController < ApplicationController
 
   def create
     @schedule = Schedule.new(schedule_param)
-    @schedule.coder_id = current_user.id
     if @schedule.save
       redirect_to schedules_path, notice: t('schedule.message.create_schedule_success')
     else
@@ -40,6 +39,6 @@ class SchedulesController < ApplicationController
   end
 
   def schedule_param
-    params.require(:schedule).permit(:date, :hours, :reason, :coder_id, :project_id)
+    params.require(:schedule).permit(:date, :hours, :reason, :project_id)
   end
 end

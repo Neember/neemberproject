@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe 'View Schedules List' do
   let!(:coder) { create(:coder) }
-  let!(:project) { create(:project) }
-  let!(:schedules) { create_list(:schedule, 5, coder: coder, project: project) }
+  let!(:project) { create(:project, coders: [coder]) }
+  let!(:schedules) { create_list(:schedule, 5, project: project) }
 
   it 'display leaves list' do
     visit root_path
