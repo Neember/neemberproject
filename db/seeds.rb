@@ -76,14 +76,14 @@ puts 'Projects seeded'
 puts 'Assgin Dadadee to Jack'
 projects[:dadadee].coders << coders[:jack] unless projects[:dadadee].coders.include?(coders[:jack])
 
-puts 'Start seeding schedules'
+puts 'Start seeding absence'
 Absence.find_or_initialize_by({
   date: '2014/07/12',
   hours: 8,
   reason: 'Personal reason leave',
   project: projects[:dadadee]
 }).save
-puts 'Schedules seeded'
+puts 'Absences seeded'
 
 puts 'Start seeding admin'
 Admin.first_or_create!({
