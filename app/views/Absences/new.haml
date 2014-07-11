@@ -3,9 +3,9 @@
   .content
     .col-md-5
       = bootstrap_form_for @absence do |f|
-        = f.date_field :date
-        = f.number_field :hours
-        = f.text_area :reason
+        = f.date_field :date, help: t('helpers.help.absence.date')
+        = f.number_field :hours, help: t('helpers.help.absence.hours')
+        = f.text_area :reason, help: t('helpers.help.absence.reason')
         = f.select :project_id, project_options(current_user.becomes(Coder).projects), {include_blank: t('absence.message.select_project')}
         = f.submit 'Submit', class: 'btn-u'
         = link_to 'Back', absences_path, class: 'btn-u btn-u-default'

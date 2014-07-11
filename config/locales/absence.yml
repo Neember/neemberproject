@@ -20,6 +20,11 @@ en:
         project_id: 'Project Name'
         coder_id: 'Coders Name'
         action: 'Action'
+    help:
+      absence:
+        date: 'Your absence day'
+        hours: 'Your absence hour'
+        reason: 'Your absence reason'
   activerecord:
     errors:
       models:
