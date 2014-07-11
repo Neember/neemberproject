@@ -51,7 +51,7 @@ RSpec.configure do |config|
    :provider => 'google_oauth2',
    :uid => '123456789',
    :info => {
-     :email => 'john@example.com',
+     :email => 'martin@futureworkz.com',
      :first_name => 'John',
      :last_name => 'Doe'
    },
