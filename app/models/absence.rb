@@ -10,7 +10,7 @@ class Absence < ActiveRecord::Base
 
   belongs_to :project
 
-  default_scope -> { order(id: :desc) }
+  default_scope -> { order(date: :desc, id: :desc) }
 
   def assigns_default_values
     self.date ||= Date.today
