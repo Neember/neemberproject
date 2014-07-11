@@ -21,4 +21,29 @@ describe User do
       expect(user.name).to eq 'Martin Lorem'
     end
   end
+
+  describe '.find_for_google_oauth2' do
+    let(:access_token) { double('access_token') }
+    before do
+      allow(access_token).to receive(:info).and_return(
+                               {'email' => user.email, 'first_name' => user.first_name, 'last_name' => user.last_name})
+    end
+
+    context 'user has the account' do
+      let!(:user) { create(:user) }
+
+      it 'returns user has google authenticated' do
+        expect { User.find_for_google_oauth2(access_token) }.to_not change(User, :count)
+      end
+    end
+
+    context 'user does not have the account' do
+      let(:user) { build(:user) }
+
+      it 'creates a new user' do
+        expect { User.find_for_google_oauth2(access_token) }.to change(User, :count).by(1)
+      end
+    end
+  end
 end
+

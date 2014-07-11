@@ -44,4 +44,16 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include(FeatureHelper, type: :feature)
   config.include Devise::TestHelpers, type: :controller
+
+  OmniAuth.config.test_mode = true
+
+  OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
+   :provider => 'google_oauth2',
+   :uid => '123456789',
+   :info => {
+     :email => 'john@example.com',
+     :first_name => 'John',
+     :last_name => 'Doe'
+   },
+ })
 end
