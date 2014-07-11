@@ -77,7 +77,7 @@ puts 'Assgin Dadadee to Jack'
 projects[:dadadee].coders << coders[:jack] unless projects[:dadadee].coders.include?(coders[:jack])
 
 puts 'Start seeding schedules'
-Schedule.find_or_initialize_by({
+Absence.find_or_initialize_by({
   date: '2014/07/12',
   hours: 8,
   reason: 'Personal reason leave',

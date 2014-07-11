@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Schedule do
+describe Absence do
   context 'validations' do
     it { should validate_presence_of :date }
     it { should validate_presence_of :hours }

@@ -1,4 +1,4 @@
-class Schedule < ActiveRecord::Base
+class Absence < ActiveRecord::Base
   after_initialize :assigns_default_values
 
   validates_presence_of :date

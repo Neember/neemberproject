@@ -1,0 +1,27 @@
+en:
+  absence:
+    message:
+      create_absence_success: 'Absence is created'
+      create_absence_failed: 'Failed to create absence'
+      update_absence_success: 'Absence is updated'
+      update_absence_failed: 'Failed to update absence'
+      delete_absence_success: 'Absence is deleted'
+      delete_absence_failed: 'Failed to delete absence'
+      select_coder: 'Please select coder'
+      select_project: 'Please select project'
+      delete_confirmation: 'Confirm delete this absence?'
+
+  helpers:
+    label:
+      absence:
+        date: 'Date'
+        hours: 'Hours'
+        reason: 'Reason'
+        project_id: 'Project Name'
+        coder_id: 'Coders Name'
+        action: 'Action'
+  activerecord:
+    errors:
+      models:
+        absence:
+          blank: "Please fill in %{attribute}"

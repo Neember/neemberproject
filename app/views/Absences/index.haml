@@ -1,0 +1,22 @@
+= display_page_title ('Absences List')
+
+.container.content
+  %table.list-table
+    %thead
+      %tr
+        %th= label_name('absence.date')
+        %th= label_name('absence.hours')
+        %th= label_name('absence.reason')
+        %th= label_name('absence.project_id')
+        %th= label_name('absence.action')
+    - @absences.each do |absence|
+      %tr
+        %td= absence.date
+        %td= pluralize(absence.hours, 'hour')
+        %td= absence.reason
+        %td= absence.project.name
+        %td
+          = list_delete_button(absence)
+
+  .pagination
+    = bootstrap_paginate(@absences)

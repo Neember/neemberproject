@@ -22,7 +22,7 @@ describe Project do
   context 'association' do
     it { should belong_to :client }
     it { should have_and_belong_to_many(:coders) }
-    it { should have_many :schedules }
+    it { should have_many :absences }
   end
 
   describe '#assigns_default_values' do

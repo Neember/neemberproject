@@ -13,7 +13,7 @@ class Project < ActiveRecord::Base
 
   belongs_to :client
   has_and_belongs_to_many :coders, join_table: 'coders_projects'
-  has_many :schedules
+  has_many :absences
 
   default_scope -> { order(name: :asc, id: :desc) }
 
