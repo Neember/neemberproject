@@ -9,8 +9,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       redirect_to root_path, notice: 'You are not allowed to log in.'
     end
-
-
   end
 
   private
