@@ -6,182 +6,81 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-puts '=== Start Cleaning Up Database ==='
-Client.delete_all
-Project.delete_all
-User.delete_all
-puts '=== Database cleaned ==='
+puts 'Start seeding coders'
 
-puts '=== Start seeding Dadadee Project ==='
+coders = {}
 
-jack = User.create(first_name: 'Jack', last_name: 'Huang', password: '123123123', email: 'jack@example.com')
+coders_data = [
+  { first_name: 'Jack', last_name: 'Huang', email: 'jack@example.com' },
+  { first_name: 'Iker', last_name: 'Tran', email: 'iker@example.com' },
+  { first_name: 'Thang', last_name: 'Vu', email: 'martin@example.com' },
+  { first_name: 'James', last_name: 'La', email: 'james@example.com' },
+  { first_name: 'Ivan', last_name: 'Nguyen', email: 'ivan@example.com' }
+]
 
+coders_data.each do |coder|
+  coder = Coder.find_or_initialize_by(coder)
+  coder.password = '123123123'
+  coder.save
+  coders[coder.first_name.downcase.to_sym] = coder
+end
 
-leon = Client.create({
- title: :mr,
- first_name: 'Leon',
- :last_name => 'Tay',
- :email => 'leon6@example.com',
- :phone => '1234-5869',
- :designation => 'Owner',
- :company_name => 'Fanfill Technology',
- :address => '50 ABC Street Singapore'
-})
+puts 'Coders seeded'
 
-dadadee = Project.create!({
-  name: 'DaDaDee',
-  domain: 'DaDaDee.com',
-  date_started: '22/8/2013',
-  no_of_sprints: 9.8,
-  price_per_sprint: 5000,
-  quotation_no: 'FD12313KJL',
-  client: leon
-})
+puts 'Start seeding clients'
 
-dadadee.coders << jack
+clients_data = [
+  {title: :mr, first_name: 'Leon', last_name: 'Tay', email: 'leon@example.com', phone: '1234-5869', designation: 'Owner', company_name: 'Fanfill Technology', address: '50 ABC Street Singapore'},
+  {title: :mr, first_name: 'Gabriel', last_name: 'Bunner', email: 'gabriel@example.com', phone: '4456-5869', designation: 'Owner', company_name: 'DualRanked', address: '50 DEF Street Malaysia'},
+  {title: :mr, first_name: 'Melvin', last_name: 'Tan', email: 'melvin@example.com', phone: '4456-5869', designation: 'Owner', company_name: 'LunchKaki', address: '50 GHJF Street Malaysia'},
+  {title: :ms, first_name: 'Geraldine', last_name: '-', email: 'geri.gx@example.com', phone: '4456-5869', designation: 'Owner', company_name: 'Our Cleaning Department',address: 'Blk 601, Bedok Reservoir Road, #03-512, S (470601).'},
+  {title: :ms, first_name: 'Kheng', last_name: '-', email: 'Kheng@example.com', phone: '4456-5869', designation: 'Owner', company_name: 'Kheng', address: '25B Jalan Membina #04-122 Singapore 164025'}
+]
+clients ||= {}
 
-puts '=== Dadadee project seeded ==='
+clients_data.each do |client|
+  client = Client.find_or_initialize_by(client)
+  client.save
+  clients[client.first_name.downcase.to_sym] = client
+end
 
-puts '=== Start seeding DualRanked Project ==='
+puts 'Clients seeded'
 
-james = User.create(first_name: 'James', last_name: 'James', password: '123123123', email: 'james@example.com')
+puts 'Start seeding projects'
 
-gabriel = Client.create({
- title: :mr,
- first_name: 'Gabriel',
- :last_name => 'Bunner',
- :email => 'gabriel@example.com',
- :phone => '4456-5869',
- :designation => 'Owner',
- :company_name => 'DualRanked',
- :address => '50 DEF Street Malaysia'
-})
+projects_data = [
+  {client: clients[:leon], name: 'DaDaDee', domain: 'DaDaDee.com',
+   date_started: '2013/03/12', no_of_sprints: 9.8,
+   price_per_sprint: 5000, quotation_no: 'FD12313KJL'},
+  {client: clients[:gabriel], name: 'DualRanked', domain: 'DualRanked.com', date_started: '2014/01/22',
+   no_of_sprints: 7, price_per_sprint: 4000, quotation_no: 'FDS123KJL'},
+  {client: clients[:melvin], name: 'LunchKaki', domain: 'LunchKaki.com', date_started: '2014/01/22',
+   no_of_sprints: 7, price_per_sprint: 4000, quotation_no: 'LKK12341KKL'},
+  {client: clients[:geraldine],name: 'Our Cleaning Department', domain: 'ourcleaningdepartment.com', date_started: '2014/03/18',
+   no_of_sprints: 7, price_per_sprint: 4000, quotation_no: 'FWQ1403006a'},
+  {client: clients[:kheng], name: 'Kheng', domain: 'kheng.com', date_started: '2014/05/14',
+   no_of_sprints: 0.5, price_per_sprint: 4000, quotation_no: 'FWQ1404046B'
+  }
+]
 
-dual_ranked = Project.create!({
-  name: 'DualRanked',
-  domain: 'DualRanked.com',
-  date_started: '22/01/2014',
-  no_of_sprints: 7,
-  price_per_sprint: 4000,
-  quotation_no: 'FDS123KJL',
-  client: gabriel
-})
+projects ||= {}
 
-dual_ranked.coders << james
+projects_data.each do |project|
+  project = Project.find_or_initialize_by(project)
+  project.save
+  projects[project.name.downcase.to_sym] = project
+end
 
-puts '=== DualRanked project seeded ==='
+puts 'Projects seeded'
 
-puts '=== Start seeding LunchKaki Project ==='
+puts 'Assgin Dadadee to Jack'
+projects[:dadadee].coders << coders[:jack] unless projects[:dadadee].coders.include?(coders[:jack])
 
-iker = User.create(first_name: 'Iker', last_name: 'Tran', password: '123123123', email: 'iker@example.com')
-
-melvin = Client.create({
- title: :mr,
- first_name: 'Melvin',
- :last_name => 'Tan',
- :email => 'melvin@example.com',
- :phone => '4456-5869',
- :designation => 'Owner',
- :company_name => 'LunchKaki',
- :address => '50 GHJF Street Malaysia'
-})
-
-lunch_kaki = Project.create!({
-  name: 'LunchKaki',
-  domain: 'LunchKaki.com',
-  date_started: '22/01/2014',
-  no_of_sprints: 7,
-  price_per_sprint: 4000,
-  quotation_no: 'LKK12341KKL',
-  client: melvin
-})
-
-lunch_kaki.coders << iker
-puts '=== LunchKaki project seeded ==='
-
-puts '=== Start seeding Our Cleaning Department Project ==='
-
-ivan = User.create(first_name: 'Ivan', last_name: 'Nguyen', password: '123123123', email: 'ivan@example.com')
-
-geraldine = Client.create({
- title: :ms,
- first_name: 'Geraldine',
- :last_name => '-',
- :email => 'geri.gx@example.com',
- :phone => '4456-5869',
- :designation => 'Owner',
- :company_name => 'Our Cleaning Department',
- :address => 'Blk 601, Bedok Reservoir Road, #03-512, S (470601).'
-})
-
-ourcleaningdepartment = Project.create!({
-  name: 'Our Cleaning Department',
-  domain: 'ourcleaningdepartment.com',
-  date_started: '18/3/2014',
-  no_of_sprints: 7,
-  price_per_sprint: 4000,
-  quotation_no: 'FWQ1403006a',
-  client: geraldine
-})
-
-ourcleaningdepartment.coders << ivan
-puts '=== Our Cleaning Department project seeded ==='
-
-puts '=== Start seeding Kheng Project ==='
-
-
-kheng = Client.create({
- title: :ms,
- first_name: 'Kheng',
- :last_name => '-',
- :email => 'Kheng@example.com',
- :phone => '4456-5869',
- :designation => 'Owner',
- :company_name => 'Kheng',
- :address => '25B Jalan Membina #04-122 Singapore 164025'
-})
-
-ourcleaningdepartment = Project.create!({
-  name: 'Kheng',
-  domain: 'kheng.com',
-  date_started: '15-May-2014',
-  no_of_sprints: 0.5,
-  price_per_sprint: 4000,
-  quotation_no: 'FWQ1404046B',
-  client: kheng
-})
-
-puts '=== Kheng seeded ==='
-
-User.create({first_name: 'Steven', last_name: 'Yap', password: '123456789', email: 'stevenyap@example.com', is_admin: true})
-
-puts '=== Start seeding Ivan leave ==='
-Schedule.create({
-  date: '01/07/2014',
+puts 'Start seeding schedules'
+Schedule.find_or_initialize_by({
+  date: '2014/07/12',
   hours: 8,
   reason: 'Personal reason leave',
-  project: ourcleaningdepartment,
-  coder: ivan
-})
-Schedule.create({
-  date: '02/07/2014',
-  hours: 4,
-  reason: 'Personal reason leave',
-  project: lunch_kaki,
-  coder: ivan
-})
-Schedule.create({
-  date: '03/07/2014',
-  hours: 4,
-  reason: 'Personal reason leave',
-  project: dadadee,
-  coder: ivan
-})
-Schedule.create({
-  date: '04/07/2014',
-  hours: 4,
-  reason: 'Personal reason leave',
-  project: lunch_kaki,
-  coder: ivan
-})
-puts '=== Seeded Ivan leave ==='
+  project: projects[:dadadee]
+}).save
+puts 'Schedules seeded'
