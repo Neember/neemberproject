@@ -84,3 +84,14 @@ Schedule.find_or_initialize_by({
   project: projects[:dadadee]
 }).save
 puts 'Schedules seeded'
+
+puts 'Start seeding admin'
+Admin.first_or_create!({
+  first_name: 'Steven',
+  last_name: 'Yap',
+  email: 'stevenyap@futureworkz.com',
+  password: '123456789',
+
+  is_admin: true
+})
+puts 'Admin seeded'

@@ -1,4 +1,6 @@
 class Admin < User
 
-  validates_acceptance_of :is_admin
+  validates :is_admin, :acceptance => {:accept => true}
+
+  default_scope -> { where(is_admin: true) }
 end
