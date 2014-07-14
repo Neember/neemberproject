@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   before_filter :authenticate_admin!
 
   def index
-    @projects = Project.all.paginate(page: page)
+    @projects = Project.paginate(page: page)
   end
 
   def new
@@ -27,7 +27,7 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(project_id)
     if @project.update(project_param)
-      redirect_to projects_path, :notice => t('project.message.update_project_success')
+      redirect_to projects_path, notice: t('project.message.update_project_success')
     else
       flash[:alert] = t('project.message.update_project_failed')
       render :edit
@@ -37,7 +37,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project = Project.find(project_id)
     if @project.destroy
-      redirect_to projects_path, :notice => t('project.message.delete_project_success')
+      redirect_to projects_path, notice: t('project.message.delete_project_success')
     else
       flash[:alert] = t('project.message.delete_project_failed')
       render :index
