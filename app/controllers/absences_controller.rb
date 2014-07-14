@@ -2,7 +2,11 @@ class AbsencesController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @absences = current_user.becomes(Coder).absences.paginate(page: page)
+    if current_user.is_admin
+      @absences = Absence.paginate(page: page)
+    else
+      @absences = current_user.becomes(Coder).absences.paginate(page: page)
+    end
   end
 
   def new

@@ -4,7 +4,6 @@ describe AbsencesController do
   let!(:coder) { create :coder }
   let(:project) { create :project, coders: [coder] }
 
-
   describe 'GET #index' do
     def do_request
       get :index
@@ -31,6 +30,27 @@ describe AbsencesController do
 
         expect(response).to redirect_to new_user_session_path
         expect(flash[:alert]).to_not be_nil
+      end
+    end
+
+    context 'Admin logged in' do
+      let!(:admin) { create :admin }
+
+      before do
+        create_list(:absence, 2, project: project, coder: coder)
+        create_list(:absence, 2, project: project, coder: admin.becomes(Coder))
+      end
+
+      def do_request
+        get :index
+      end
+      it 'fetches all unworked date' do
+        sign_in admin
+
+        do_request
+
+        expect(response).to render_template :index
+        expect(assigns(:absences).size).to eq 4
       end
     end
   end
