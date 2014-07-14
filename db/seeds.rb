@@ -51,11 +51,11 @@ puts 'Start seeding projects'
 projects_data = [
   {client: clients[:leon], name: 'DaDaDee', domain: 'DaDaDee.com',
    date_started: '2013/03/12', no_of_sprints: 9.8,
-   price_per_sprint: 5000, quotation_no: 'FD12313KJL'},
+   price_per_sprint: 5000, quotation_no: 'FD12313KJL', pivotal_project_id: 929074},
   {client: clients[:gabriel], name: 'DualRanked', domain: 'DualRanked.com', date_started: '2014/01/22',
    no_of_sprints: 7, price_per_sprint: 4000, quotation_no: 'FDS123KJL'},
   {client: clients[:melvin], name: 'LunchKaki', domain: 'LunchKaki.com', date_started: '2014/01/22',
-   no_of_sprints: 7, price_per_sprint: 4000, quotation_no: 'LKK12341KKL'},
+   no_of_sprints: 7, price_per_sprint: 4000, quotation_no: 'LKK12341KKL', pivotal_project_id: 1023700},
   {client: clients[:geraldine],name: 'Our Cleaning Department', domain: 'ourcleaningdepartment.com', date_started: '2014/03/18',
    no_of_sprints: 7, price_per_sprint: 4000, quotation_no: 'FWQ1403006a'},
   {client: clients[:kheng], name: 'Kheng', domain: 'kheng.com', date_started: '2014/05/14',
@@ -65,8 +65,8 @@ projects_data = [
 projects ||= {}
 
 projects_data.each do |project|
-  project = Project.find_or_initialize_by(project)
-  project.save
+  project = Project.find_by_name(project[:name])
+  project.save if project.present?
   projects[project.name.downcase.to_sym] = project
 end
 
