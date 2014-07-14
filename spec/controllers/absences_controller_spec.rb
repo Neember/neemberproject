@@ -44,9 +44,9 @@ describe AbsencesController do
       def do_request
         get :index
       end
+
       it 'fetches all unworked date' do
         sign_in admin
-
         do_request
 
         expect(response).to render_template :index
