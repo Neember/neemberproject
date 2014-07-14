@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Delete absence' do
   let!(:coder) { create(:coder) }
   let!(:project) { create(:project, coders: [coder]) }
-  let!(:absences) { create_list(:absence, 5, project: project) }
+  let!(:absences) { create_list(:absence, 5, project: project, coder: coder) }
 
   it 'Delete absence' do
     visit root_path

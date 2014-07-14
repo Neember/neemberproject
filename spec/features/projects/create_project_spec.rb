@@ -25,6 +25,5 @@ describe 'Create new project' do
     expect(page).to have_content 'Projects List'
     expect(page).to have_content I18n.t('project.message.create_project_success')
     expect(page).to have_content 'Lorem'
-    expect(page).to have_content '9999'
   end
 end

@@ -11,7 +11,7 @@ describe AbsencesController do
     end
 
     context 'Coder logged in' do
-      let!(:absences) { create_list(:absence, 5, project: project) }
+      let!(:absences) { create_list(:absence, 5, project: project, coder: coder) }
 
       before { expect(controller).to receive :authenticate_user! }
 
@@ -64,6 +64,7 @@ describe AbsencesController do
 
         expect(response).to redirect_to absences_path
         expect(absence.reason).to have_content 'Lorem'
+        expect(absence.coder).to eq coder
         expect(flash[:notice]).to_not be_nil
       end
     end

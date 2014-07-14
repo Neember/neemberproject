@@ -9,6 +9,7 @@ class Absence < ActiveRecord::Base
   validates_numericality_of :hours, less_than_or_equal_to: 8
 
   belongs_to :project
+  belongs_to :coder
 
   default_scope -> { order(date: :desc, id: :desc) }
 

@@ -11,6 +11,7 @@ class AbsencesController < ApplicationController
 
   def create
     @absence = Absence.new(absence_param)
+    @absence.coder = current_user.becomes(Coder)
     if @absence.save
       redirect_to absences_path, notice: t('absence.message.create_absence_success')
     else
