@@ -8,7 +8,7 @@
         %th= label_name('absence.hours')
         %th= label_name('absence.reason')
         %th= label_name('absence.project_id')
-        %th= label_name('absence.project_id')
+        %th= label_name('absence.coder')
         %th= label_name('absence.action')
     - @absences.each do |absence|
       %tr
@@ -16,6 +16,7 @@
         %td= pluralize(absence.hours, 'hour')
         %td= absence.reason
         %td= absence.project.name
+        %td= absence.coder.first_name
         %td
           = list_delete_button(absence)
 
