@@ -10,7 +10,7 @@ describe User do
   let(:user){ build(:user) }
 
   it 'validates email address' do
-    user.email = 'martin124@futureworkz.com'
+    user.email = 'martin@futureworkz.com'
     expect(user.valid?).to be_truthy
     user.email = 'martin124@gmail.com'
     expect(user.valid?).to be_falsey

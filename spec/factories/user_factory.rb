@@ -5,7 +5,10 @@ FactoryGirl.define do
   end
 
   factory :user do
-    email
+    sequence :email do |n|
+      "martin#{n}@futureworkz.com"
+    end
+
     password '123123123'
     first_name 'Martin'
     last_name

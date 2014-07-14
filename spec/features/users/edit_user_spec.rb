@@ -14,7 +14,7 @@ describe 'Display Edit form' do
 
     fill_in 'First name', with: 'Martin Martin'
     fill_in 'Last name', with: 'Lorem Lorem'
-    fill_in 'Email', with: 'martin123@example.com'
+    fill_in 'Email', with: 'martin123@futureworkz.com'
     fill_in 'Password', with: '12345678'
     fill_in 'Password confirmation', with: '12345678'
     click_on 'Submit'

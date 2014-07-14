@@ -106,7 +106,7 @@ describe UsersController do
       let(:user) { create(:user) }
 
       def do_request
-        patch :update, id: user.id, user: attributes_for(:user, email: 'martin1234@example.com')
+        patch :update, id: user.id, user: attributes_for(:user, email: 'martin1234@futureworkz.com')
       end
 
       it 'updates user, redirects to list and sets notice flash' do
@@ -116,7 +116,7 @@ describe UsersController do
 
         expect(response).to redirect_to users_path
         expect(flash[:notice]).to_not be_nil
-        expect(user.reload.email).to eq 'martin1234@example.com'
+        expect(user.reload.email).to eq 'martin1234@futureworkz.com'
       end
     end
 

@@ -11,11 +11,11 @@ puts 'Start seeding coders'
 coders = {}
 
 coders_data = [
-  { first_name: 'Jack', last_name: 'Huang', email: 'jack@example.com' },
-  { first_name: 'Iker', last_name: 'Tran', email: 'iker@example.com' },
-  { first_name: 'Thang', last_name: 'Vu', email: 'martin@example.com' },
-  { first_name: 'James', last_name: 'La', email: 'james@example.com' },
-  { first_name: 'Ivan', last_name: 'Nguyen', email: 'ivan@example.com' }
+  { first_name: 'Jack', last_name: 'Huang', email: 'jack@futureworkz.com' },
+  { first_name: 'Iker', last_name: 'Tran', email: 'iker@futureworkz.com' },
+  { first_name: 'Thang', last_name: 'Vu', email: 'martin@futureworkz.com' },
+  { first_name: 'James', last_name: 'La', email: 'james@futureworkz.com' },
+  { first_name: 'Ivan', last_name: 'Nguyen', email: 'ivan@futureworkz.com' }
 ]
 
 coders_data.each do |coder|
