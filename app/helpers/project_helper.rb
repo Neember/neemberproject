@@ -4,7 +4,7 @@ module ProjectHelper
   end
 
   def coder_link(coder)
-    link_to coder.first_name, user_path(coder.id)
+    link_to coder.first_name, edit_user_path(coder.id)
   end
 
   def project_options(projects)
