@@ -49,6 +49,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    crack (0.4.2)
+      safe_yaml (~> 1.0.0)
     devise (3.2.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -76,6 +78,8 @@ GEM
       multipart-post (>= 1.2, < 3)
     haml (4.0.5)
       tilt
+    happymapper (0.4.1)
+      libxml-ruby (~> 2.0)
     hashie (3.1.0)
     hike (1.2.3)
     html2haml (2.0.0.beta.1)
@@ -92,6 +96,7 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.1)
     jwt (1.0.0)
+    libxml-ruby (2.7.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -104,6 +109,8 @@ GEM
     multipart-post (2.0.0)
     nokogiri (1.6.2.1)
       mini_portile (= 0.6.0)
+    nokogiri-happymapper (0.5.9)
+      nokogiri (~> 1.5)
     oauth2 (1.0.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
@@ -123,6 +130,14 @@ GEM
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
     pg (0.17.1)
+    pivotal-tracker (0.5.12)
+      builder
+      crack
+      happymapper (>= 0.3.2)
+      nokogiri (>= 1.4.3)
+      nokogiri (>= 1.5.5)
+      nokogiri-happymapper (>= 0.5.4)
+      rest-client (~> 1.6.0)
     polyglot (0.3.5)
     pry (0.10.0)
       coderay (~> 1.1.0)
@@ -156,6 +171,9 @@ GEM
     rake (10.3.2)
     rdoc (4.1.1)
       json (~> 1.4)
+    rest-client (1.6.8)
+      mime-types (~> 1.16)
+      rdoc (>= 2.4.2)
     rspec-core (3.0.2)
       rspec-support (~> 3.0.0)
     rspec-expectations (3.0.2)
@@ -174,6 +192,7 @@ GEM
     rspec-support (3.0.2)
     ruby_parser (3.2.2)
       sexp_processor (~> 4.1)
+    safe_yaml (1.0.3)
     sass (3.2.19)
     sass-rails (4.0.3)
       railties (>= 4.0.0, < 5.0)
@@ -242,6 +261,7 @@ DEPENDENCIES
   jquery-rails
   omniauth-google-oauth2
   pg
+  pivotal-tracker
   pry
   rails (= 4.1.4)
   rails_12factor

@@ -55,7 +55,8 @@ group :test do
   gem 'capybara'
 end
 
-gem 'dotenv-rails', :groups => [:development, :test]
+gem 'dotenv-rails', groups: [:development, :test]
+gem 'pivotal-tracker'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

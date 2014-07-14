@@ -22,6 +22,7 @@ en:
         notes: 'Notes'
         client: 'Client'
         coder_ids: 'Coders Name'
+        pivotal_project_id: 'Pivotal Project Id'
         action: 'Action'
   activerecord:
     errors:

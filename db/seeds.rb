@@ -59,8 +59,7 @@ projects_data = [
   {client: clients[:geraldine],name: 'Our Cleaning Department', domain: 'ourcleaningdepartment.com', date_started: '2014/03/18',
    no_of_sprints: 7, price_per_sprint: 4000, quotation_no: 'FWQ1403006a'},
   {client: clients[:kheng], name: 'Kheng', domain: 'kheng.com', date_started: '2014/05/14',
-   no_of_sprints: 0.5, price_per_sprint: 4000, quotation_no: 'FWQ1404046B'
-  }
+   no_of_sprints: 0.5, price_per_sprint: 4000, quotation_no: 'FWQ1404046B'}
 ]
 
 projects ||= {}

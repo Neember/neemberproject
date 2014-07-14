@@ -52,7 +52,7 @@ describe ProjectsController do
     context 'success' do
       let(:coders) { create_list(:user, 2) }
       let(:client) { create(:client) }
-      let(:project_param) { attributes_for(:project, client_id: client.id, notes: 'Lorem Lorem', coder_ids: [coders.first.id])}
+      let(:project_param) { attributes_for(:project, client_id: client.id, notes: 'Lorem Lorem', pivotal_project_id: 9999, coder_ids: [coders.first.id])}
       let(:project) { Project.first }
 
       def do_request

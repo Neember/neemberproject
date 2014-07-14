@@ -6,6 +6,7 @@ FactoryGirl.define do
     price_per_sprint 5000
     quotation_no 'Lorem ipsum'
     date_started '22/8/2013'
+    pivotal_project_id 1234
     client
 
     after(:create) do |project|

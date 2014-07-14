@@ -18,11 +18,13 @@ describe 'Create new project' do
     fill_in 'Price per Sprint', with: '5000'
     fill_in 'Quotation No.', with: 'Lorem'
     fill_in 'Notes', with: 'Lorem ipsum Lorem ipsum'
+    fill_in 'Pivotal Project Id', with: 9999
     select client.company_name, from: 'Client'
     click_on 'Submit'
 
     expect(page).to have_content 'Projects List'
     expect(page).to have_content I18n.t('project.message.create_project_success')
     expect(page).to have_content 'Lorem'
+    expect(page).to have_content '9999'
   end
 end
