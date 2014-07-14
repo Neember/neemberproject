@@ -11,6 +11,7 @@
         %th= label_name('project.no_of_sprints')
         %th= label_name('project.price_per_sprint')
         %th= label_name('project.pivotal_project_id')
+        %th= label_name('project.velocity')
         %th= label_name('project.client')
         %th= label_name('project.coders')
         %th= label_name('project.action')
@@ -23,6 +24,7 @@
         %td= project.no_of_sprints
         %td= project.price_per_sprint
         %td= project.pivotal_project_id
+        %td= project.velocity
         %td= link_to project.client.company_name, edit_client_path(project.client.id) if project.client.present?
         %td= coders_link_list(project.coders)
         %td.col-md-2
