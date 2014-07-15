@@ -5,6 +5,7 @@ class Absence < ActiveRecord::Base
   validates_presence_of :hours
   validates_presence_of :reason
   validates_presence_of :project_id
+  validates_presence_of :coder
   validates_numericality_of :hours, greater_than: 0
   validates_numericality_of :hours, less_than_or_equal_to: 8
 

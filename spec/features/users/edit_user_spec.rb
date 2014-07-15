@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Display Edit form' do
-  let!(:users) { create_list(:user, 5) }
+  let!(:users) { create(:user) }
   let(:user) { User.first }
   let(:admin) { create :admin }
 
@@ -20,6 +20,6 @@ describe 'Display Edit form' do
     click_on 'Submit'
 
     expect(page).to have_content 'Users List'
-    expect(page).to have_content I18n.t('user.message.update_success')
+    expect(page).to have_content 'User is updated'
   end
 end
