@@ -80,7 +80,8 @@ Absence.find_or_initialize_by({
   date: '2014/07/12',
   hours: 8,
   reason: 'Personal reason leave',
-  project: projects[:dadadee]
+  project: projects[:dadadee],
+  coder: coders[:jack]
 }).save
 puts 'Absences seeded'
 
