@@ -15,8 +15,8 @@
         %td= absence.date
         %td= pluralize(absence.hours, 'hour')
         %td= absence.reason
-        %td= absence.project.name
-        %td= absence.coder.first_name
+        %td= absence.project_name
+        %td= absence.coder_first_name
         %td
           = list_delete_button(absence)
 

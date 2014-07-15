@@ -12,6 +12,9 @@ class Absence < ActiveRecord::Base
   belongs_to :project
   belongs_to :coder
 
+  delegate :name, to: :project, prefix: true
+  delegate :first_name, to: :coder, prefix: true
+
   default_scope -> { order(date: :desc, id: :desc) }
 
   def assigns_default_values
