@@ -18,8 +18,8 @@ coders_data = [
   { first_name: 'Ivan', last_name: 'Nguyen', email: 'ivan@futureworkz.com' }
 ]
 
-coders_data.each do |coder|
-  coder = Coder.find_or_initialize_by(coder)
+coders_data.each do |coder_data|
+  coder = Coder.find_or_initialize_by(coder_data)
   coder.password = '123123123'
   coder.save
   coders[coder.first_name.downcase.to_sym] = coder
@@ -38,8 +38,8 @@ clients_data = [
 ]
 clients ||= {}
 
-clients_data.each do |client|
-  client = Client.find_or_initialize_by(client)
+clients_data.each do |client_data|
+  client = Client.find_or_initialize_by(client_data)
   client.save
   clients[client.first_name.downcase.to_sym] = client
 end
@@ -64,10 +64,10 @@ projects_data = [
 
 projects ||= {}
 
-projects_data.each do |project|
-  project = Project.find_by_name(project[:name])
-  project.save if project.present?
-  projects[project.name.downcase.to_sym] = project
+projects_data.each do |project_data|
+  project = Project.find_or_initialize_by(project_data)
+  project.save
+  projects[project_data[:name].downcase.to_sym] = project
 end
 
 puts 'Projects seeded'
