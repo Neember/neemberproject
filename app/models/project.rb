@@ -21,4 +21,8 @@ class Project < ActiveRecord::Base
   def assigns_default_values
     self.date_started ||= Date.today
   end
+
+  def calculator_target_completion
+    self.date_started + self.no_of_sprints * 14
+  end
 end

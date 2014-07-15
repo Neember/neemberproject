@@ -8,6 +8,7 @@
         %th= label_name('project.name')
         %th= label_name('project.domain')
         %th= label_name('project.date_started')
+        %th= label_name('project.target_completion')
         %th= label_name('project.no_of_sprints')
         %th= label_name('project.price_per_sprint')
         %th= label_name('project.velocity')
@@ -19,7 +20,10 @@
         %td= project.quotation_no
         %td= project.name
         %td= project.domain
-        %td= project.date_started
+        %td.col-md-1
+          = project.date_started
+        %td.col-md-1
+          = project.calculator_target_completion
         %td= project.no_of_sprints
         %td= project.price_per_sprint
         %td= project.velocity
