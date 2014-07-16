@@ -19,6 +19,7 @@ en:
         no_of_sprints: 'Number of Sprints'
         price_per_sprint: 'Price per Sprint'
         target_completion: 'Target Completion'
+        estimated_completion: 'Estimated Completion'
         quotation_no: 'Quotation No.'
         notes: 'Notes'
         client: 'Client'

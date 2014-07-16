@@ -53,4 +53,15 @@ describe Project do
       end
     end
   end
+
+  describe '#estimated_completion' do
+    context 'View project estimated completion' do
+      let(:project) { create(:project, velocity: 7, points_left: 9) }
+
+      it 'View project estimated completion' do
+        expect(project.estimated_completion).to eq Date.today + 14
+      end
+    end
+  end
+
 end
