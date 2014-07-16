@@ -9,6 +9,7 @@ describe Project do
     it { should validate_presence_of :quotation_no }
     it { should validate_presence_of :client_id }
     it { should validate_numericality_of :pivotal_project_id }
+    it { should validate_numericality_of(:velocity).is_greater_than 0 }
 
     let(:project) { build(:project) }
 

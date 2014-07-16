@@ -24,7 +24,7 @@ describe PivotalProjectTracker do
     before { expect(PivotalTracker::Client).to receive(:token=) }
 
     it 'updates projects velocity' do
-      expect { getter.sync_projects }.to change { project.reload.velocity }.from(0).to(15)
+      expect { getter.sync_projects }.to change { project.reload.velocity }.from(10).to(15)
     end
 
     it 'updates projects points left' do

@@ -8,6 +8,7 @@ class Project < ActiveRecord::Base
   validates_presence_of :quotation_no
   validates_presence_of :client_id
   validates_numericality_of :pivotal_project_id
+  validates_numericality_of :velocity, greater_than: 0
 
   DOMAIN_REGEX =   /(^(http|https):\/\/-)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
   validates_format_of :domain, multiline: true, :with => DOMAIN_REGEX
