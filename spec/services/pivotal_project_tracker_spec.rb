@@ -17,7 +17,6 @@ describe PivotalProjectTracker do
   before do
     allow(PivotalTracker::Project).to receive(:all).and_return(mock_projects)
     allow(pivotal_project.stories).to receive(:all).with(story_type: :feature, current_state: [:started, :unscheduled]).and_return(mock_stories)
-
   end
 
   describe '#sync_projects' do

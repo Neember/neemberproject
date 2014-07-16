@@ -50,7 +50,7 @@ describe Project do
       let(:project) { create(:project, date_started: Date.today, no_of_sprints: 10) }
 
       it 'View target completion project' do
-        expect(project.calculator_target_completion).to eq Date.today + project.no_of_sprints*14
+        expect(project.target_completion).to eq Date.today + project.no_of_sprints*14
       end
     end
   end
@@ -65,4 +65,13 @@ describe Project do
     end
   end
 
+  describe '#overruns' do
+    context 'View Over Runs' do
+      let(:project) { create(:project, velocity: 7, points_left: 15, date_started: Date.today, no_of_sprints: 1) }
+
+      it 'View Over Runs' do
+        expect(project.overruns).to eq 7
+      end
+    end
+  end
 end

@@ -23,13 +23,16 @@ class Project < ActiveRecord::Base
     self.date_started ||= Date.today
   end
 
-  def calculator_target_completion
+  def target_completion
     date_started + no_of_sprints * 14
   end
 
   def estimated_completion
-    return nil if velocity.zero?
     Date.today + week_left.ceil * 7
+  end
+
+  def overruns
+    (estimated_completion - target_completion).to_i
   end
 
   private
