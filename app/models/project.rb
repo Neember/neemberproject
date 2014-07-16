@@ -23,12 +23,16 @@ class Project < ActiveRecord::Base
   end
 
   def calculator_target_completion
-    self.date_started + self.no_of_sprints * 14
+    date_started + no_of_sprints * 14
   end
 
   def estimated_completion
     return nil if velocity.zero?
-    week = self.points_left / self.velocity.to_f
-    Date.today + week.ceil * 7
+    Date.today + week_left.ceil * 7
+  end
+
+  private
+  def week_left
+    points_left / velocity.to_f
   end
 end
