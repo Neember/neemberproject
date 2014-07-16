@@ -1,3 +1,3 @@
-task get_velocity: :environment do
-  PivotalVelocityGetter.new.update_velocity
+task sync_projects: :environment do
+  PivotalProjectTracker.new.sync_projects
 end

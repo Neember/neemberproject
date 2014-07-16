@@ -1,28 +1,43 @@
 class PivotalProjectTracker
-  def update_velocity
-    pivotal_access_token
-
-    pivotal_projects = PivotalTracker::Project.all
-    pivotal_projects.each do |pivotal_project|
-      project = Project.find_by_pivotal_project_id(pivotal_project.id)
-      project.update(velocity: pivotal_project.current_velocity) if project.present?
-    end
+  def initialize
+    assign_pivotal_access_token
   end
 
-  def update_points_left
-    pivotal_access_token
-
-    pivotal_projects = PivotalTracker::Project.all
+  def sync_projects
     pivotal_projects.each do |pivotal_project|
       project = Project.find_by_pivotal_project_id(pivotal_project.id)
-      stories = pivotal_project.stories.all(story_type: :feature, current_state: [:started, :unscheduled])
-      points_left = stories.sum { |story| (story.estimate > 0) ? story.estimate : 0  }
-      project.update(points_left: points_left) if project.present?
+
+      if project.present?
+        project.update(
+          points_left: points_left_of(pivotal_project),
+          velocity: pivotal_project.current_velocity
+        )
+      end
     end
   end
 
   private
-  def pivotal_access_token
-    PivotalTracker::Client.token = ENV['PIVOTAL_ACCESS_TOKEN']
+  def assign_pivotal_access_token
+    PivotalTracker::Client.token= ENV['PIVOTAL_ACCESS_TOKEN']
+  end
+
+  def pivotal_projects
+    PivotalTracker::Project.all
+  end
+
+  def points_left_of(pivotal_project)
+    uncompleted_stories_of(pivotal_project).sum { |story| points_of(story) }
+  end
+
+  def uncompleted_stories_of(pivotal_project)
+    pivotal_project.stories.all(uncompleted_scopes)
+  end
+
+  def uncompleted_scopes
+    { story_type: :feature, current_state: [:started, :unscheduled] }
+  end
+
+  def points_of(story)
+    (story.estimate > 0) ? story.estimate : 0
   end
 end
