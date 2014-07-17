@@ -19,6 +19,7 @@ describe 'Create new project' do
     fill_in 'Quotation No.', with: 'Lorem'
     fill_in 'Notes', with: 'Lorem ipsum Lorem ipsum'
     fill_in 'Pivotal Project Id', with: 9999
+    fill_in 'Date completed', with: '20/09/02014'
     select client.company_name, from: 'Client'
     click_on 'Submit'
 

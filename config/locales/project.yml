@@ -16,6 +16,7 @@ en:
         name: 'Name'
         domain: 'Domain'
         date_started: 'Date started'
+        date_completed: 'Date completed'
         no_of_sprints: 'Number of Sprints'
         price_per_sprint: 'Price per Sprint'
         target_completion: 'Target Completion'
