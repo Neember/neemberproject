@@ -10,7 +10,6 @@
         %th= label_name('project.date_started')
         %th= label_name('project.target_completion')
         %th= label_name('project.estimated_completion')
-        %th= label_name('project.overruns')
         %th= label_name('project.no_of_sprints')
         %th= label_name('project.price_per_sprint')
         %th= label_name('project.velocity')
@@ -18,7 +17,7 @@
         %th= label_name('project.coders')
         %th= label_name('project.action')
     - @projects.each do |project|
-      %tr
+      %tr{class: project_css(project)}
         %td= project.quotation_no
         %td= project.name
         %td= project.domain
@@ -28,8 +27,8 @@
           = project.target_completion
         %td.col-md-1
           = project.estimated_completion
-        %td.col-md-1
-          = pluralize(project.overruns, 'day')
+          %br
+          = '( ' + pluralize(project.overruns, 'day') + ' )'
         %td= project.no_of_sprints
         %td= project.price_per_sprint
         %td= project.velocity

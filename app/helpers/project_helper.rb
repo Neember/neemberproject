@@ -10,4 +10,10 @@ module ProjectHelper
   def project_options(projects)
     projects.collect { |project| [ project.name, project.id ] }
   end
+
+  def project_css(project)
+    if project.compare_ecd_tcd
+      'alert-danger'
+    end
+  end
 end

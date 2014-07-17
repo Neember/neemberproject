@@ -24,7 +24,11 @@ class Project < ActiveRecord::Base
   end
 
   def target_completion
-    date_started + no_of_sprints * 14
+    date_started + no_of_sprints * 14 + unworked_days
+  end
+
+  def unworked_days
+    unworked_hours / 8.0
   end
 
   def estimated_completion
@@ -35,8 +39,16 @@ class Project < ActiveRecord::Base
     (estimated_completion - target_completion).to_i
   end
 
+  def compare_ecd_tcd
+    estimated_completion > target_completion ? true : false
+  end
+
   private
   def week_left
     points_left / velocity.to_f
+  end
+
+  def unworked_hours
+    absences.inject(0) { |total, absences| total + absences.hours  }
   end
 end
