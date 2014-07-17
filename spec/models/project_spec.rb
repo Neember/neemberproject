@@ -91,7 +91,7 @@ describe Project do
       let(:project) { create(:project, velocity: 7, points_left: 15, date_started: Date.today, no_of_sprints: 1) }
 
       it 'View Over Runs' do
-        expect(project.overruns).to eq 7
+        expect(project.overruns).to eq 5
       end
     end
   end

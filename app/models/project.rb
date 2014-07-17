@@ -36,7 +36,7 @@ class Project < ActiveRecord::Base
   end
 
   def overruns
-    (estimated_completion - target_completion).to_i
+    ((estimated_completion - target_completion).to_i / 7) * 5
   end
 
   def compare_ecd_tcd
