@@ -35,6 +35,7 @@ gem 'simple-navigation'
 gem 'simple-navigation-bootstrap'
 gem 'devise'
 gem 'omniauth-google-oauth2'
+gem 'business_time'
 
 group :development do
   gem 'spring'

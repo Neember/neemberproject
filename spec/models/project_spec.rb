@@ -96,7 +96,7 @@ describe Project do
 
   describe '#overruns' do
     context 'View Over Runs' do
-      let(:project) { create(:project, velocity: 7, points_left: 15, date_started: Date.today, no_of_sprints: 1) }
+      let(:project) { create(:project, velocity: 7, points_left: 30, date_started: '18/07/2014', no_of_sprints: 2) }
 
       it 'View Over Runs when project do not have date completed' do
         expect(project.overruns).to eq 5

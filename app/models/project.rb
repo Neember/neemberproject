@@ -1,4 +1,5 @@
 class Project < ActiveRecord::Base
+
   after_initialize :assigns_default_values
 
   validates_presence_of :name
@@ -75,14 +76,10 @@ class Project < ActiveRecord::Base
   end
 
   def completed_overruns
-    working_days_between(date_completed, target_completion)
+    target_completion.business_days_until(date_completed)
   end
 
   def estimated_overruns
-    working_days_between(estimated_completion, target_completion)
-  end
-
-  def working_days_between(date_1, date_2)
-    (((date_1 - date_2) / WEEK_DAYS) * WORKING_DAYS).ceil
+    target_completion.business_days_until(estimated_completion)
   end
 end
