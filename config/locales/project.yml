@@ -25,6 +25,11 @@ en:
         notes: 'Notes'
         client: 'Client'
         coder_ids: 'Coders Name'
+        overruns_in_day: 'Overruns'
+        overruns:
+          zero: 'On time'
+          one: '1 day'
+          other: "%{count} days"
         pivotal_project_id: 'Pivotal Project Id'
         action: 'Action'
   activerecord:

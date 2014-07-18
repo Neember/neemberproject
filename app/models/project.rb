@@ -21,6 +21,8 @@ class Project < ActiveRecord::Base
   has_and_belongs_to_many :coders, join_table: 'coders_projects'
   has_many :absences
 
+  delegate :company_name, to: :client, prefix: true, allow_nil: true
+
   default_scope -> { order(name: :asc, id: :desc) }
 
   def assigns_default_values
