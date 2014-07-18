@@ -1,0 +1,26 @@
+= display_page_title('Help page')
+.container
+  .content
+    %h3 Project:
+    %ul
+      %li#sprints
+        %strong Sprint:
+        1 sprint = 2 weeks
+      %li#points_left
+        %strong Points left:
+        outstanding points retrieved from Pivotal Tracker.
+      %li#target_completion
+        %strong Target Completion Day
+        Target Completion Day = sprints (in days) + absences (in days) after date started
+      %li#estimated_completion
+        %strong Estimated Completion Day
+        Estimated Completion Day = completion day based on total outstanding point divided by velocity
+      %li#overruns
+        %strong Overruns:
+        only shown if the project is overrun
+      %li#project_completed
+        %strong When project is completed:
+        it is the completed overrun. (completed day - target completion day)
+      %li#project_uncompleted
+        %strong When the project is not completed:
+        it is the estimated overrun (estimated completion day - target completion day)

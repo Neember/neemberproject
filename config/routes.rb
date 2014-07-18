@@ -29,6 +29,8 @@ Rails.application.routes.draw do
 
   resources :absences, only: [:index, :new, :create, :destroy]
 
+  get 'help' => 'pages#help'
+
   # Example resource route with options:
   #   resources :products do
   #     member do
