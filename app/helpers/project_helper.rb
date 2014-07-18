@@ -12,8 +12,6 @@ module ProjectHelper
   end
 
   def project_css(project)
-    if project.compare_ecd_tcd
-      'alert-danger'
-    end
+    'alert-danger' if project.overrun?
   end
 end

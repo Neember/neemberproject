@@ -80,8 +80,16 @@ describe Project do
     context 'View project estimated completion' do
       let(:project) { create(:project, velocity: 7, points_left: 9) }
 
-      it 'View project estimated completion' do
+      it 'return estimated completion day when project do not have date completed' do
         expect(project.estimated_completion).to eq Date.today + 14
+      end
+    end
+
+    context 'View project estimated completion' do
+      let(:project) { create(:project, velocity: 7, points_left: 9, date_completed: Date.today) }
+
+      it 'return 0 when project have date completed' do
+        expect(project.estimated_completion).to eq Date.today
       end
     end
   end
@@ -90,18 +98,32 @@ describe Project do
     context 'View Over Runs' do
       let(:project) { create(:project, velocity: 7, points_left: 15, date_started: Date.today, no_of_sprints: 1) }
 
-      it 'View Over Runs' do
+      it 'View Over Runs when project do not have date completed' do
         expect(project.overruns).to eq 5
+      end
+    end
+    context 'View Over Runs' do
+      let(:project) { create(:project, velocity: 7, points_left: 15, date_started: '20/05/2014', no_of_sprints: 1, date_completed: '5/6/2014') }
+
+      it 'View Over Runs when project have date completed' do
+        expect(project.overruns).to eq 2
+      end
+    end
+    context 'View Over Runs' do
+      let(:project) { create(:project, velocity: 7, points_left: 15, date_started: '20/03/2014', no_of_sprints: 10, date_completed: '5/5/2014') }
+
+      it 'View Over Runs when project have date completed but smaller target completion date' do
+        expect(project.overruns).to eq 0
       end
     end
   end
 
-  describe '#compare_ecd_tcd' do
+  describe '#overrun?' do
     context 'Estimated completion date > Target completion date' do
       let!(:absences) { create_list(:absence, 2)}
       let(:project) { create(:project, date_started: '10/07/2013', no_of_sprints: 10, absences: absences) }
       it 'returns true if estimated completion date > target completion date' do
-        expect(project.compare_ecd_tcd).to be_truthy
+        expect(project.overrun?).to be_truthy
       end
     end
 
@@ -109,7 +131,7 @@ describe Project do
       let!(:absences) { create_list(:absence, 2)}
       let(:project) { create(:project, date_started: Date.today, no_of_sprints: 10, absences: absences) }
       it 'returns false if estimated completion date < target completion date' do
-        expect(project.compare_ecd_tcd).to be_falsey
+        expect(project.overrun?).to be_falsey
       end
     end
   end

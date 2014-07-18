@@ -10,6 +10,10 @@ class Project < ActiveRecord::Base
   validates_numericality_of :pivotal_project_id
   validates_numericality_of :velocity, greater_than: 0
 
+  WEEK_DAYS = 7
+  WORKING_DAYS = 5
+  WORKING_HOURS = 8.0
+  DAYS_PER_SPRINTS = WEEK_DAYS * 2
   DOMAIN_REGEX =   /(^(http|https):\/\/-)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
   validates_format_of :domain, multiline: true, :with => DOMAIN_REGEX
 
@@ -24,23 +28,39 @@ class Project < ActiveRecord::Base
   end
 
   def target_completion
-    date_started + no_of_sprints * 14 + unworked_days
+    date_started + no_of_sprints * DAYS_PER_SPRINTS + unworked_days
   end
 
   def unworked_days
-    unworked_hours / 8.0
+    unworked_hours / WORKING_HOURS
   end
 
   def estimated_completion
-    Date.today + week_left.ceil * 7
+    date_completed || Date.today + week_left.ceil * WEEK_DAYS
   end
 
   def overruns
-    ((estimated_completion - target_completion).to_i / 7) * 5
+    if overrun?
+      completed? ? completed_overruns : estimated_overruns
+    else
+      0
+    end
   end
 
-  def compare_ecd_tcd
-    estimated_completion > target_completion ? true : false
+  def completed?
+    date_completed?
+  end
+
+  def overrun?
+    overrun_estimated? || really_overrun?
+  end
+
+  def really_overrun?
+    completed? && date_completed > target_completion
+  end
+
+  def overrun_estimated?
+    !completed? && estimated_completion > target_completion
   end
 
   private
@@ -50,5 +70,17 @@ class Project < ActiveRecord::Base
 
   def unworked_hours
     absences.inject(0) { |total, absences| total + absences.hours  }
+  end
+
+  def completed_overruns
+    working_days_between(date_completed, target_completion)
+  end
+
+  def estimated_overruns
+    working_days_between(estimated_completion, target_completion)
+  end
+
+  def working_days_between(date_1, date_2)
+    (((date_1 - date_2) / WEEK_DAYS) * WORKING_DAYS).ceil
   end
 end
