@@ -1,0 +1,67 @@
+= display_page_title('Project Detail')
+- project_presenter = ProjectPresenter.new(@project)
+.container
+  .content
+    .col-md-6
+      %h2 Client info
+      %table.col-md-12.list-table
+        %thead
+          %tr
+            %th.col-md-4 Client name
+            %td= @project.client_name
+          %tr
+            %th.col-md-4=label_name('client.designation')
+            %td= @project.client_designation
+          %tr
+            %th.col-md-4=label_name('client.email')
+            %td= @project.client_email
+          %tr
+            %th.col-md-4=label_name('client.phone')
+            %td= @project.client_phone
+          %tr
+            %th.col-md-4=label_name('client.address')
+            %td= @project.client_address
+          %tr
+            %th.col-md-4=label_name('client.company_name')
+            %td= @project.client_company_name
+    .col-md-6
+      %h2 Project detail
+      %table.list-table
+        %thead
+          %tr
+            %th=label_name('project.quotation_no')
+            %td= project_presenter.quotation_no
+          %tr
+            %th=label_name('project.name')
+            %td= project_presenter.name
+          %tr
+            %th=label_name('project.domain')
+            %td= project_presenter.domain
+          %tr
+            %th=label_name('project.coder_ids')
+            %td= coders_link_list(project_presenter.coders)
+          %tr
+            %th=label_name('project.date_started')
+            %td= project_presenter.date_started
+          %tr
+            %th=label_name('project.target_completion')
+            %td= project_presenter.target_completion
+          %tr
+            %th=label_name('project.estimated_completion')
+            %td= project_presenter.estimated_completion
+          %tr
+            %th=label_name('project.day_completed')
+            %td= project_presenter.date_completed
+          %tr
+            %th=label_name('project.overruns_in_day')
+            %td= project_presenter.overruns
+          %tr
+            %th=label_name('project.no_of_sprints')
+            %td= project_presenter.no_of_sprints
+          %tr
+            %th=label_name('project.price_per_sprint')
+            %td= project_presenter.price_per_sprint
+          %tr
+            %th=label_name('project.velocity')
+            %td= project_presenter.velocity
+    = link_to 'Back', projects_path, class: 'btn-u btn-u-default'

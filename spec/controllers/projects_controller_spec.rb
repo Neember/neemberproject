@@ -160,4 +160,22 @@ describe ProjectsController do
       end
     end
   end
+
+  describe 'get #show' do
+    context 'show project detail' do
+      let(:project) { create :project }
+      def do_request
+        get :show, id: project.id
+      end
+
+      it 'render template show project detail and finds project' do
+        sign_in admin
+
+        do_request
+
+        expect(response).to render_template :show
+        expect(assigns(:project)).to_not be_nil
+      end
+    end
+  end
 end

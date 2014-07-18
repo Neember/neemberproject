@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   scope :admin do
 
     resources :clients, except: [:show]
-    resources :projects, except: [:show]
+    resources :projects
     resources :users, except: [:show]
 
   end

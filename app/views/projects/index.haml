@@ -4,7 +4,6 @@
   %table.list-table
     %thead
       %tr
-        %th= label_name('project.quotation_no')
         %th= label_name('project.name')
         %th= label_name('project.domain')
         %th= label_name('project.date_started')
@@ -13,15 +12,11 @@
         %th= label_name('project.day_completed')
         %th= label_name('project.overruns_in_day')
         %th= label_name('project.no_of_sprints')
-        %th= label_name('project.price_per_sprint')
-        %th= label_name('project.velocity')
         %th= label_name('project.client')
-        %th= label_name('project.coders')
         %th= label_name('project.action')
     - @projects.each do |project|
       - project_presenter = ProjectPresenter.new(project)
       %tr{class: project_presenter.css_classes}
-        %td= project_presenter.quotation_no
         %td= project_presenter.name
         %td= project_presenter.domain
         %td.col-md-1= project_presenter.date_started
@@ -30,13 +25,11 @@
         %td= project_presenter.date_completed
         %td= project_presenter.overruns
         %td= project_presenter.no_of_sprints
-        %td= project_presenter.price_per_sprint
-        %td= project_presenter.velocity
         %td= project_presenter.client_link
-        %td= coders_link_list(project_presenter.coders)
         %td.col-md-2
           = list_edit_button(project)
           = list_delete_button(project)
+          = link_to 'Detail', project_path(project.id), class: 'list-edit-button', data: {test: "view-project-#{project.id}"}
 
   .pagination
     = bootstrap_paginate(@projects)

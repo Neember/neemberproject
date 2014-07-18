@@ -44,6 +44,10 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def show
+    @project = Project.find(project_id)
+  end
+
   protected
   def page
     params[:page]
