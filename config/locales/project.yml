@@ -9,6 +9,9 @@ en:
       delete_project_failed: 'Failed to delete project'
       select_client: 'Please select client'
       delete_confirmation: 'Confirm delete this project?'
+    events:
+      create: "%{field} value: %{new_value}"
+      update: "%{field} changed from %{old_value} to %{new_value}"
 
   helpers:
     label:

@@ -2,6 +2,8 @@ class Project < ActiveRecord::Base
 
   after_initialize :assigns_default_values
 
+  has_paper_trail class_name: 'Version', ignore: [:updated_at, :created_at]
+
   validates_presence_of :name
   validates_presence_of :date_started
   validates_numericality_of :no_of_sprints, greater_than: 0

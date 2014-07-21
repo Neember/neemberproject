@@ -14,4 +14,21 @@ module ProjectHelper
   def project_css(project)
     'alert-danger' if project.overrun?
   end
+
+  def version_diff(version)
+    version.changeset.collect { |field, value|
+      field_diff(field: field, old_value: value[0], new_value: value[1], event: version.event)
+    }.join('<br>').html_safe
+  end
+
+  def field_diff(field: , new_value: , old_value: '', event:)
+    translate_key = "project.events.#{event}"
+    field_name = label_name("project.#{field}")
+
+    t(translate_key,
+      field: field_name,
+      old_value: old_value,
+      new_value: new_value
+    )
+  end
 end

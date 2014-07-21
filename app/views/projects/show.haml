@@ -64,4 +64,25 @@
           %tr
             %th=label_name('project.velocity')
             %td= project_presenter.velocity
+    .col-md-12
+      %h2 Project History
+      .history
+        %table.list-table.table-bordered
+          %thead
+            %tr
+              %th.col-md-2= 'User'
+              %th= 'Action'
+              %th= 'Changeset'
+              %th= 'Time'
+          - @project.versions.each do |version|
+            %tr
+              %td.col-md-2
+                = version.user_first_name
+              %td
+                = version.event
+              %td
+                = version_diff(version)
+              %td
+                = version.created_at
+
     = link_to 'Back', projects_path, class: 'btn-u btn-u-default'
