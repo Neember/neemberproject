@@ -68,6 +68,12 @@ class Project < ActiveRecord::Base
     !completed? && estimated_completion > target_completion
   end
 
+  def commits
+    return [] if repository.nil?
+    github = Github.new oauth_token: ENV['GITHUB_ACCESS_TOKEN']
+    github.repos.commits.all ENV['GITHUB_USERNAME'], self.repository, per_page: 20
+  end
+
   private
   def week_left
     points_left / velocity.to_f

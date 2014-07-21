@@ -37,6 +37,7 @@ gem 'devise'
 gem 'omniauth-google-oauth2'
 gem 'business_time'
 gem 'paper_trail', '~> 3.0.3'
+gem 'github_api'
 
 group :development do
   gem 'spring'
