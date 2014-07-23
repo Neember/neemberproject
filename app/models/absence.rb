@@ -7,13 +7,11 @@ class Absence < ActiveRecord::Base
   belongs_to :project
   belongs_to :coder
 
-  validates_presence_of :date
-  validates_presence_of :hours
-  validates_presence_of :reason
-  validates_presence_of :project_id
-  validates_presence_of :coder
-  validates_numericality_of :hours, greater_than: 0
-  validates_numericality_of :hours, less_than_or_equal_to: 8
+  validates :date, presence: true
+  validates :hours, presence: true, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 8 }
+  validates :reason, presence: true
+  validates :project_id, presence: true
+  validates :coder, presence: true
 
   after_initialize :assigns_default_values
 

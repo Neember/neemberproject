@@ -16,15 +16,15 @@ class Project < ActiveRecord::Base
   has_and_belongs_to_many :coders, join_table: 'coders_projects'
   has_many :absences
 
-  validates_presence_of :name
-  validates_presence_of :date_started
-  validates_numericality_of :no_of_sprints, greater_than: 0
-  validates_numericality_of :price_per_sprint, greater_than: 0
-  validates_presence_of :quotation_no
-  validates_presence_of :client_id
-  validates_numericality_of :pivotal_project_id
-  validates_numericality_of :velocity, greater_than: 0
-  validates_format_of :domain, multiline: true, :with => DOMAIN_REGEX
+  validates :name, presence: true
+  validates :date_started, presence: true
+  validates :no_of_sprints, numericality: { greater_than: 0 }
+  validates :price_per_sprint, numericality: { greater_than: 0 }
+  validates :quotation_no, presence: true
+  validates :client_id, presence: true
+  validates :pivotal_project_id, numericality: { only_integer: true }
+  validates :velocity, numericality: { only_integer: true, greater_than: 0 }
+  validates :domain, format: { multiline: true, :with => DOMAIN_REGEX }
 
   after_initialize :assigns_default_values
 

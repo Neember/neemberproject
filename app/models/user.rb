@@ -7,9 +7,9 @@ class User < ActiveRecord::Base
 
   default_scope -> { order(first_name: :asc, last_name: :asc, id: :desc) }
 
-  validates_presence_of :first_name
-  validates_presence_of :last_name
-  validates_format_of :email, :with => /\A([^@\s]+)@(futureworkz.com)\Z/i
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :email, format: { :with => /\A([^@\s]+)@(futureworkz.com)\Z/i }
 
   def name
     "#{first_name} #{last_name}"

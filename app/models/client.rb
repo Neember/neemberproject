@@ -1,21 +1,21 @@
 class Client < ActiveRecord::Base
   extend Enumerize
 
-  validates_presence_of :first_name
-  validates_presence_of :last_name
-  validates_presence_of :email
-  validates_presence_of :address
-  validates_presence_of :company_name
-  validates_presence_of :designation
-  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  default_scope -> { order(first_name: :asc, last_name: :asc, id: :desc) }
 
   scope :options, -> { pluck(:company_name, :id) }
 
   has_many :projects
 
-  enumerize :title, in: [:mr, :mrs, :ms, :dr, :mdm], default: :mr
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :email, presence: true
+  validates :address, presence: true
+  validates :company_name, presence: true
+  validates :designation, presence: true
+  validates :email, format: { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
 
-  default_scope -> { order(first_name: :asc, last_name: :asc, id: :desc) }
+  enumerize :title, in: [:mr, :mrs, :ms, :dr, :mdm], default: :mr
 
   def name
     "#{first_name} #{last_name}"
