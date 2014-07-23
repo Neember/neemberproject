@@ -1,8 +1,20 @@
 class Project < ActiveRecord::Base
 
-  after_initialize :assigns_default_values
+  default_scope -> { order(name: :asc, id: :desc) }
 
-  has_paper_trail class_name: 'Version', ignore: [:updated_at, :created_at]
+  WEEK_DAYS = 7
+  WORKING_DAYS = 5
+  WORKING_HOURS = 8.0
+  DAYS_PER_SPRINTS = WEEK_DAYS * 2
+  DOMAIN_REGEX =   /(^(http|https):\/\/-)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
+
+  delegate :company_name, :name, :email, :designation, :phone, :address, to: :client, prefix: true, allow_nil: true
+
+  belongs_to :client
+
+
+  has_and_belongs_to_many :coders, join_table: 'coders_projects'
+  has_many :absences
 
   validates_presence_of :name
   validates_presence_of :date_started
@@ -12,21 +24,11 @@ class Project < ActiveRecord::Base
   validates_presence_of :client_id
   validates_numericality_of :pivotal_project_id
   validates_numericality_of :velocity, greater_than: 0
-
-  WEEK_DAYS = 7
-  WORKING_DAYS = 5
-  WORKING_HOURS = 8.0
-  DAYS_PER_SPRINTS = WEEK_DAYS * 2
-  DOMAIN_REGEX =   /(^(http|https):\/\/-)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
   validates_format_of :domain, multiline: true, :with => DOMAIN_REGEX
 
-  belongs_to :client
-  has_and_belongs_to_many :coders, join_table: 'coders_projects'
-  has_many :absences
+  after_initialize :assigns_default_values
 
-  delegate :company_name, :name, :email, :designation, :phone, :address, to: :client, prefix: true, allow_nil: true
-
-  default_scope -> { order(name: :asc, id: :desc) }
+  has_paper_trail class_name: 'Version', ignore: [:updated_at, :created_at]
 
   def assigns_default_values
     self.date_started ||= Date.today
