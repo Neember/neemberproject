@@ -5,11 +5,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, omniauth_providers: [:google_oauth2]
 
+  default_scope -> { order(first_name: :asc, last_name: :asc, id: :desc) }
+
   validates_presence_of :first_name
   validates_presence_of :last_name
   validates_format_of :email, :with => /\A([^@\s]+)@(futureworkz.com)\Z/i
-
-  default_scope -> { order(first_name: :asc, last_name: :asc, id: :desc) }
 
   def name
     "#{first_name} #{last_name}"
