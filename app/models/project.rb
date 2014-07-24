@@ -16,12 +16,8 @@ class Project < ActiveRecord::Base
   has_and_belongs_to_many :coders, join_table: 'coders_projects'
   has_many :absences
 
-  validates :name, presence: true
-  validates :date_started, presence: true
-  validates :no_of_sprints, numericality: { greater_than: 0 }
-  validates :price_per_sprint, numericality: { greater_than: 0 }
-  validates :quotation_no, presence: true
-  validates :client_id, presence: true
+  validates :name, :date_started, :quotation_no, :client_id, presence: true
+  validates :no_of_sprints, :price_per_sprint, numericality: { greater_than: 0 }
   validates :pivotal_project_id, numericality: { only_integer: true }
   validates :velocity, numericality: { only_integer: true, greater_than: 0 }
   validates :domain, format: { multiline: true, :with => DOMAIN_REGEX }
