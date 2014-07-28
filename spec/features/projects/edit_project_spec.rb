@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Edit project' do
   let!(:project) { create(:project) }
-  let!(:client) { create(:client, first_name: 'Martin', last_name: 'Vu') }
+  let!(:client) { Client.find(2) }
   let!(:coders) { create_list(:user, 2) }
   let(:admin) { create :admin }
 

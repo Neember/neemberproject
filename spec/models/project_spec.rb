@@ -22,7 +22,6 @@ describe Project do
   end
 
   context 'association' do
-    it { should belong_to :client }
     it { should have_and_belong_to_many(:coders) }
     it { should have_many :absences }
   end
@@ -132,6 +131,26 @@ describe Project do
       let(:project) { create(:project, date_started: Date.today, no_of_sprints: 10, absences: absences) }
       it 'returns false if estimated completion date < target completion date' do
         expect(project.overrun?).to be_falsey
+      end
+    end
+  end
+
+  describe '#client' do
+    context 'get client from api' do
+      let(:project) { create :project, client_id: 1}
+      let(:client) { {id: 1} }
+
+      def do_request
+        get :find
+      end
+
+      before do
+        expect(Client).to receive(:find).with(project.client_id)
+        allow(Client).to receive(:find).and_return(client)
+      end
+
+      it 'get client from api' do
+        expect(project.client).to eq client
       end
     end
   end

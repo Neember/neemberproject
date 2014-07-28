@@ -4,7 +4,7 @@ describe 'Show project detail' do
   context 'Show project detail' do
     let(:admin) { create :admin }
     let(:coder) { create :coder }
-    let(:client) { create :client }
+    let(:client) { Client.find(2) }
     let!(:project) { create(:project, coders: [coder], client: client) }
 
     it 'show project detail' do

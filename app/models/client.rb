@@ -1,18 +1,15 @@
-class Client < ActiveRecord::Base
-  extend Enumerize
+require 'active_resource'
 
-  default_scope -> { order(first_name: :asc, last_name: :asc, id: :desc) }
+class Client < ActiveResource::Base
+  self.site = 'http://neemberclient.herokuapp.com/'
 
-  scope :options, -> { pluck(:company_name, :id) }
-
-  has_many :projects
-
-  validates :first_name, :last_name, :email, :address, :company_name, :designation, presence: true
-  validates :email, format: { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
-
-  enumerize :title, in: [:mr, :mrs, :ms, :dr, :mdm], default: :mr
+  def self.options
+    self.all.collect do |client|
+      [client.company_name, client.id]
+    end
+  end
 
   def name
-    "#{first_name} #{last_name}"
+    "#{self.first_name} #{self.last_name}"
   end
 end

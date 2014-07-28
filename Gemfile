@@ -38,6 +38,7 @@ gem 'omniauth-google-oauth2'
 gem 'business_time'
 gem 'paper_trail', '~> 3.0.3'
 gem 'github_api'
+gem 'activeresource'
 
 group :development do
   gem 'spring'
@@ -57,6 +58,8 @@ group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'webmock'
+  gem 'fakeweb', '~> 1.3'
 end
 
 gem 'dotenv-rails', groups: [:development, :test]

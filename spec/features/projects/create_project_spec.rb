@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Create new project' do
-  let!(:client) { create(:client) }
+  let!(:client) { Client.find(2) }
   let(:admin) { create :admin }
 
   it 'Create new project' do

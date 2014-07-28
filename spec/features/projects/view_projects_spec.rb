@@ -2,11 +2,9 @@ require 'rails_helper'
 
 describe 'View Projects List' do
   let!(:projects) { create_list(:project, 5) }
-  let(:client) { create :client }
+  let(:client) { Client.find(2) }
   let(:project) { projects.first }
   let(:admin) { create :admin }
-
-  before { client.projects << project }
 
   it 'display projects list' do
     feature_login admin

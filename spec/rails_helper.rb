@@ -3,6 +3,10 @@ ENV["RAILS_ENV"] ||= 'test'
 require 'spec_helper'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
+require 'webmock/rspec'
+require 'fakeweb'
+
+WebMock.disable_net_connect!(allow_localhost: true)
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -48,12 +52,26 @@ RSpec.configure do |config|
   OmniAuth.config.test_mode = true
 
   OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
-   :provider => 'google_oauth2',
-   :uid => '123456789',
-   :info => {
-     :email => 'martin@futureworkz.com',
-     :first_name => 'John',
-     :last_name => 'Doe'
-   },
- })
+    :provider => 'google_oauth2',
+    :uid => '123456789',
+    :info => {
+      :email => 'martin@futureworkz.com',
+      :first_name => 'John',
+      :last_name => 'Doe'
+    },
+  })
+
+  FakeWeb.register_uri(:get, 'http://neemberclient.herokuapp.com/clients.json',
+    body: {
+      clients: [
+        { id: 2, company_name: 'DualRanked', first_name: 'Gabriel', last_name: 'Bunner' },
+        { id: 3, company_name: 'LunchKaki', first_name: 'Melvin', last_name: 'Tan' }
+      ]
+    }.to_json
+  )
+
+  FakeWeb.register_uri(:get, 'http://neemberclient.herokuapp.com/clients/2.json',
+    body: {client: { id: 2, company_name: 'DualRanked', first_name: 'Gabriel', last_name: 'Bunner', designation: 'Owner', email: 'gabriel@example.com', phone: '4456-5869', address: '50 DEF Street Malaysia' }}.to_json
+  )
+
 end

@@ -23,7 +23,7 @@ describe ListHelper do
     end
 
     context 'Client' do
-      let(:client) { create(:client) }
+      let(:client) { Client.find(2) }
       let(:edit_button) { helper.list_edit_button(client) }
       let(:delete_button) { helper.list_delete_button(client) }
 

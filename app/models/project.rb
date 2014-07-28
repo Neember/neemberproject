@@ -10,9 +10,6 @@ class Project < ActiveRecord::Base
 
   delegate :company_name, :name, :email, :designation, :phone, :address, to: :client, prefix: true, allow_nil: true
 
-  belongs_to :client
-
-
   has_and_belongs_to_many :coders, join_table: 'coders_projects'
   has_many :absences
 
@@ -25,6 +22,14 @@ class Project < ActiveRecord::Base
   after_initialize :assigns_default_values
 
   has_paper_trail class_name: 'Version', ignore: [:updated_at, :created_at]
+
+  def client
+    Client.find(self.client_id)
+  end
+
+  def client=(client)
+    self.client_id = client.id
+  end
 
   def assigns_default_values
     self.date_started ||= Date.today

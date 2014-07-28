@@ -51,8 +51,7 @@ describe ProjectsController do
   describe 'POST #create' do
     context 'success' do
       let(:coders) { create_list(:user, 2) }
-      let(:client) { create(:client) }
-      let(:project_param) { attributes_for(:project, client_id: client.id, notes: 'Lorem Lorem', pivotal_project_id: 9999, date_completed: '20/10/2014',coder_ids: [coders.first.id])}
+      let(:project_param) { attributes_for(:project, client_id: 1, notes: 'Lorem Lorem', pivotal_project_id: 9999, date_completed: '20/10/2014',coder_ids: [coders.first.id])}
       let(:project) { Project.first }
 
       def do_request
@@ -64,7 +63,6 @@ describe ProjectsController do
         do_request
 
         expect(project.notes).to eq 'Lorem Lorem'
-        expect(project.client).to eq client
         expect(project.coders.size).to be > 0
         expect(response).to redirect_to projects_path
         expect(flash[:notice]).to_not be_nil

@@ -7,7 +7,7 @@ FactoryGirl.define do
     quotation_no 'Lorem ipsum'
     date_started '22/8/2013'
     pivotal_project_id 1234
-    client
+    client_id 2
 
     after(:create) do |project|
       project.coders << create(:coder)
