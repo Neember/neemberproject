@@ -61,7 +61,7 @@ RSpec.configure do |config|
     },
   })
 
-  FakeWeb.register_uri(:get, 'http://neemberclient.herokuapp.com/clients.json',
+  FakeWeb.register_uri(:get, "http://#{ENV['AUTHENTICATE_USER_NAME']}:#{ENV['AUTHENTICATE_PASSWORD']}@neemberclient.herokuapp.com/clients.json",
     body: {
       clients: [
         { id: 2, company_name: 'DualRanked', first_name: 'Gabriel', last_name: 'Bunner' },
@@ -70,7 +70,7 @@ RSpec.configure do |config|
     }.to_json
   )
 
-  FakeWeb.register_uri(:get, 'http://neemberclient.herokuapp.com/clients/2.json',
+  FakeWeb.register_uri(:get, "http://#{ENV['AUTHENTICATE_USER_NAME']}:#{ENV['AUTHENTICATE_PASSWORD']}@neemberclient.herokuapp.com/clients/2.json",
     body: {client: { id: 2, company_name: 'DualRanked', first_name: 'Gabriel', last_name: 'Bunner', designation: 'Owner', email: 'gabriel@example.com', phone: '4456-5869', address: '50 DEF Street Malaysia' }}.to_json
   )
 

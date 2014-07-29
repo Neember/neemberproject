@@ -27,38 +27,19 @@ end
 
 puts 'Coders seeded'
 
-puts 'Start seeding clients'
-
-clients_data = [
-  {title: :mr, first_name: 'Leon', last_name: 'Tay', email: 'leon@example.com', phone: '1234-5869', designation: 'Owner', company_name: 'Fanfill Technology', address: '50 ABC Street Singapore'},
-  {title: :mr, first_name: 'Gabriel', last_name: 'Bunner', email: 'gabriel@example.com', phone: '4456-5869', designation: 'Owner', company_name: 'DualRanked', address: '50 DEF Street Malaysia'},
-  {title: :mr, first_name: 'Melvin', last_name: 'Tan', email: 'melvin@example.com', phone: '4456-5869', designation: 'Owner', company_name: 'LunchKaki', address: '50 GHJF Street Malaysia'},
-  {title: :ms, first_name: 'Geraldine', last_name: '-', email: 'geri.gx@example.com', phone: '4456-5869', designation: 'Owner', company_name: 'Our Cleaning Department',address: 'Blk 601, Bedok Reservoir Road, #03-512, S (470601).'},
-  {title: :ms, first_name: 'Kheng', last_name: '-', email: 'Kheng@example.com', phone: '4456-5869', designation: 'Owner', company_name: 'Kheng', address: '25B Jalan Membina #04-122 Singapore 164025'}
-]
-clients ||= {}
-
-clients_data.each do |client_data|
-  client = Client.find_or_initialize_by(client_data)
-  client.save
-  clients[client.first_name.downcase.to_sym] = client
-end
-
-puts 'Clients seeded'
-
 puts 'Start seeding projects'
 
 projects_data = [
-  {client: clients[:leon], name: 'DaDaDee', domain: 'DaDaDee.com',
+  {client_id: 1, name: 'DaDaDee', domain: 'DaDaDee.com',
    date_started: '2013/03/12', no_of_sprints: 9.8,
    price_per_sprint: 5000, quotation_no: 'FD12313KJL', pivotal_project_id: 929074},
-  {client: clients[:gabriel], name: 'DualRanked', domain: 'DualRanked.com', date_started: '2014/01/22',
+  {client_id: 2, name: 'DualRanked', domain: 'DualRanked.com', date_started: '2014/01/22',
    no_of_sprints: 7, price_per_sprint: 4000, quotation_no: 'FDS123KJL'},
-  {client: clients[:melvin], name: 'LunchKaki', domain: 'LunchKaki.com', date_started: '2014/01/22',
+  {client_id: 3, name: 'LunchKaki', domain: 'LunchKaki.com', date_started: '2014/01/22',
    no_of_sprints: 7, price_per_sprint: 4000, quotation_no: 'LKK12341KKL', pivotal_project_id: 1023700},
-  {client: clients[:geraldine],name: 'Our Cleaning Department', domain: 'ourcleaningdepartment.com', date_started: '2014/03/18',
+  {client_id: 4,name: 'Our Cleaning Department', domain: 'ourcleaningdepartment.com', date_started: '2014/03/18',
    no_of_sprints: 7, price_per_sprint: 4000, quotation_no: 'FWQ1403006a'},
-  {client: clients[:kheng], name: 'Kheng', domain: 'kheng.com', date_started: '2014/05/14',
+  {client_id: 5, name: 'Kheng', domain: 'kheng.com', date_started: '2014/05/14',
    no_of_sprints: 0.5, price_per_sprint: 4000, quotation_no: 'FWQ1404046B'}
 ]
 
