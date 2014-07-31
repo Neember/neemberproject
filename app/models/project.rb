@@ -72,7 +72,7 @@ class Project < ActiveRecord::Base
   end
 
   def commits
-    return [] if repository.nil?
+    return [] if repository.blank?
     github = Github.new oauth_token: ENV['GITHUB_ACCESS_TOKEN']
     github.repos.commits.all ENV['GITHUB_USERNAME'], self.repository, per_page: 20
   end
