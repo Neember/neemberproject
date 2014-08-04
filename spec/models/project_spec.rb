@@ -160,7 +160,7 @@ describe Project do
 
     context 'View Left Over Days' do
       it 'View Left Over Days' do
-        expect(project.overruns).to eq -68
+        expect(project.left_over_days).to eq 68
       end
     end
   end
