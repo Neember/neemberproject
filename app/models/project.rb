@@ -48,11 +48,11 @@ class Project < ActiveRecord::Base
   end
 
   def overruns
-    if overrun?
-      completed? ? completed_overruns : estimated_overruns
-    else
-      0
-    end
+    completed? ? completed_overruns : estimated_overruns if overrun?
+  end
+
+  def left_over_days
+    exceeding_days if completed?
   end
 
   def completed?
@@ -84,6 +84,10 @@ class Project < ActiveRecord::Base
 
   def unworked_hours
     absences.inject(0) { |total, absences| total + absences.hours  }
+  end
+
+  def exceeding_days
+    date_completed.business_days_until(target_completion)
   end
 
   def completed_overruns

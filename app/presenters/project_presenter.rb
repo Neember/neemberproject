@@ -5,8 +5,10 @@ class ProjectPresenter < Presenter
     project.estimated_completion unless project.completed?
   end
 
-  def overruns
-    I18n.t('helpers.label.project.overruns', count: project.overruns) if overrun?
+  def progress
+    overrun? ?
+      I18n.t('helpers.label.project.overruns', count: project.overruns) :
+      I18n.t('helpers.label.project.left_over_days', count: project.left_over_days)
   end
 
   def client_link
@@ -14,6 +16,6 @@ class ProjectPresenter < Presenter
   end
 
   def css_classes
-    'alert-danger' if overrun?
+    overrun? ? 'danger' : 'success'
   end
 end

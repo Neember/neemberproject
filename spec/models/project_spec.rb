@@ -154,4 +154,14 @@ describe Project do
       end
     end
   end
+
+  describe '#left_over_days' do
+    let(:project) { create(:project, velocity: 7, points_left: 15, date_started: '20/03/2014', no_of_sprints: 10, date_completed: '5/5/2014') }
+
+    context 'View Left Over Days' do
+      it 'View Left Over Days' do
+        expect(project.overruns).to eq -68
+      end
+    end
+  end
 end

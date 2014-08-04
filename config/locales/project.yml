@@ -28,11 +28,15 @@ en:
         notes: 'Notes'
         client: 'Client'
         coder_ids: 'Coders Name'
-        overruns_in_day: 'Overruns'
+        overruns_in_day: 'Progress'
         overruns:
           zero: 'On time'
-          one: '1 day'
-          other: "%{count} days"
+          one: '1 overrun day'
+          other: "%{count} overrun days"
+        left_over_days:
+          zero: 'On time'
+          one: '1 left over day'
+          other: "%{count} left over days"
         pivotal_project_id: 'Pivotal Project Id'
         action: 'Action'
   activerecord:
