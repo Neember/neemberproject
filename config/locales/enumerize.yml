@@ -5,3 +5,7 @@ en:
         mr: 'Mr.'
         mrs: 'Mrs.'
         ms: 'Ms.'
+    work_log:
+      status:
+        worked: 'Worked'
+        unworked: 'Un-worked'

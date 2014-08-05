@@ -1,0 +1,8 @@
+= bootstrap_form_for work_log do |f|
+  = f.select :status, WorkLog.status.options
+  = f.date_field :date, help: t('helpers.help.work_log.date')
+  = f.number_field :hours, help: t('helpers.help.work_log.hours')
+  = f.text_area :reason, help: t('helpers.help.work_log.reason')
+  = f.select :project_id, project_options(current_user.becomes(Coder).projects), {include_blank: t('work_log.message.select_project')}
+  = f.submit 'Submit', class: 'btn-u'
+  = link_to 'Back', work_logs_path, class: 'btn-u btn-u-default'

@@ -24,6 +24,7 @@ describe Project do
   context 'association' do
     it { should have_and_belong_to_many(:coders) }
     it { should have_many :absences }
+    it { should have_many :work_logs }
   end
 
   describe '#assigns_default_values' do

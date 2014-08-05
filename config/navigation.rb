@@ -57,6 +57,11 @@ SimpleNavigation::Configuration.run do |navigation|
       submenu.item :new, 'Add New Absence', new_absence_path
     end
 
+    primary.item :absences, 'Work Logs', work_logs_path, if: -> { user_signed_in? } do |submenu|
+      submenu.item :index, 'Work Logs List', work_logs_path
+      submenu.item :new, 'Add New Work Log', new_work_log_path
+    end
+
     primary.item :help, 'Help', help_path, if: -> { user_signed_in? }
 
     # You can also specify a condition-proc that needs to be fullfilled to display an item.

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140721041253) do
+ActiveRecord::Schema.define(version: 20140805061801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,19 +28,6 @@ ActiveRecord::Schema.define(version: 20140721041253) do
 
   add_index "absences", ["coder_id"], name: "index_absences_on_coder_id", using: :btree
   add_index "absences", ["project_id"], name: "index_absences_on_project_id", using: :btree
-
-  create_table "clients", force: true do |t|
-    t.string   "phone"
-    t.string   "email"
-    t.text     "address"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "company_name"
-    t.string   "title"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "designation"
-  end
 
   create_table "coders_projects", force: true do |t|
     t.integer "project_id"
@@ -101,5 +88,16 @@ ActiveRecord::Schema.define(version: 20140721041253) do
   end
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
+
+  create_table "work_logs", force: true do |t|
+    t.date     "date"
+    t.integer  "hours",      default: 8
+    t.string   "status"
+    t.text     "reason"
+    t.integer  "project_id"
+    t.integer  "coder_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

@@ -1,0 +1,32 @@
+en:
+  work_log:
+    message:
+      create_work_log_success: 'Work log is created'
+      create_work_log_failed: 'Failed to create work log'
+      update_work_log_success: 'Work log is updated'
+      update_work_log_failed: 'Failed to update work log'
+      delete_work_log_success: 'Work log is deleted'
+      delete_work_log_failed: 'Failed to delete work log'
+      select_coder: 'Please select coder'
+      select_project: 'Please select project'
+      delete_confirmation: 'Confirm delete this work log?'
+  helpers:
+    label:
+      work_log:
+        status: 'Status'
+        date: 'Date'
+        hours: 'Hours'
+        reason: 'Reason'
+        project_id: 'Project Name'
+        coder_id: 'Coders Name'
+        action: 'Action'
+    help:
+      work_log:
+        date: 'Your work log day'
+        hours: 'Your work log hour'
+        reason: 'Your work log reason'
+  activerecord:
+    errors:
+      models:
+        work_log:
+          blank: "Please fill in %{attribute}"

@@ -1,0 +1,29 @@
+= display_page_title ('Work Logs List')
+
+.container.content
+  %table.list-table
+    %thead
+      %tr
+        %th= label_name('work_log.status')
+        %th= label_name('work_log.date')
+        %th= label_name('work_log.hours')
+        %th= label_name('work_log.reason')
+        %th= label_name('work_log.project_id')
+        %th= label_name('work_log.coder_id')
+        %th= label_name('work_log.action')
+    - @work_logs.each do |work_log|
+      %tr
+        %td= work_log.status.text
+        %td= work_log.date
+        %td= pluralize(work_log.hours, 'hour')
+        %td= work_log.reason
+        %td= work_log.project_name
+        %td= work_log.coder_first_name
+        %td
+          = link_to 'Edit', edit_work_log_path(work_log.id), class: 'list-edit-button', data:{test: "edit-work_log-#{work_log.id}"}
+
+  .pagination
+    = bootstrap_paginate(@work_logs)
+
+
+

@@ -25,9 +25,8 @@ Rails.application.routes.draw do
 
   end
 
-
-
   resources :absences, only: [:index, :new, :create, :destroy]
+  resources :work_logs, except: [:show]
 
   get 'help' => 'pages#help'
 

@@ -12,6 +12,7 @@ class Project < ActiveRecord::Base
 
   has_and_belongs_to_many :coders, join_table: 'coders_projects'
   has_many :absences
+  has_many :work_logs
 
   validates :name, :date_started, :quotation_no, :client_id, presence: true
   validates :no_of_sprints, :price_per_sprint, numericality: { greater_than: 0 }
