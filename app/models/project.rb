@@ -51,7 +51,7 @@ class Project < ActiveRecord::Base
   def overruns
     if overrun?
       if completed? then
-        (left_over_days < 0) ? left_over_days : completed_overruns
+        (left_over_days < 0) ? left_over_days.abs : completed_overruns
       else
         estimated_overruns
       end
