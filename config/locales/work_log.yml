@@ -10,7 +10,6 @@ en:
       select_coder: 'Please select coder'
       select_project: 'Please select project'
       delete_confirmation: 'Confirm delete this work log?'
-      validate_date: 'You cannot work more than 8 hours per day!'
   helpers:
     label:
       work_log:

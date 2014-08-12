@@ -28,7 +28,7 @@ class WorkLog < ActiveRecord::Base
 
   def eight_hours_per_day
     if WorkLog.where(coder: self.coder, date: self.date).sum(:hours) > 8
-      errors.add(:date, t('work_log.message.validate_date'))
+      errors.add(:date, 'You cannot work more than 8 hours per day!')
     end
   end
 end
