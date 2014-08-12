@@ -108,12 +108,4 @@
                   = commit.commit.committer.email
                 %td
                   = commit.commit.committer.date
-    .col-md-12
-      %h2= 'Infograph of a project milestones'
-      .date_stated
-        =@project.date_started
-      .absences
-        -@project.work_logs.unworking.each_with_index do |unworking, index|
-          .div
-            = unworking.date
     = link_to 'Back', projects_path, class: 'btn-u btn-u-default'
