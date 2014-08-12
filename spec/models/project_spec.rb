@@ -107,7 +107,7 @@ describe Project do
       let!(:work_logs) { create_list(:work_log, 5, project: project) }
 
       it 'View Over Runs when project have date completed' do
-        expect(project.overruns).to eq -5
+        expect(project.overruns).to eq 5
       end
     end
     context 'View Over Runs' do
