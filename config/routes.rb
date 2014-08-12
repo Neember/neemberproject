@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'absences#index'
+  root 'work_logs#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -25,7 +25,6 @@ Rails.application.routes.draw do
 
   end
 
-  resources :absences, only: [:index, :new, :create, :destroy]
   resources :work_logs, except: [:show]
 
   get 'help' => 'pages#help'

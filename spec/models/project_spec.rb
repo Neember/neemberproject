@@ -23,7 +23,6 @@ describe Project do
 
   context 'association' do
     it { should have_and_belong_to_many(:coders) }
-    it { should have_many :absences }
     it { should have_many :work_logs }
   end
 
@@ -122,16 +121,16 @@ describe Project do
 
   describe '#overrun?' do
     context 'Estimated completion date > Target completion date' do
-      let!(:absences) { create_list(:absence, 2)}
-      let(:project) { create(:project, date_started: '10/07/2013', no_of_sprints: 10, absences: absences) }
+      let!(:work_logs) { create_list(:work_log, 2)}
+      let(:project) { create(:project, date_started: '10/07/2013', no_of_sprints: 10, work_logs: work_logs) }
       it 'returns true if estimated completion date > target completion date' do
         expect(project.overrun?).to be_truthy
       end
     end
 
     context 'Estimated completion date > Target completion date' do
-      let!(:absences) { create_list(:absence, 2)}
-      let(:project) { create(:project, date_started: Date.today, no_of_sprints: 10, absences: absences) }
+      let!(:work_logs) { create_list(:work_log, 2)}
+      let(:project) { create(:project, date_started: Date.today, no_of_sprints: 10, work_logs: work_logs) }
       it 'returns false if estimated completion date < target completion date' do
         expect(project.overrun?).to be_falsey
       end
