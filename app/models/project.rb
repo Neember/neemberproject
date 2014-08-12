@@ -57,7 +57,7 @@ class Project < ActiveRecord::Base
   end
 
   def left_over_days
-    exceeding_days if completed?
+    exceeding_days - working_days_after_completed.size if completed?
   end
 
   def completed?
@@ -69,7 +69,7 @@ class Project < ActiveRecord::Base
   end
 
   def really_overrun?
-    completed? && date_completed > target_completion
+    completed? && self.work_logs.working.size > ( self.no_of_sprints * WORKING_DAYS )
   end
 
   def overrun_estimated?
@@ -88,11 +88,15 @@ class Project < ActiveRecord::Base
   end
 
   def unworked_hours
-    absences.inject(0) { |total, absences| total + absences.hours  }
+    work_logs.unworking.inject(0) { |total, work_log| total + work_log.hours }
   end
 
   def exceeding_days
-    date_completed.business_days_until(target_completion)
+      date_completed.business_days_until(target_completion)
+  end
+
+  def working_days_after_completed
+    self.work_logs.after_date_completed(date_completed).working
   end
 
   def completed_overruns

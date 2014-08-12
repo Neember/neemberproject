@@ -47,8 +47,8 @@ describe Project do
 
   describe '#view_target_completion' do
     context 'View target completion project' do
-      let!(:absences) { create_list(:absence, 2)}
-      let(:project) { create(:project, date_started: Date.yesterday, no_of_sprints: 10, absences: absences) }
+      let!(:work_logs) { create_list(:work_log, 2, status: :unworked)}
+      let!(:project) { create(:project, date_started: Date.yesterday, no_of_sprints: 10, work_logs: work_logs) }
 
       it 'based on number of sprints + absences (in day) from the date started' do
         expect(project.target_completion).to eq Date.yesterday + project.no_of_sprints * 14 + 2
@@ -58,8 +58,8 @@ describe Project do
 
   describe '#unworked_days' do
     context 'Get absences in days' do
-      let!(:absences) { create_list(:absence, 2 )}
-      let(:project) { create(:project, absences: absences) }
+      let!(:work_logs) { create_list(:work_log, 2, status: :unworked)}
+      let!(:project) { create(:project, work_logs: work_logs) }
 
       it 'absences (in day) from the date started' do
         expect(project.unworked_days).to eq 2
@@ -67,8 +67,8 @@ describe Project do
     end
 
     context 'Get absences in days with unworked day is 4 hours' do
-      let!(:absences) { create_list(:absence, 2, hours: 2) }
-      let(:project) { create(:project, absences: absences) }
+      let!(:work_logs) { create_list(:work_log, 2, hours: 2, status: :unworked)}
+      let!(:project) { create(:project, work_logs: work_logs) }
 
       it 'absences in days with unworked day is 4 hours' do
         expect(project.unworked_days).to eq 0.5
@@ -97,13 +97,15 @@ describe Project do
   describe '#overruns' do
     context 'View Over Runs' do
       let(:project) { create(:project, velocity: 7, points_left: 30, date_started: Date.today, no_of_sprints: 2) }
+      let!(:work_logs) { create_list(:work_log, 30, project: project) }
 
       it 'View Over Runs when project do not have date completed' do
         expect(project.overruns).to eq 5
       end
     end
     context 'View Over Runs' do
-      let(:project) { create(:project, velocity: 7, points_left: 15, date_started: '20/05/2014', no_of_sprints: 1, date_completed: '5/6/2014') }
+      let(:project) { create(:project, velocity: 7, points_left: 14, date_started: '20/05/2014', no_of_sprints: 1, date_completed: '5/6/2014') }
+      let!(:work_logs) { create_list(:work_log, 30, project: project) }
 
       it 'View Over Runs when project have date completed' do
         expect(project.overruns).to eq 2
@@ -157,11 +159,19 @@ describe Project do
   end
 
   describe '#left_over_days' do
-    let(:project) { create(:project, velocity: 7, points_left: 15, date_started: '20/03/2014', no_of_sprints: 10, date_completed: '5/5/2014') }
-
     context 'View Left Over Days' do
+      let(:project) { create(:project, velocity: 7, points_left: 15, date_started: '20/03/2014', no_of_sprints: 10, date_completed: '5/5/2014') }
       it 'View Left Over Days' do
         expect(project.left_over_days).to eq 68
+      end
+    end
+
+    context 'View Left Over Days when project completed and project has a new task' do
+      let!(:project) { create(:project, velocity: 7, points_left: 15, date_started: '20/03/2014', no_of_sprints: 10, date_completed: '5/5/2014') }
+      let!(:work_log) { create(:work_log, date: Date.today, project_id: project.id) }
+
+      it 'View Left Over Days when project completed and project has a new task' do
+        expect(project.left_over_days).to eq 67
       end
     end
   end
