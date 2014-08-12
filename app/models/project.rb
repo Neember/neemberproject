@@ -90,6 +90,12 @@ class Project < ActiveRecord::Base
     github.repos.commits.all ENV['GITHUB_USERNAME'], self.repository, per_page: 20
   end
 
+  def project_commits
+    return [] if repository.blank?
+    github = Github.new oauth_token: ENV['GITHUB_ACCESS_TOKEN']
+    github.repos.commits.all ENV['GITHUB_USERNAME'], self.repository, per_page: 100
+  end
+
   private
   def week_left
     points_left / velocity.to_f
