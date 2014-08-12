@@ -50,14 +50,22 @@ class Project < ActiveRecord::Base
 
   def overruns
     if overrun?
-      completed? ? completed_overruns : estimated_overruns
+      if completed? then
+        (left_over_days < 0) ? left_over_days : completed_overruns
+      else
+        estimated_overruns
+      end
     else
       0
     end
   end
 
   def left_over_days
-    exceeding_days - working_days_after_completed.size if completed?
+    if completed?
+      exceeding_days - working_days_after_completed.size
+    else
+      0
+    end
   end
 
   def completed?
@@ -65,7 +73,7 @@ class Project < ActiveRecord::Base
   end
 
   def overrun?
-    overrun_estimated? || really_overrun?
+    overrun_estimated? || really_overrun? || left_over_days < 0
   end
 
   def really_overrun?

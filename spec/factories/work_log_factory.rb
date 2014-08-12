@@ -1,6 +1,8 @@
 FactoryGirl.define do
   factory :work_log do
-    date '09/08/2014'
+    sequence :date do |n|
+      "05/08/20#{n}"
+    end
     hours 8
     reason 'Sickly'
     project

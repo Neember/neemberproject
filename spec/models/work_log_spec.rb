@@ -18,7 +18,16 @@ describe WorkLog do
 
   context 'validations reason when status is un-worked' do
     let!(:work_log) { build(:work_log, hours: '', status: :unworked, reason: '') }
+
     it 'validations reason when status is un-worked' do
+      expect(work_log.valid?).to eq false
+    end
+  end
+
+  context 'validations date when coder add hours is larger 8' do
+    let!(:work_log) { build(:work_log, hours: 10, status: :worked) }
+
+    it 'validations date when coder add hours is larger 8' do
       expect(work_log.valid?).to eq false
     end
   end

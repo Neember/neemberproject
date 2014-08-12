@@ -96,7 +96,7 @@ describe Project do
   describe '#overruns' do
     context 'View Over Runs' do
       let(:project) { create(:project, velocity: 7, points_left: 30, date_started: Date.today, no_of_sprints: 2) }
-      let!(:work_logs) { create_list(:work_log, 30, project: project) }
+      let!(:work_logs) { create_list(:work_log, 5, project: project) }
 
       it 'View Over Runs when project do not have date completed' do
         expect(project.overruns).to eq 5
@@ -104,10 +104,10 @@ describe Project do
     end
     context 'View Over Runs' do
       let(:project) { create(:project, velocity: 7, points_left: 14, date_started: '20/05/2014', no_of_sprints: 1, date_completed: '5/6/2014') }
-      let!(:work_logs) { create_list(:work_log, 30, project: project) }
+      let!(:work_logs) { create_list(:work_log, 5, project: project) }
 
       it 'View Over Runs when project have date completed' do
-        expect(project.overruns).to eq 2
+        expect(project.overruns).to eq -5
       end
     end
     context 'View Over Runs' do
@@ -120,19 +120,30 @@ describe Project do
   end
 
   describe '#overrun?' do
-    context 'Estimated completion date > Target completion date' do
+    context 'Estimated overrun' do
       let!(:work_logs) { create_list(:work_log, 2)}
       let(:project) { create(:project, date_started: '10/07/2013', no_of_sprints: 10, work_logs: work_logs) }
-      it 'returns true if estimated completion date > target completion date' do
+
+      it 'Estimated overrun' do
         expect(project.overrun?).to be_truthy
       end
     end
 
-    context 'Estimated completion date > Target completion date' do
-      let!(:work_logs) { create_list(:work_log, 2)}
-      let(:project) { create(:project, date_started: Date.today, no_of_sprints: 10, work_logs: work_logs) }
-      it 'returns false if estimated completion date < target completion date' do
-        expect(project.overrun?).to be_falsey
+    context 'Really overrun' do
+      let!(:work_logs) { create_list(:work_log, 6)}
+      let(:project) { create(:project, date_started: '10/03/2014', no_of_sprints: 1, date_completed: '12/08/2014', work_logs: work_logs) }
+
+      it 'Really overrun' do
+        expect(project.overrun?).to be_truthy
+      end
+    end
+
+    context 'Working days after project completed is larger Left Over Days' do
+      let!(:work_logs) { create_list(:work_log, 6) }
+      let!(:project) { create(:project, velocity: 7, points_left: 15, date_started: '2014-01-22', no_of_sprints: 7, date_completed: '2014-04-23', work_logs: work_logs) }
+
+      it 'Working days after project completed is larger Left Over Days' do
+        expect(project.overrun?).to be_truthy
       end
     end
   end
@@ -160,6 +171,7 @@ describe Project do
   describe '#left_over_days' do
     context 'View Left Over Days' do
       let(:project) { create(:project, velocity: 7, points_left: 15, date_started: '20/03/2014', no_of_sprints: 10, date_completed: '5/5/2014') }
+
       it 'View Left Over Days' do
         expect(project.left_over_days).to eq 68
       end
