@@ -110,7 +110,7 @@ class Project < ActiveRecord::Base
   end
 
   def working_days_after_completed
-    self.work_logs.after_date_completed(date_completed).working
+    self.work_logs.after_date(date_completed).working
   end
 
   def completed_overruns

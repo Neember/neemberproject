@@ -4,7 +4,7 @@ class WorkLog < ActiveRecord::Base
   default_scope -> { order(date: :asc, id: :asc) }
   scope :working, -> { where(status: :worked) }
   scope :unworking, -> { where(status: :unworked) }
-  scope :after_date_completed, -> (date) { where("date > ?", date) }
+  scope :after_date, -> (date) { where("date > ?", date) }
 
 
   delegate :name, to: :project, prefix: true, allow_nil: true

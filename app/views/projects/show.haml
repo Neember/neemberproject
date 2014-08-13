@@ -102,7 +102,7 @@
                 %td= index+1
                 %td
                   = link_to commit.commit.message, commit.html_url
-                %td
+                %td0
                   = commit.commit.committer.name
                 %td
                   = commit.commit.committer.email
@@ -110,10 +110,18 @@
                   = commit.commit.committer.date
     .col-md-12
       %h2= 'Infograph of a project milestones'
-      .date_stated
-        =@project.date_started
-      .absences
-        -@project.work_logs.unworking.each_with_index do |unworking, index|
-          .div
-            = unworking.date
+      %div#page11
+        %ol#timeline1
+          %li
+            %time{datetime: @project.date_started}= I18n.t('helpers.label.project.time_line.date_started', value: @project.date_started)
+          -@project.work_logs.unworking.after_date(@project.date_started).each_with_index do |unworking, index|
+            %li
+              %time{datetime: unworking.date}= I18n.t('helpers.label.project.time_line.absence', value: unworking.date)
+          %li
+            %time{datetime: @project.target_completion}= I18n.t('helpers.label.project.time_line.tcd', value: @project.target_completion)
+          %li
+            %time{datetime: @project.estimated_completion}= I18n.t('helpers.label.project.time_line.ecd', value: @project.estimated_completion)
+          - if @project.date_completed
+            %li
+              %time{datetime: @project.date_completed}= I18n.t('helpers.label.project.time_line.date_completed', value: @project.date_completed)
     = link_to 'Back', projects_path, class: 'btn-u btn-u-default'

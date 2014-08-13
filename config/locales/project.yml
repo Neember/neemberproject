@@ -37,6 +37,12 @@ en:
           zero: 'On time'
           one: '1 left over day'
           other: "%{count} left over days"
+        time_line:
+          date_started: 'Date Started %{value}'
+          absence: 'Absence %{value}'
+          tcd: 'TCD %{value}'
+          ecd: 'ECD %{value}'
+          date_completed: 'Date Completed %{value}'
         pivotal_project_id: 'Pivotal Project Id'
         action: 'Action'
   activerecord:
