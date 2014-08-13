@@ -18,4 +18,16 @@ class ProjectPresenter < Presenter
   def css_classes
     overrun? ? 'danger' : 'success'
   end
+
+  def milestone_project
+    milestone_project_array = []
+    milestone_project_array.push({name: 'date_started', date: project.date_started})
+    project.work_logs.unworking.after_date(project.date_started).each do |unworking|
+      milestone_project_array.push({name: 'absence', date: unworking.date})
+    end
+    milestone_project_array.push({name: 'tcd', date: project.target_completion}) if project.target_completion
+    milestone_project_array.push({name: 'ecd', date: project.estimated_completion}) if project.estimated_completion
+    milestone_project_array.push({name: 'date_completed', date: project.date_completed}) if project.date_completed
+    milestone_project_array.sort_by { |obj| obj[:date] }
+  end
 end

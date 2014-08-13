@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
-//= require jquery.b1njTimeline
 //= require moment.min
+//= require jquery.b1njTimeline
 //= require script_site
 //= require_tree .
