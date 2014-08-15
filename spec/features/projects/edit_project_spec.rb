@@ -23,7 +23,6 @@ describe 'Edit project' do
 
     expect(page).to have_content 'Projects List'
     expect(page).to have_content I18n.t('project.message.update_project_success')
-    expect(page).to have_content client.company_name
     expect(page).to have_content coders.first.first_name
     expect(page).to have_content coders.last.first_name
   end

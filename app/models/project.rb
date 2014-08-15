@@ -1,6 +1,7 @@
 class Project < ActiveRecord::Base
 
   default_scope -> { order(name: :asc, id: :desc) }
+  scope :not_completed, -> { where(date_completed: nil) }
 
   WEEK_DAYS = 7
   WORKING_DAYS = 5

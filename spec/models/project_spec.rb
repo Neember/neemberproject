@@ -26,6 +26,21 @@ describe Project do
     it { should have_many :work_logs }
   end
 
+
+  describe 'scope project complete date' do
+    context 'scope project complete date' do
+      before do
+        create_list(:project, 3)
+        create_list(:project, 2, date_completed: '20/08/2014')
+      end
+
+      it 'scope project complete date' do
+        expect(Project.not_completed.count).to eq 3
+      end
+    end
+  end
+
+
   describe '#assigns_default_values' do
     context 'Project does not have date started' do
       let(:project) { Project.new }

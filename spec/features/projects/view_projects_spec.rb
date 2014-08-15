@@ -13,7 +13,5 @@ describe 'View Projects List' do
 
     expect(page).to have_content 'Projects List'
     expect(page).to have_content 'DaDaDee'
-
-    expect(page).to have_content client.company_name
   end
 end

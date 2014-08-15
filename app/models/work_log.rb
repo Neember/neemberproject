@@ -6,7 +6,6 @@ class WorkLog < ActiveRecord::Base
   scope :unworking, -> { where(status: :unworked) }
   scope :after_date, -> (date) { where("date > ?", date) }
 
-
   delegate :name, to: :project, prefix: true, allow_nil: true
   delegate :first_name, to: :coder, prefix: true, allow_nil: true
 
