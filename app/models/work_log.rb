@@ -1,7 +1,7 @@
 class WorkLog < ActiveRecord::Base
   extend Enumerize
 
-  default_scope -> { order(date: :asc, id: :asc) }
+  default_scope -> { order(date: :desc, id: :asc) }
   scope :working, -> { where(status: :worked) }
   scope :unworking, -> { where(status: :unworked) }
   scope :after_date, -> (date) { where("date > ?", date) }
