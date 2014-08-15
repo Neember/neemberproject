@@ -12,7 +12,6 @@
         %th= label_name('project.day_completed')
         %th= label_name('project.overruns_in_day')
         %th= label_name('project.no_of_sprints')
-        %th= label_name('project.client')
         %th= label_name('project.action')
     - @projects.each do |project|
       - project_presenter = ProjectPresenter.new(project)
@@ -25,7 +24,6 @@
         %td= project_presenter.date_completed
         %td= project_presenter.progress
         %td= project_presenter.no_of_sprints
-        %td= project_presenter.client_link
         %td.col-md-2
           = list_edit_button(project)
           = list_delete_button(project)
