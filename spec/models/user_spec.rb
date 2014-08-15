@@ -44,7 +44,7 @@ describe User do
       let(:user) { build(:user) }
 
       it 'creates a new user' do
-        expect { User.find_for_google_oauth2(access_token) }.to change(User, :count).by(1)
+        expect(User.find_for_google_oauth2(access_token)).to be_falsey
       end
     end
   end

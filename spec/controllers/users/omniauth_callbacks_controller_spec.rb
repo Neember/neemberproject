@@ -12,9 +12,14 @@ describe Users::OmniauthCallbacksController do
     end
 
     context 'User using futureworkz.com domain' do
+      let!(:user) { create :user, email: 'test@futureworkz.com' }
+
+      before { request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:google_oauth2].merge(info: {email: 'test@futureworkz.com'}) }
+
       it 'authenticates user' do
-        expect { do_request }.to change(User, :count).by(1)
+        do_request
         expect(controller.user_signed_in?).to be_truthy
+        expect(controller.current_user).to eq user
       end
     end
 

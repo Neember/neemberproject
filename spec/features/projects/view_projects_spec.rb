@@ -4,7 +4,7 @@ describe 'View Projects List' do
   let!(:projects) { create_list(:project, 5) }
   let(:client) { Client.find(2) }
   let(:project) { projects.first }
-  let(:admin) { create :admin }
+  let(:admin) { create :admin, email: 'martin@futureworkz.com' }
 
   it 'display projects list' do
     feature_login admin

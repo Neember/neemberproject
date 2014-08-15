@@ -4,13 +4,6 @@ module FeatureHelper
   end
 
   def feature_login(user)
-    visit root_path
-
-    click_on 'Login'
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: '123123123'
-    click_on 'Sign In'
-
-    expect(page).to have_content 'Signed in successfully'
+    login_as user
   end
 end

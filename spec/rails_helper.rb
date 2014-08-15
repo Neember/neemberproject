@@ -49,8 +49,10 @@ RSpec.configure do |config|
   config.include(FeatureHelper, type: :feature)
   config.include Devise::TestHelpers, type: :controller
 
-  OmniAuth.config.test_mode = true
+  config.include Warden::Test::Helpers
+  Warden.test_mode!
 
+  OmniAuth.config.test_mode = true
   OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
     :provider => 'google_oauth2',
     :uid => '123456789',
@@ -73,5 +75,7 @@ RSpec.configure do |config|
   FakeWeb.register_uri(:get, "http://#{ENV['AUTHENTICATE_USER_NAME']}:#{ENV['AUTHENTICATE_PASSWORD']}@neemberclient.herokuapp.com/api/clients/2.json",
     body: {client: { id: 2, company_name: 'DualRanked', first_name: 'Gabriel', last_name: 'Bunner', designation: 'Owner', email: 'gabriel@example.com', phone: '4456-5869', address: '50 DEF Street Malaysia' }}.to_json
   )
+
+
 
 end
