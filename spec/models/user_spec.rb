@@ -29,20 +29,20 @@ describe User do
     let(:access_token) { double('access_token') }
     before do
       allow(access_token).to receive(:info).and_return(
-                               {'email' => user.email, 'first_name' => user.first_name, 'last_name' => user.last_name})
+                               {'email' => 'Martin@futureworkz.com', 'first_name' => 'Martin', 'last_name' => 'Vu'})
     end
 
     context 'user has the account' do
-      let!(:user) { create(:user) }
+      let!(:user) { create(:user, email: 'martin@futureworkz.com') }
 
       it 'returns user has google authenticated' do
+        result = User.find_for_google_oauth2(access_token)
         expect { User.find_for_google_oauth2(access_token) }.to_not change(User, :count)
+        expect(result.email).to eq user.email
       end
     end
 
     context 'user does not have the account' do
-      let(:user) { build(:user) }
-
       it 'creates a new user' do
         expect(User.find_for_google_oauth2(access_token)).to be_falsey
       end

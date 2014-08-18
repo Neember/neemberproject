@@ -18,3 +18,11 @@ Neember Project is a internal used application developed by Futureworkz Neember.
   * When project is completed: it is the completed overrun. (completed day - target completion day)
   * When the project is not completed: it is the estimated overrun (estimated completion day - target completion day)
 * Left over Days: Left over days = days from completion date to target completion date
+
+
+## How to create work log
+
+* Login with Google account
+* Go to Work Log list
+* Click Add New Work Log
+* Fill Data and choose a project ( project isn't completed )

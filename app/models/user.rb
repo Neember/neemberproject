@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
 
   def self.find_for_google_oauth2(access_token)
     data = access_token.info
-    User.where(email: data['email']).first
+    User.where(email: (data['email']).downcase).first
   end
 
   private
