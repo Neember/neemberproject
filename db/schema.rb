@@ -29,6 +29,19 @@ ActiveRecord::Schema.define(version: 20140805061801) do
   add_index "absences", ["coder_id"], name: "index_absences_on_coder_id", using: :btree
   add_index "absences", ["project_id"], name: "index_absences_on_project_id", using: :btree
 
+  create_table "clients", force: true do |t|
+    t.string   "phone"
+    t.string   "email"
+    t.text     "address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "company_name"
+    t.string   "title"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "designation"
+  end
+
   create_table "coders_projects", force: true do |t|
     t.integer "project_id"
     t.integer "coder_id"
