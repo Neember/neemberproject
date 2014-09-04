@@ -75,7 +75,5 @@ RSpec.configure do |config|
   FakeWeb.register_uri(:get, "http://#{ENV['AUTHENTICATE_USER_NAME']}:#{ENV['AUTHENTICATE_PASSWORD']}@neemberclient.herokuapp.com/api/clients/2.json",
     body: {client: { id: 2, company_name: 'DualRanked', first_name: 'Gabriel', last_name: 'Bunner', designation: 'Owner', email: 'gabriel@example.com', phone: '4456-5869', address: '50 DEF Street Malaysia' }}.to_json
   )
-
-
-
 end
+
