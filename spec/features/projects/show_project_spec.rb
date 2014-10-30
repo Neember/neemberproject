@@ -5,7 +5,7 @@ describe 'Show project detail' do
     let(:admin) { create :admin }
     let(:coder) { create :coder }
     let(:client) { Client.find(2) }
-    let!(:project) { create(:project, coders: [coder], client: client) }
+    let!(:project) { create(:project, coders: [coder], client: client, points_left: 150) }
 
     it 'show project detail' do
       visit root_path
@@ -22,6 +22,8 @@ describe 'Show project detail' do
       expect(page).to have_content project.domain
       expect(page).to have_content project.no_of_sprints
       expect(page).to have_content client.company_name
+
+      expect(page).to have_content project.points_left
     end
   end
 end

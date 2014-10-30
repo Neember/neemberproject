@@ -7,7 +7,7 @@ class Project < ActiveRecord::Base
   WORKING_DAYS = 5
   WORKING_HOURS = 8.0
   DAYS_PER_SPRINTS = WEEK_DAYS * 2
-  DOMAIN_REGEX =   /(^(http|https):\/\/-)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
+  DOMAIN_REGEX = /(^(http|https):\/\/-)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
 
   delegate :company_name, :name, :email, :designation, :phone, :address, to: :client, prefix: true, allow_nil: true
 
