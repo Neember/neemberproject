@@ -174,6 +174,7 @@ describe ProjectsController do
         expect(response).to render_template :show
         expect(assigns(:project)).to_not be_nil
         expect(assigns(:project).work_logs).to be_loaded
+        expect(assigns(:project).versions).to be_loaded
       end
     end
   end

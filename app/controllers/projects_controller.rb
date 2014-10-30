@@ -45,7 +45,8 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.includes(:work_logs).find(project_id)
+    @project = Project.includes(:work_logs, :versions)
+      .order('work_logs.date DESC').find(project_id)
   end
 
   protected
