@@ -45,7 +45,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find(project_id)
+    @project = Project.includes(:work_logs).find(project_id)
   end
 
   protected

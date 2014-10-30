@@ -68,6 +68,28 @@
             %th=label_name('project.points_left')
             %td= project_presenter.points_left
     .col-md-12
+      %h2 Project Worklogs
+      .history
+        %table.list-table.table-bordered
+          %thead
+            %tr
+              %th= '#'
+              %th= 'Coder'
+              %th= 'Timestamps'
+              %th= 'Status'
+              %th= 'Reason'
+          - @project.work_logs.each_with_index do |work_log, index|
+            %tr
+              %td= index + 1
+              %td
+                = work_log.coder_first_name
+              %td
+                = work_log.created_at
+              %td
+                = work_log.status
+              %td
+                = work_log.reason
+    .col-md-12
       %h2 Project History
       .history
         %table.list-table.table-bordered

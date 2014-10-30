@@ -7,6 +7,8 @@ describe 'Show project detail' do
     let(:client) { Client.find(2) }
     let!(:project) { create(:project, coders: [coder], client: client, points_left: 150) }
 
+    before { create_list :work_log, 3, project: project, coder: coder }
+
     it 'show project detail' do
       visit root_path
 
