@@ -16,7 +16,7 @@ class ProjectPresenter < Presenter
   end
 
   def css_classes
-    overrun? ? 'danger' : 'success'
+    overrun? ? 'danger' : (completed? ? 'success' : 'info')
   end
 
   def milestone_project

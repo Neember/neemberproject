@@ -3,7 +3,9 @@ class ProjectsController < ApplicationController
   before_filter :authenticate_admin!
 
   def index
-    @projects = Project.paginate(page: page)
+    @projects = Project
+      .order(date_started: :desc)
+      .paginate(page: page)
   end
 
   def new

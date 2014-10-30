@@ -117,6 +117,7 @@ describe Project do
         expect(project.overruns).to eq 5
       end
     end
+
     context 'View Over Runs' do
       let(:project) { create(:project, velocity: 7, points_left: 14, date_started: '20/05/2014', no_of_sprints: 1, date_completed: '5/6/2014') }
       let!(:work_logs) { create_list(:work_log, 5, project: project) }
@@ -125,6 +126,7 @@ describe Project do
         expect(project.overruns).to eq 5
       end
     end
+
     context 'View Over Runs' do
       let(:project) { create(:project, velocity: 7, points_left: 15, date_started: '20/03/2014', no_of_sprints: 10, date_completed: '5/5/2014') }
 
