@@ -6,19 +6,16 @@ class PivotalProjectTracker
   def sync_projects
     pivotal_projects.each do |pivotal_project|
       project = Project.find_by_pivotal_project_id(pivotal_project.id)
-
-      if project.present?
-        project.update(
-          points_left: points_left_of(pivotal_project),
-          velocity: pivotal_project.current_velocity
-        )
-      end
+      project.update(
+        points_left: points_left_of(pivotal_project),
+        velocity: pivotal_project.current_velocity
+      ) if project.present?
     end
   end
 
   private
   def assign_pivotal_access_token
-    PivotalTracker::Client.token= ENV['PIVOTAL_ACCESS_TOKEN']
+    PivotalTracker::Client.token = ENV['PIVOTAL_ACCESS_TOKEN']
   end
 
   def pivotal_projects
