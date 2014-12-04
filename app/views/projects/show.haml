@@ -77,6 +77,7 @@
               %th= 'Coder'
               %th= 'Timestamps'
               %th= 'Status'
+              %th= 'Hours'
               %th= 'Reason'
           - @project.work_logs.each_with_index do |work_log, index|
             %tr
@@ -85,6 +86,8 @@
                 = work_log.coder_first_name
               %td
                 = work_log.date
+              %td
+                = work_log.hours
               %td
                 = work_log.status
               %td
