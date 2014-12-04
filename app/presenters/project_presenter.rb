@@ -19,6 +19,10 @@ class ProjectPresenter < Presenter
     overrun? ? 'danger' : (completed? ? 'success' : 'info')
   end
 
+  def completed_percentage
+    "#{project.completed_percentage}%"
+  end
+
   def milestone_project
     milestone_project_array = []
     milestone_project_array.push({name: 'date_started', date: project.date_started})

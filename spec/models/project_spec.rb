@@ -70,6 +70,16 @@ describe Project do
     end
   end
 
+  describe '#completed_sprints' do
+    let!(:work_logs) { create_list(:work_log, 12, status: :worked)}
+    let(:project) { create :project, date_started: 2.weeks.ago, no_of_sprints: 10, work_logs: work_logs }
+
+    it 'calculates number of completed sprints' do
+      expect(project.completed_sprints).to eq 1
+      expect(project.completed_percentage).to eq 10.0
+    end
+  end
+
   describe '#unworked_days' do
     context 'Get absences in days' do
       let!(:work_logs) { create_list(:work_log, 2, status: :unworked)}

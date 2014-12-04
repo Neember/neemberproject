@@ -5,6 +5,8 @@ class Project < ActiveRecord::Base
   WORKING_DAYS = 5
   WORKING_HOURS = 8.0
   DAYS_PER_SPRINTS = WEEK_DAYS * 2
+  WORKING_DAYS_PER_SPRINTS = WORKING_DAYS * 2
+  WORKING_HOURS_PER_SPRINT = WORKING_HOURS * WORKING_DAYS_PER_SPRINTS
   DOMAIN_REGEX = /(^(http|https):\/\/-)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
 
   delegate :company_name, :name, :email, :designation, :phone, :address, to: :client, prefix: true, allow_nil: true
@@ -29,6 +31,22 @@ class Project < ActiveRecord::Base
 
   def client=(client)
     self.client_id = client.id
+  end
+
+  def completed_hours
+    self.work_logs.working.sum(:hours)
+  end
+
+  def completed_sprints
+    (completed_hours / WORKING_HOURS_PER_SPRINT).round(0)
+  end
+
+  def completed_percentage
+    (completed_sprints / no_of_sprints.to_f).round(2) * 100
+  end
+
+  def leftover_sprints
+    no_of_sprints - completed_sprints
   end
 
   def assigns_default_values

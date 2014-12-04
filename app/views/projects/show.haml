@@ -68,6 +68,12 @@
             %th=label_name('project.points_left')
             %td= project_presenter.points_left
     .col-md-12
+      %h2 Project Progress
+      .progress
+        .progress-bar.progress-bar-success.progress-bar-striped.active{style: "width: #{project_presenter.completed_percentage}"}
+          = project_presenter.completed_percentage
+
+    .col-md-12
       %h2 Project Worklogs
       .history
         %table.list-table.table-bordered
@@ -93,7 +99,7 @@
               %td
                 = work_log.reason
     .col-md-12
-      %h2 Project History
+      %h2 Project Changelog
       .history
         %table.list-table.table-bordered
           %thead
