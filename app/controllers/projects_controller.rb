@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
+    @clients = Client.options
   end
 
   def create
@@ -24,6 +25,7 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = Project.find(project_id)
+    @clients = Client.options
   end
 
   def update

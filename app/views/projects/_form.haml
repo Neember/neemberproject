@@ -8,7 +8,7 @@
   = f.text_field :pivotal_project_id
   = f.text_field :quotation_no
   = f.text_field :repository
-  = f.select :client_id, Client.options, {include_blank: t('project.message.select_client')}
+  = f.select :client_id, @clients, {include_blank: t('project.message.select_client')}
   = f.collection_select :coder_ids, User.options, :last, :first, {}, {multiple: true, size: 5}
   = f.text_area :notes
   = f.submit 'Submit', class: 'btn-u'
