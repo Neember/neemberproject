@@ -45,6 +45,10 @@ class Project < ActiveRecord::Base
     (completed_sprints / no_of_sprints.to_f).round(2) * 100
   end
 
+  def incompleted_percentage
+    100 - completed_percentage
+  end
+
   def leftover_sprints
     no_of_sprints - completed_sprints
   end
@@ -107,13 +111,13 @@ class Project < ActiveRecord::Base
     github.repos.commits.all ENV['GITHUB_USERNAME'], self.repository, per_page: per_page
   end
 
+  def unworked_hours
+    work_logs.unworking.inject(0) { |total, work_log| total + work_log.hours }
+  end
+
   private
   def week_left
     points_left / velocity.to_f
-  end
-
-  def unworked_hours
-    work_logs.unworking.inject(0) { |total, work_log| total + work_log.hours }
   end
 
   def exceeding_days

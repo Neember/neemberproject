@@ -23,6 +23,10 @@ class ProjectPresenter < Presenter
     "#{project.completed_percentage}%"
   end
 
+  def incompleted_percentage
+    "#{project.incompleted_percentage}%"
+  end
+
   def milestone_project
     milestone_project_array = []
     milestone_project_array.push({name: 'date_started', date: project.date_started})

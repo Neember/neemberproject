@@ -56,23 +56,42 @@
             %th=label_name('project.overruns_in_day')
             %td= project_presenter.overruns
           %tr
-            %th=label_name('project.no_of_sprints')
-            %td= project_presenter.no_of_sprints
-          %tr
             %th=label_name('project.price_per_sprint')
             %td= project_presenter.price_per_sprint
+    .col-md-12
+      %h2 Project Progress
+      .progress
+        .progress-bar.progress-bar-success.progress-bar-striped.active{style: "width: #{project_presenter.completed_percentage}" }
+          = "#{project_presenter.completed_sprints} sprint(s) completed"
+        .progress-bar.progress-bar-info.progress-bar-striped.active{style: "width: #{project_presenter.incompleted_percentage}" }
+          = "#{project_presenter.leftover_sprints} sprint(s) pending"
+
+      %table.list-table
+        %thead
+          %tr
+            %th.col-md-3= "No of Sprints"
+            %td= project_presenter.no_of_sprints
+          %tr
+            %th=label_name('project.points_left')
+            %td= project_presenter.points_left
+          %tr
+            %th= "Completed sprints"
+            %td= @project.completed_sprints
+          %tr
+            %th= "Left-over sprints"
+            %td= @project.leftover_sprints
+          %tr
+            %th= "Unworked hours"
+            %td= @project.unworked_hours
+          %tr
+            %th= "Worked hours"
+            %td= @project.completed_hours
           %tr
             %th=label_name('project.velocity')
             %td= project_presenter.velocity
           %tr
             %th=label_name('project.points_left')
             %td= project_presenter.points_left
-    .col-md-12
-      %h2 Project Progress
-      .progress
-        .progress-bar.progress-bar-success.progress-bar-striped.active{style: "width: #{project_presenter.completed_percentage}"}
-          = project_presenter.completed_percentage
-
     .col-md-12
       %h2 Project Worklogs
       .history
